@@ -241,16 +241,8 @@ experiences and satisfaction, ultimately fostering stronger relationships with c
 		group by 1,2
 		order by 3 desc
 		--limit 100
-'''
-Note :
-	Hasil korelasi yang mendekati nol (0 koma sekian) menunjukkan bahwa ada sedikit atau tidak ada korelasi linear 
-antara dua variabel yang Anda bandingkan. Dalam konteks analisis data, nilai korelasi mendekati nol mengindikasikan 
-bahwa perubahan dalam satu variabel tidak secara linier berkaitan dengan perubahan dalam variabel lainnya.
-'''
-
 
 --Can we identify any trends in product attributes mentioned in reviews?
-  Create Viz
 
 ------------------------------------------------------------------------------------------------------------
 --Time-based Analysis:
@@ -274,7 +266,7 @@ bahwa perubahan dalam satu variabel tidak secara linier berkaitan dengan perubah
 
 --Are there any significant changes in review scores over the years ?
 
-  ''' i dont think we can do a measurement based on this Q, bcuz after the analysis above we ended up knowingthat we dont get a 
+  ''' i dont think we can do a measurement based on this Q, bcuz after the analysis above we ended up knowing that we dont get a 
   	  complete data for Q1,Q2,Q3 in 2016 and Q4 in 2018. '''
 	  
 --Can we identify any seasonal trends in customer sentiment?
