@@ -1,4 +1,4 @@
------------------------Customer Satisfaction and Product Reviews Analysis-------------------------
+-----------------------Customer Satisfaction and Product Reviews Analysis------------------------
 
 '''
 Purpose: The purpose of this project is to analyze customer satisfaction and product reviews to gain insights 
