@@ -1,13 +1,38 @@
 -----------------------Customer Satisfaction and Product Reviews Analysis------------------------
 
 
+------------------------------------------------Cleaning Process Using Excel--------------------------------------------------
+ '''
+Customers Table :
+	 1. Correct the city name in the customer_city column using the sort & filter feature, then find & replace.
+	 2. Check duplicate value on customer_id using Conditional formating fiture
+	 
+Orders Table :
+	 1. Remove the 'order_approved_at' column due to many null values.
+	 2. Check duplicate value on order_id using Conditional formating fiture
+	 3. Remove the 'order_delivered_carrier_date' column due to many null values.
+	 4. Retain the 'order_purchase_timestamp', 'order_delivered_customer_date', and 'order_estimated_delivery_date' columns as they can be taken as benchmarks 
+	    for the arrival of goods according to estimates or even earlier, which can also affect customer reviews.
+
+Product Table :
+	 1. Check duplicate value on product_id using Conditional formating fiture
+	 2. Translate the product_category_name column from Portuguese to English took from the table "product_kategory_name_English_translation" which has been bundled with other 
+	    tables using the "find and replace" feature.
+	 3. Remove the `product_name_length` column.        
+	 4. Remove the `product_description_length` column. 
+	 5. Remove the `product_photos_qty` column.
+	 
+** The 2 others table look okay 
+*** NOTE : Even though some tables have been modified, we still keep the original files as backups.
+'''
+
 DROP TABLE IF EXISTS geolocation CASCADE;
 DROP TABLE IF EXISTS customers CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS order_review;
 DROP TABLE IF EXISTS products CASCADE;
 
-----------------------------------------------------------------------------------------------------------------
+------------------------------------------------------Create Table and Import Data Using PostgreSQL----------------------------------------------------------
 
 CREATE TABLE geolocation
 (
@@ -36,7 +61,6 @@ CREATE TABLE orders
 	estimated_delivery		TIMESTAMP
 );
 
-
 CREATE TABLE order_review
 (
 	order_id				VARCHAR(100) REFERENCES orders(order_id),
@@ -56,7 +80,7 @@ CREATE TABLE products
 	product_height_cm		INT,
 	product_width_cm		INT
 );
-------------------------------------------------BATAS--------------------------------------------------
+------------------------------------------------Analysis Process Using PostgreSQL--------------------------------------------------
 
 --Customer Review Sentiment:
 
@@ -138,7 +162,7 @@ understanding of customer sentiments and offers insights for further enhancing c
 	limit 5
 
 --Are there any common themes or issues mentioned in the negative reviews?
-
+--NOTE : Because comment_title and comment_message are only available in Portuguese, after conducting the analysis, we still need to perform a translation to english for them.	
   '''
   Under the topic of "Top Positive and Negative Reviews," the analysis of the top 5 positive and negative reviews provides 
   valuable insights into the sentiments and experiences of customers. 
