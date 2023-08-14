@@ -33,3 +33,5 @@ Time-based Analysis: Examine customer satisfaction trends over time to identify 
 Recommendations for Improvement: Based on the analysis, provide recommendations to improve customer satisfaction
 								 and address any common issues mentioned in negative reviews..
 
+<img width="670" alt="Screenshot 2023-06-21 165837" src="https://github.com/Sary332/My_Portfolio/assets/110008177/99a67f81-dacb-4cfb-9714-be929cc4afd7">
+
