@@ -17,10 +17,6 @@ create table public.cyclistic
     ,member_casual character(10)
 );
 
-
-<img width="670" alt="Screenshot 2023-06-21 165837" src="https://github.com/Sary332/My_Portfolio/assets/110008177/99a67f81-dacb-4cfb-9714-be929cc4afd7">
-
-
 /* checking the table */
 
 select count(distinct ride_id)
