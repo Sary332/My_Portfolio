@@ -80,6 +80,16 @@ CREATE TABLE products
 	product_height_cm		INT,
 	product_width_cm		INT
 );
+
+CREATE TABLE order_items 
+(
+	order_id				VARCHAR(100) REFERENCES orders(order_id),
+	order_item_id	        INT,
+	product_id				VARCHAR(100) REFERENCES products(product_id),
+	shipping_limit_date		TIMESTAMP,
+	price					DECIMAL(10,2),
+	freight_value           DECIMAL(10,2)
+);
 ------------------------------------------------Analysis Process Using PostgreSQL--------------------------------------------------
 
 --Customer Review Sentiment:
