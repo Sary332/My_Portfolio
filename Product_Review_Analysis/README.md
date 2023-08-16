@@ -53,25 +53,25 @@ Create tables for geolocation, customers, orders, order_review, products, and or
 
 ## Recommendations for Improvement:
 
-**Timely Delivery and Communication :** 
+****Timely Delivery and Communication :****
 -->  Improve shipping efficiency and provide real-time updates.
 
-**Product Quality Assurance :**  		 
+****Product Quality Assurance :****	 
 -->  Implement strict quality control and thorough inspections.
 
-**Customer Support and Issue Resolution :**    
+****Customer Support and Issue Resolution :****
 --> Enhance support channels and resolution processes.
 
-**Product Attributes Alignment :** 	
+****Product Attributes Alignment :****	
 --> Focus on attributes correlated with higher satisfaction.
 
-**Regional Customer Sentiment :** 	 
+****Regional Customer Sentiment :**** 
 --> Tailor strategies to regional preferences.
 
-**Seasonal Considerations:** 		 
+****Seasonal Considerations:****	 
 --> Prepare for peak seasons with staffing and inventory.
 
-**Review Score Distribution :**		 
+****Review Score Distribution :****	 
 --> Use review scores to identify improvement areas.
 
 ****Translation and Communication :**** 
