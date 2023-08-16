@@ -30,5 +30,5 @@ Analyze the relationship between product attributes and review scores. Determine
 Examine customer satisfaction trends over time to identify any significant changes in sentiment.
 
 ### Recommendations for Improvement:
-Based on the analysis, provide recommendations to improve customer satisfaction and address any common issues mentioned in negative reviews.
+Based on the analysis, provide recommendations to improve customer satisfaction and address any common issues mentioned in negative reviews..
 
