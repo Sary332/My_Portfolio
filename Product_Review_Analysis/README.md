@@ -27,7 +27,7 @@ Analyze customer satisfaction levels based on their location (e.g., city, state)
 Analyze the relationship between product attributes and review scores. Determine if specific product attributes correlate with higher customer satisfaction.
 
 **f) Time-based Analysis:**
-Examine customer satisfaction trends over time to identify any significant changes in sentiment.
+Examine customer satisfaction trends over time to identify any significant changes in sentiment..
 
 ### Recommendations for Improvement:
 Based on the analysis, provide recommendations to improve customer satisfaction and address any common issues mentioned in negative reviews..
