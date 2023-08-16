@@ -1,5 +1,6 @@
-Purpose: The purpose of this project is to analyze customer satisfaction and product reviews to gain insights 
-		 into the factors affecting customer sentiment and identify potential areas for improvement.
+# Purpose: 
+The purpose of this project is to analyze customer satisfaction and product reviews to gain insights 
+into the factors affecting customer sentiment and identify potential areas for improvement.
 
 Task: Analyze the customer reviews and associated product attributes to understand customer satisfaction 
 	  levels and product performance.
