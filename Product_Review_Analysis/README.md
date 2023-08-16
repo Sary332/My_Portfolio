@@ -9,26 +9,58 @@ levels and product performance.
 ### Goal: 
 The goal of this project is to provide actionable insights to the e-commerce company (Olist, in this case) to enhance customer satisfaction, identify popular product categories, and improve product offerings based on customer feedback.
 	  
+## Cleaning Process (Using Excel):
+
+### Customers Table:
+**1)** Correct city names using sort & filter, find & replace.
+**2)** Check for duplicate customer IDs.
+
+ ### Orders Table:
+**1)** Remove 'order_approved_at' and 'order_delivered_carrier_date' columns.
+**2)** Check for duplicate order IDs.
+
+### Product Table:
+
+**1)** Translate 'product_category_name' from Portuguese to English.
+**1)** Remove unnecessary columns.
+
+## CREATE TABLE and Import file using PostgreSQL:
+
+Create tables for geolocation, customers, orders, order_review, products, and order_items.
+
 ## Analysis Tasks:
 
-**a) Customer Review Sentiment:**
-Analyze the distribution of review scores to understand the overall customer satisfaction level. Calculate the average review score to get an overall sentiment rating.
+### Customer Review Sentiment:
+**1)** Distribution of review scores.
+**2)** Average review score calculation.
+**3)** Categorize reviews by rating.
 
-**b) Product Category Sentiment:**
-Determine which product categories receive the highest and lowest average review scores. Identify the best and worst-performing product categories in terms of customer satisfaction.
+### Top Positive and Negative Reviews:
+**1)** Identify top positive and negative reviews based on scores and comments.
+**2)** Analyze common themes in negative reviews.
 
-**c) Top Positive and Negative Reviews:**
-Identify the top positive and negative reviews based on review scores and comments. Analyze common themes or issues mentioned in negative reviews.
+### Geographical Analysis:
+**1)** Analyze satisfaction by region (city/state).
+**2)** Identify regions with high/low average review scores.
 
-**d) Geographical Analysis:**
-Analyze customer satisfaction levels based on their location (e.g., city, state) to identify regional variations in sentiment.
+### Product Attributes and Reviews:
+**1)** Correlation between product attributes and review scores.
+**2)** Trends in attributes mentioned in reviews.
 
-**e) Product Attributes and Reviews:**
-Analyze the relationship between product attributes and review scores. Determine if specific product attributes correlate with higher customer satisfaction.
+### Time-based Analysis:
+**1)** Customer satisfaction evolution over time.
+**2)** Identify seasonal trends in review scores.
 
-**f) Time-based Analysis:**
-Examine customer satisfaction trends over time to identify any significant changes in sentiment..
+## Recommendations for Improvement:
 
-### Recommendations for Improvement:
-Based on the analysis, provide recommendations to improve customer satisfaction and address any common issues mentioned in negative reviews..
+Timely Delivery and Communication	 -->  Improve shipping efficiency and provide real-time updates.
+Product Quality Assurance 		 -->  Implement strict quality control and thorough inspections.
+Customer Support and Issue Resolution    --> Enhance support channels and resolution processes.
+Product Attributes Alignment		 --> Focus on attributes correlated with higher satisfaction.
+Regional Customer Sentiment		 --> Tailor strategies to regional preferences.
+Seasonal Considerations			 --> Prepare for peak seasons with staffing and inventory.
+Review Score Distribution		 --> Use review scores to identify improvement areas.
+Translation and Communication		 --> Implement multilingual support for accurate feedback.
+Continuous Improvement Culture		 --> Foster a culture of improvement based on customer feedback.
 
+By addressing these recommendations, the platform can enhance customer satisfaction, improve product quality, and build stronger relationships with customers.
