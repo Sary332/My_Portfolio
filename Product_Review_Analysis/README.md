@@ -2,18 +2,17 @@
 The purpose of this project is to analyze customer satisfaction and product reviews to gain insights 
 into the factors affecting customer sentiment and identify potential areas for improvement.
 
-## Task: 
+### Task: 
 Analyze the customer reviews and associated product attributes to understand customer satisfaction 
 levels and product performance.
 	  
-Goal: The goal of this project is to provide actionable insights to the e-commerce company (Olist, in this case) 
-	  to enhance customer satisfaction, identify popular product categories, and improve product offerings based
-	  on customer feedback.
+### Goal: 
+The goal of this project is to provide actionable insights to the e-commerce company (Olist, in this case) to enhance customer satisfaction, identify popular product categories, and improve product offerings based on customer feedback.
 	  
-Analysis Tasks:
+## Analysis Tasks:
 
-Customer Review Sentiment: Analyze the distribution of review scores to understand the overall customer satisfaction 
-						   level. Calculate the average review score to get an overall sentiment rating.
+**a)** Customer Review Sentiment: Analyze the distribution of review scores to understand the overall customer satisfaction level. Calculate the average review score to get 
+        an overall sentiment rating.
 
 Product Category Sentiment: Determine which product categories receive the highest and lowest average review 
 							scores. Identify the best and worst-performing product categories in terms of 
