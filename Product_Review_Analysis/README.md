@@ -32,6 +32,10 @@ Create tables for geolocation, customers, orders, order_review, products, and or
 
 ### Customer Review Sentiment:
 **1)** Distribution of review scores.
+**2)** The average review score for each product category
+
+### Product Category Sentiment :
+**1)** Product categories have the highest & lowest average review scores
 **2)** Average review score calculation.
 **3)** Categorize reviews by rating.
 
