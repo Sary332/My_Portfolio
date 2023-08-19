@@ -1,7 +1,7 @@
 -----------------------Customer Satisfaction and Product Reviews Analysis------------------------
 
 
-------------------------------------------------Cleaning Process Using Excel--------------------------------------------------
+------------------------------------------------Cleaning Process Using Excel & PostgreSQL---------------------------------------------
  '''
 Customers Table :
 	 1. Correct the city name in the customer_city column using the sort & filter feature, then find & replace.
@@ -26,14 +26,17 @@ Product Table :
 *** NOTE : Even though some tables have been modified, we still keep the original files as backups.
 '''
 
+
+------------------------------------------------------Create Table and Import Data Using PostgreSQL----------------------------------------------------------
+'''
 DROP TABLE IF EXISTS geolocation CASCADE;
 DROP TABLE IF EXISTS customers CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS order_review;
 DROP TABLE IF EXISTS products CASCADE;
-
-------------------------------------------------------Create Table and Import Data Using PostgreSQL----------------------------------------------------------
-
+DROP TABLE IF EXISTS order_items ;
+'''
+	
 CREATE TABLE geolocation
 (
 	zip_code				INT,
@@ -90,6 +93,26 @@ CREATE TABLE order_items
 	price					DECIMAL(10,2),
 	freight_value           DECIMAL(10,2)
 );
+
+	 
+'''
+NOTE :
+We are excluding data for the year 2016 as it only consists of one quarter, which is Q4. Utilizing it in the analysis might 
+impact the interpretation of the results. Therefore, we will focus solely on the years 2017 and 2018. Even though data for 
+the year 2018 is also lacking only Q4 data, it is still something we can consider.
+	
+'''
+delete from  order_review where order_id in (
+    select o.order_id from orders o where EXTRACT(year from o.order_purchase) = 2016
+);
+
+delete from order_items where order_id in (
+    select o.order_id from orders o where EXTRACT(year from o.order_purchase) = 2016
+);
+
+delete from orders where EXTRACT(year from order_purchase) = 2016;
+
+
 ------------------------------------------------Analysis Process Using PostgreSQL--------------------------------------------------
 
 --Customer Review Sentiment:
@@ -122,6 +145,36 @@ CREATE TABLE order_items
 
 	Create Visualize the Distribution
 	
+------------------------------------------------------------------------------------------------------------
+-- Product Category Sentiment :
+
+-- Which product categories have the highest & lowest average review scores?
+
+select p.product_category_name as category,
+       cast(avg(r.review_score) as decimal(2,1)) as MAX_avg_review_score  -- Change Max to Min to see the lowest 
+from  products p
+join  order_items oi on p.product_id = oi.product_id
+join  order_review r on oi.order_id = r.order_id
+group by p.product_category_name
+having cast(avg(r.review_score) as decimal(2,1)) = (select max(avg_review_score) 
+                                                    from (select p.product_category_name, 
+                                                                 cast(avg(r.review_score) as decimal(2,1)) as avg_review_score
+                                                          from products p
+                                                          join order_items oi on p.product_id = oi.product_id
+                                                          join order_review r on oi.order_id = r.order_id
+                                                          group by p.product_category_name) as subquery                                             
+                                                   );
+
+-- What is the average review score for each product category?
+
+select p.product_category_name as category,
+       cast(avg(r.review_score) as decimal(2,1)) as avg_review_score
+from   products p
+join   order_items oi ON p.product_id = oi.product_id
+join   order_review r ON oi.order_id = r.order_id
+group by p.product_category_name
+order by 2 desc
+
 ------------------------------------------------------------------------------------------------------------
 
 --Top Positive and Negative Reviews:
@@ -185,7 +238,7 @@ CREATE TABLE order_items
 ------------------------------------------------------------------------------------------------------------
 --Product Attributes and Reviews:
 
---Are there any specific product attributes that correlate with higher review scores?
+--Are there any specific product attributes that correlate with higher review scores ?
 		 
 		select product_category_name as category,
 		   review_score,
@@ -197,10 +250,29 @@ CREATE TABLE order_items
 		left join order_items i on i.order_id = o.order_id
 		join 	  order_review r on i.order_id = r.order_id
 		join 	  products p on i.product_id = p.product_id
-		--where review_score = 5
 		group by 1,2
 		order by 3 desc
-		--limit 100
+
+--How does the presence of certain product attributes affect customer satisfaction ?
+
+WITH AvgScores AS (
+        select product_category_name as category,
+		  	   avg (review_score) as avg_review_score,
+		   	   count(review_score) as num_review,
+		  	   cast(avg(extract(day from age(o.order_delivered, o.order_purchase))) as int) as avg_shipping_duration,
+		   	   cast(avg(extract(day from age(o.estimated_delivery, o.order_purchase))) as int) as estimated_delivery_duration,
+		       cast(avg(p.product_weight_g) as int) as weight_gram
+		from 	  orders o
+		left join order_items i on i.order_id = o.order_id
+		join 	  order_review r on i.order_id = r.order_id
+		join 	  products p on i.product_id = p.product_id
+		group by 1
+)
+SELECT 
+    CORR(avg_shipping_duration, avg_review_score) AS correlation
+FROM 
+    AvgScores;
+
 
 --Can we identify any trends in product attributes mentioned in reviews?
 
