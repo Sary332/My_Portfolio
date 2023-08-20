@@ -1,4 +1,4 @@
-[PORTFOLIO PROJECT ARTICLE :](https://medium.com/@sarisaldi365/portfolio-project-how-does-a-bike-share-navigate-speedy-success-d1ac84a448d8)
+[PORTFOLIO PROJECT ARTICLE ==>](https://medium.com/@sarisaldi365/portfolio-project-how-does-a-bike-share-navigate-speedy-success-d1ac84a448d8)
 
 A. Description
 
