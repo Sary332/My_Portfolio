@@ -1,4 +1,10 @@
---------------------------------------------------------------- Nashville Housing Data Cleaning -------------------------------------------------------------------------
+.editorconfig
+
+[*]
+indent_style = space
+indent_size = 4
+
+--------------------------------------------------------------- Nashville Housing Data Cleaning ------------------------------------------------------------------------
 CREATE TABLE Housing 
 			(
 			    UniqueID 			INT Primary Key,
