@@ -44,7 +44,11 @@ alter column saledate type date using saledate :: date;
 
 -- Populate propertyaddress data
 /*
-so first I'm gonna check does the column propertyaddress contain any null values. And, after checking the null values in propertyaddress, I found out that there is many null values in it, and we dont want that happend, so we have to find a way to solved. We can see that if the "parcelid" has the same value, then the "propertyaddress" value will also be the same. So something we can do is : If there is a null value in the column propertyaddress, then fill that null value with the value in the propertyaddress column itself that has the same value as the parcelid.
+
+so first I'm gonna check does the column propertyaddress contain any null values. And, after checking the null values in propertyaddress, I found out that there 
+is many null values in it, and we dont want that happend, so we have to find a way to solved. We can see that if the "parcelid" has the same value, then the 
+"propertyaddress" value will also be the same. So something we can do is : If there is a null value in the column propertyaddress, then fill that null value with 
+the value in the propertyaddress column itself that has the same value as the parcelid.
 
 I'm gonna use self join
 */
