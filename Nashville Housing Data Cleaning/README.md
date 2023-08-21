@@ -2,7 +2,7 @@
 This dataset contains information about housing sales in Nashville, TN such as property, owner, sales, and tax information.
 
 ### Data cleaning procedure.
-1) Standardize Date Format:
+1) Standardize Date Format: \n
    The goal is to ensure uniformity in date representation across the dataset, eliminating variations in date formats that might cause confusion or inaccuracies during 
    analysis.
 
