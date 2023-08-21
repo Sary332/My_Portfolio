@@ -1,8 +1,3 @@
-.editorconfig
-
-[*]
-indent_style = space
-indent_size = 4
 
 --------------------------------------------------------------- Nashville Housing Data Cleaning -----------------------------------------------------------------------
 CREATE TABLE Housing 
@@ -27,7 +22,7 @@ CREATE TABLE Housing
 			  	FullBath			INT,
 			  	HalfBath			INT
 			);
-------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
 /*
  
 Cleaning Data Using PostgreSQL
