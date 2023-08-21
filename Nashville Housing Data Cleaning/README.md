@@ -6,7 +6,7 @@ The purpose of this data cleaning project is to enhance the quality, consistency
 
 ### Data cleaning procedure.
 1) Standardize Date Format:
-   The goal is to ensure uniformity in date representation across the dataset, eliminating variations in date formats that might cause confusion or inaccuracies during 
+   &#9;The goal is to ensure uniformity in date representation across the dataset, eliminating variations in date formats that might cause confusion or inaccuracies during 
    analysis.
 
 2) Populate Property Address Data: 
