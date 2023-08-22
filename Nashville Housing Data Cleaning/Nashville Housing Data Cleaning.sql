@@ -55,7 +55,11 @@ I'm gonna use self join
 
 -- a) Test the query using coalesce and compare the original values that are still null with the values that have been filled using the coalesce function.
 
-select a.parcelid,a.propertyaddress, b.parcelid,b.propertyaddress, COALESCE(a.propertyaddress, b.propertyaddress) 
+select a.parcelid,
+       a.propertyaddress,
+       b.parcelid,
+       b.propertyaddress,
+       COALESCE(a.propertyaddress, b.propertyaddress) 
 from housing a
 join housing b
 on  a.parcelid = b.parcelid
