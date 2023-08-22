@@ -1,3 +1,5 @@
+[PORTFOLIO PROJECT ARTICLE ==> Click Here](https://medium.com/@sarisaldi365/data-analysis-project-data-cleaning-transformation-using-sql-490f1bc88870)
+
 ### About Dataset 
 This dataset contains information about housing sales in Nashville, TN such as property, owner, sales, and tax information.
 
