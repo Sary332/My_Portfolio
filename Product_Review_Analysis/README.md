@@ -15,15 +15,18 @@ The goal of this project is to provide actionable insights to the e-commerce com
 
 ### Customers Table:
 **1)** Correct city names using sort & filter, find & replace.
+
 **2)** Check for duplicate customer IDs.
 
  ### Orders Table:
 **1)** Remove 'order_approved_at' and 'order_delivered_carrier_date' columns.
+
 **2)** Check for duplicate order IDs.
 
 ### Product Table:
 
 **1)** Translate 'product_category_name' from Portuguese to English.
+
 **1)** Remove unnecessary columns.
 
 ## CREATE TABLE and Import file using PostgreSQL:
@@ -34,27 +37,34 @@ Create tables for geolocation, customers, orders, order_review, products, and or
 
 ### Customer Review Sentiment:
 **1)** Distribution of review scores.
+
 **2)** The average review score for each product category
 
 ### Product Category Sentiment :
 **1)** Product categories have the highest & lowest average review scores
+
 **2)** Average review score calculation.
+
 **3)** Categorize reviews by rating.
 
 ### Top Positive and Negative Reviews:
 **1)** Identify top positive and negative reviews based on scores and comments.
+
 **2)** Analyze common themes in negative reviews.
 
 ### Geographical Analysis:
 **1)** Analyze satisfaction by region (city/state).
+
 **2)** Identify regions with high/low average review scores.
 
 ### Product Attributes and Reviews:
 **1)** Correlation between product attributes and review scores.
+
 **2)** Trends in attributes mentioned in reviews.
 
 ### Time-based Analysis:
 **1)** Customer satisfaction evolution over time.
+
 **2)** Identify seasonal trends in review scores.
 
 ## Recommendations for Improvement:
