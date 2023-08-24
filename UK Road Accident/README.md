@@ -62,3 +62,12 @@ In this analysis, I will retain the blank values. One primary reason for doing s
 As stated in the requirement, we are tasked with displaying trend lines for current and previous year casualties. Specifically, we aim to present a "Monthly Trend" line. To achieve this, it's necessary to introduce both a month and a year column for the calculation of casualties by month and year. Consequently, I will create new columns for month and year using the Text function, derived from the "Accident_Date" column.
 
 ![Untitled-video-Made-with-Clipchamp-_1_](https://github.com/Sary332/My_Portfolio/assets/110008177/0cd65998-fa96-4849-ae40-e3259efd1b40)
+
+### Data Analysis, Visualization, and Dashboard
+The analysis phase of this project involved in-depth exploration and interpretation of the cleaned dataset. Due to the complexity and length of the analysis process, I have provided the complete analysis, insights, and visualizations in an accompanying Excel dashboard file.
+
+You can directly access and explore the Excel dashboard file [here](link_ke_file_excel_dashboard). The dashboard showcases various visualizations and insights derived from the data analysis process. It includes interactive elements, allowing you to customize your exploration of the data.
+
+Please feel free to download the Excel dashboard and delve into the analysis. If you have any questions or would like further clarification on the analysis, please don't hesitate to reach out. I appreciate your time and consideration.
+
+<a href="https://github.com/Sary332/My_Portfolio/blob/main/UK%20Road%20Accident/Project_Portfolio_Road_Accident_Dashboard.xlsx" download>Download Excel Dashboard</a>
