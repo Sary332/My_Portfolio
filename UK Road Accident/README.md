@@ -61,4 +61,4 @@ In this analysis, I will retain the blank values. One primary reason for doing s
 ### Data Transformation
 As stated in the requirement, we are tasked with displaying trend lines for current and previous year casualties. Specifically, we aim to present a "Monthly Trend" line. To achieve this, it's necessary to introduce both a month and a year column for the calculation of casualties by month and year. Consequently, I will create new columns for month and year using the Text function, derived from the "Accident_Date" column.
 
-https://github.com/Sary332/My_Portfolio/assets/110008177/589b60c8-89dd-4ccc-9885-fd00b1ffec83
+![Untitled-video-Made-with-Clipchamp-_1_](https://github.com/Sary332/My_Portfolio/assets/110008177/0cd65998-fa96-4849-ae40-e3259efd1b40)
