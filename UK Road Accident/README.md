@@ -63,7 +63,7 @@ As stated in the requirement, we are tasked with displaying trend lines for curr
 
 ![Untitled-video-Made-with-Clipchamp-_1_](https://github.com/Sary332/My_Portfolio/assets/110008177/0cd65998-fa96-4849-ae40-e3259efd1b40)
 
-### Data Analysis, Visualization, and Dashboard
+### Data Analysis, Visualization, and Interactive Dashboard
 The analysis phase of this project involved in-depth exploration and interpretation of the cleaned dataset. Due to the complexity and length of the analysis process, I have provided the complete analysis, insights, and visualizations in an accompanying Excel dashboard file.
 
 You can directly access and explore the Excel dashboard file <a href="https://github.com/Sary332/My_Portfolio/blob/main/UK%20Road%20Accident/Project_Portfolio_Road_Accident_Dashboard.xlsx" download>Download Excel Dashboard</a> . The dashboard showcases various visualizations and insights derived from the data analysis process. It includes interactive elements, allowing you to customize your exploration of the data.
