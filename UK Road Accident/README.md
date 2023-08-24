@@ -70,7 +70,7 @@ You can directly access and explore the Excel dashboard file <a href="https://gi
 
 Please feel free to download the Excel dashboard and delve into the analysis. If you have any questions or would like further clarification on the analysis, please don't hesitate to reach out. I appreciate your time and consideration.
 
-This is the final overview of the dashboard :
+**This is the final overview of the dashboard :**
 
 <img width="487" alt="image" src="https://github.com/Sary332/My_Portfolio/assets/110008177/a4517b12-09a6-428a-9dee-6aa5a4da7424">
 
