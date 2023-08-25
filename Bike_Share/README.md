@@ -65,11 +65,11 @@ f) Put the insights to work in order to solve the original problem
 
 ### a) This analysis has allowed us to form observations in terms of the difference between casual and member rides.
 
-   • Casual riders tend to borrow more on weekends. 
-   • Casual riders use docked bikes almost exclusively. 
-   • Casual riders are borrowing longer. 
-   • The percentage of member and casual riders is highest in Q2 and Q3 
-   • Many casual riders start their borrow near Lakeshore Drive, an interstate highway. 
+    • Casual riders tend to borrow more on weekends. 
+    • Casual riders use docked bikes almost exclusively. 
+    • Casual riders are borrowing longer. 
+    • The percentage of member and casual riders is highest in Q2 and Q3 
+    • Many casual riders start their borrow near Lakeshore Drive, an interstate highway. 
 
 ### b) Recommendations Based on the insights gathered, I am recommending the following additional action points:
 
