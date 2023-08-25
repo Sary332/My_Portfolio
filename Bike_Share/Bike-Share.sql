@@ -28,25 +28,23 @@ from cyclistic
 */
 --Count the number of rows of each table and duplikat ride_id
 
-select 
-	count(*) as count_rows
+select count(*) as count_rows
 from cyclistic
 
 -- sceck if any duplicate values in ride_id 
-Select 
-	ride_id 
-from cyclistic
+Select ride_id 
+from   cyclistic
 group by 1
 Having count(*) > 1
   
 -- Ensure there are no typos in the bike type and member type by doing a Group By
 
 select rideable_type
-from cyclistic
+from   cyclistic
 group by 1 ;
 
 select member_casual
-from cyclistic
+from   cyclistic
 group by 1 
 
 /* Ensure there are no null values in the data that we're going to used  */
@@ -133,17 +131,18 @@ order by 3 desc
 /*calculate the average daily bicycle loan for each user. Later we can
 	see the comparison of weekends and weekdays */
 
-	select 
+select 
 	    member_casual
 	   ,to_char(started_at, 'Day') as day_of_week
 	   ,sum(case when member_casual = 'member' then 1
 			     when member_casual = 'casual' then 1 
 		         else null end) as amount_of_users
-	from cyclistic
-	group by 1,2
-	order by 2
+from cyclistic
+group by 1,2
+order by 2
    
 ----  Let's check what percent of annual and casual riders per quarter
+    
 select 
 	 member_casual
 	,quarter
@@ -162,16 +161,17 @@ order by 2
 --- OVERVIEW OF CASUAL AND ANNUAL CHOICE OF RIDE IN A WEEK
 
 select 
-	 rideable_type
-	,to_char(started_at, 'Day') as day_of_week
-	,count(to_char(started_at, 'Day')) as number_of_bike
-from cyclistic
+	  rideable_type
+	 ,to_char(started_at, 'Day') as day_of_week
+	 ,count(to_char(started_at, 'Day')) as number_of_bike
+from  cyclistic
 where member_casual = 'casual'
 group by 1,2
 order by 3 desc
 
 
 ------ 10 MOST USED END & START STATION BY CASUAL ADN MEMBER RIDERS
+    
 select 
 	 end_station_name  --/start_station_name
 	,end_lat
@@ -185,15 +185,16 @@ limit 10
 
 --- Count different amount between casual and member
 select 
-	member_casual
-	,count(member_casual) as number_of_users
+	  member_casual
+	 ,count(member_casual) as number_of_users
 from cyclistic
 group by 1
 
 ---Count different amount between bike types
+    
 select 
-	rideable_type
-	,count(rideable_type)
+	  rideable_type
+	 ,count(rideable_type)
 from cyclistic
 group by 1
 ---
@@ -215,6 +216,7 @@ order by 1 desc
 
 
 -----------------------------------------------
+    
 /* count member who borrowed less then 24 hours */
 select
 	  number_of_days
@@ -229,8 +231,3 @@ from (
 where ended_at - started_at < '24 hours' and member_casual = 'casual' --/'member'
 group by 1
 order by 2 desc
-
--------------------------------
-
-
-
