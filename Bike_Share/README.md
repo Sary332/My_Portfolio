@@ -14,10 +14,15 @@ Determine how annual members and casual riders use Cyclistic bikes differently.
 ## C. Procedure
 
 a) Define the problem and confirm stakeholder expectations
+
 b) Collect and store data for analysis 
+
 c) Clean and transform data to ensure integrity
+
 d) Use data analysis tools to drow conclusions
+
 e) Interpret aand communicate results to others to make data-driven decisions 
+
 f) Put the insights to work in order to solve the original problem
 
 ## D. Process
