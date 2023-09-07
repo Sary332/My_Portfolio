@@ -136,7 +136,11 @@ set soldasvacant = case when soldasvacant = 'Y' then 'Yes'
 						else soldasvacant
 						end
 ---------------------------------------------------------------
-/* Note : I won't actually execute the query provided below on the real dataset to remove the data. It carries a certain level of risk to do so on actual data.                       Furthermore, as we can observe from the table, we initially established the uniqueid as the primary key, which ensures the absence of duplicate values in this              crucial field. Nevertheless, there might be scenarios where we decide to eliminate duplicates in the table at some point in the future, and if such a need                  arises, we can follow this approach.
+/* Note : I won't actually execute the query provided below on the real dataset to remove the data. It carries a certain level of 
+    risk to do so on actual data. Furthermore, as we can observe from the table, we initially established the uniqueid as the 
+    primary key, which ensures the absence of duplicate values in this crucial field. Nevertheless, there might be scenarios where 
+    we decide to eliminate duplicates in the table at some point in the future, and if such a need arises, we can follow this 
+    approach.
 */
 
 -- Remove duplicates using windows function
