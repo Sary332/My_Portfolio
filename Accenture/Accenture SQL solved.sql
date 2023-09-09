@@ -49,11 +49,6 @@ on r.reaction_type = rt.reaction_type
 	limit 5 ;
 
 
-|Column  Name	Type
-|tweet_id	integer
-|user_id	integer
-|msg	string
-|tweet_date	timestamp
 
 
 
