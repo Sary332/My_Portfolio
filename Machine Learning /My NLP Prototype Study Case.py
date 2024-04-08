@@ -1,3 +1,4 @@
+'''
 Study Case: Customer Sentiment Analysis on Amazon Product Reviews using APIs
 
 **Introduction:**
@@ -18,7 +19,7 @@ In the initial phase of developing our portfolio prototype, the first step is to
 Product Advertising API. By leveraging this API, we can access a vast array of product reviews across various categories, ensuring the robustness of our 
 sentiment analysis model. It's crucial to select a diverse range of products to train our model effectively and capture a broad spectrum of customer sentiments. 
 Collecting a sufficient number of reviews for each product will provide us with a rich dataset to train our sentiment analysis model accurately.
-
+'''
 **Code:**
 
 ```python
@@ -66,7 +67,7 @@ In the provided code:
 - If the request is successful (status code 200), we add the retrieved reviews to the `reviews` dictionary.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+'''
 **Data Preprocessing**
 
 **Description:**
@@ -76,7 +77,7 @@ and lemmatization to clean the text data effectively. Tokenization breaks down t
 words that do not carry significant meaning. Stemming and lemmatization reduce words to their root forms, reducing dimensionality and ensuring consistency.
 After preprocessing, we'll convert the text data into a format suitable for machine learning algorithms, such as numerical vectors. Techniques like TF-IDF or 
 word embeddings will be employed to represent the text data in a numerical format, facilitating sentiment analysis.
-
+'''
 **Code:**
 
 ```python
@@ -155,7 +156,7 @@ In the provided code:
 - We also define a function `convert_to_numerical_vectors` to convert the preprocessed text data into numerical vectors using TF-IDF.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+'''
 **Sentiment Analysis Model**
 
 **Description:**
@@ -164,7 +165,7 @@ a suitable machine learning algorithm for sentiment analysis, considering option
 such as Recurrent Neural Networks (RNNs) or Transformer models. The sentiment analysis model will be trained using the preprocessed Amazon product review data. 
 Once trained, we'll evaluate the model's performance using standard metrics such as accuracy, precision, recall, and F1-score to assess its effectiveness in 
 classifying reviews into positive, negative, or neutral sentiments.
-
+'''
 **Code:**
 
 ```python
@@ -203,7 +204,7 @@ In the provided code:
 - We evaluate the model's performance on the test set using metrics such as accuracy, precision, recall, and F1-score.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+'''
 **Integration with Amazon Product Advertising API**
 
 **Description:**
@@ -212,8 +213,9 @@ allow us to continuously gather new reviews for analysis. We'll develop a script
 or categories. Once we retrieve the reviews, we'll implement our trained sentiment analysis model to classify them into positive, negative, or neutral sentiments. 
 This classification will provide valuable insights into customer opinions and satisfaction levels. To aid interpretation and decision-making, we'll visualize the 
 sentiment analysis results using appropriate visualization techniques, such as histograms, pie charts, or word clouds.
-
+'''
 **Code:**
+  
 ```python
 import requests
 import matplotlib.pyplot as plt
@@ -291,11 +293,11 @@ In the provided code:
 - We define a function `visualize_sentiment` to visualize the sentiment analysis results using a pie chart.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+'''
 After completing the processes of data collection, preprocessing, sentiment analysis model development, and integration with the Amazon Product Advertising API, 
 the final step is to implement the entire pipeline. This implementation involves bringing together all the components and executing the workflow to fetch real-time 
 product reviews from Amazon, preprocess them, classify their sentiments, and visualize the results. Below is the code implementation of the entire pipeline:
-
+'''
 ```python
 import requests
 import nltk
@@ -456,8 +458,9 @@ sentiment_counts = classify_reviews(reviews, sentiment_model)
 # Visualize sentiment analysis results
 visualize_sentiment(sentiment_counts)
 ```
-
+'''
 This code integrates all the processes from data collection using Amazon's Product Advertising API, preprocessing the fetched reviews, training a sentiment analysis 
 model, classifying the reviews, and visualizing the sentiment analysis results. Replace `"YOUR_AMAZON_API_KEY"` with your actual Amazon API key and `"PRODUCT_ID_HERE"` 
 with the desired product ID for which you want to analyze reviews. Additionally, ensure you have preprocessed numerical vectors (`numerical_vectors`) and corresponding 
 labels (`labels`) for training the sentiment analysis model.
+'''
