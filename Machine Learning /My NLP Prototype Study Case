@@ -20,6 +20,7 @@ sentiment analysis model. It's crucial to select a diverse range of products to 
 Collecting a sufficient number of reviews for each product will provide us with a rich dataset to train our sentiment analysis model accurately.
 
 **Code:**
+
 ```python
 import requests
 
@@ -33,7 +34,7 @@ def fetch_amazon_reviews(product_ids):
     Returns:
     - reviews (dict): Dictionary containing product reviews keyed by product IDs.
     """
-    api_key = "YOUR_AMAZON_API_KEY"
+    api_key = "AMAZON_API_KEY"
     reviews = {}
 
     for product_id in product_ids:
@@ -63,8 +64,6 @@ In the provided code:
 - The function takes a list of product IDs as input and returns a dictionary containing product reviews keyed by product IDs.
 - Inside the function, we iterate over each product ID, construct the API endpoint, and make a GET request with the appropriate headers containing our Amazon API key.
 - If the request is successful (status code 200), we add the retrieved reviews to the `reviews` dictionary.
-- Example usage demonstrates how to fetch reviews for multiple product IDs. Replace `"YOUR_AMAZON_API_KEY"` with your actual Amazon API key, and `"PRODUCT_ID_1"`, 
-  `"PRODUCT_ID_2"`, `"PRODUCT_ID_3"`, etc., with the desired product IDs for which you want to collect reviews.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -79,6 +78,7 @@ After preprocessing, we'll convert the text data into a format suitable for mach
 word embeddings will be employed to represent the text data in a numerical format, facilitating sentiment analysis.
 
 **Code:**
+
 ```python
 import nltk
 from nltk.tokenize import word_tokenize
@@ -153,7 +153,6 @@ In the provided code:
 - We define a function `preprocess_text` to perform text preprocessing on the input text.
 - Inside the function, we tokenize the text, convert tokens to lowercase, remove punctuation and stop words, and perform stemming and lemmatization.
 - We also define a function `convert_to_numerical_vectors` to convert the preprocessed text data into numerical vectors using TF-IDF.
-- Example usage demonstrates how to preprocess a list of reviews and convert them into numerical vectors using TF-IDF.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -167,6 +166,7 @@ Once trained, we'll evaluate the model's performance using standard metrics such
 classifying reviews into positive, negative, or neutral sentiments.
 
 **Code:**
+
 ```python
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -201,12 +201,10 @@ In the provided code:
 - We split the preprocessed data into train and test sets using `train_test_split`.
 - We train the sentiment analysis model using the Naive Bayes algorithm as an example. You can replace it with other algorithms like SVM.
 - We evaluate the model's performance on the test set using metrics such as accuracy, precision, recall, and F1-score.
-- Example usage demonstrates how to train and evaluate a sentiment analysis model using the Naive Bayes algorithm. Replace `numerical_vectors` with your 
-  preprocessed numerical vectors and `labels` with corresponding sentiment labels (e.g., positive, negative, neutral).
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-**Portfolio Prototype: Integration with Amazon Product Advertising API**
+**Integration with Amazon Product Advertising API**
 
 **Description:**
 As a crucial part of our portfolio prototype, we'll integrate with Amazon's Product Advertising API to fetch real-time product reviews. This integration will 
@@ -231,7 +229,7 @@ def fetch_amazon_reviews(product_id):
     Returns:
     - reviews (list): List of fetched reviews.
     """
-    api_key = "YOUR_AMAZON_API_KEY"
+    api_key = "AMAZON_API_KEY"
     endpoint = f"https://api.amazon.com/reviews/{product_id}"
     headers = {
         "x-api-key": api_key
@@ -291,8 +289,6 @@ In the provided code:
 - We define a function `fetch_amazon_reviews` to fetch product reviews from Amazon's Product Advertising API.
 - We define a function `classify_reviews` to classify the fetched reviews into positive, negative, or neutral sentiments using our trained sentiment analysis model.
 - We define a function `visualize_sentiment` to visualize the sentiment analysis results using a pie chart.
-- Example usage demonstrates how to fetch product reviews, classify them using a trained sentiment analysis model, and visualize the results. 
-  Replace `"YOUR_AMAZON_API_KEY"` with your actual Amazon API key and `"PRODUCT_ID_HERE"` with the desired product ID for which you want to analyze reviews.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -329,7 +325,7 @@ def fetch_amazon_reviews(product_id):
     Returns:
     - reviews (list): List of fetched reviews.
     """
-    api_key = "YOUR_AMAZON_API_KEY"
+    api_key = "AMAZON_API_KEY"
     endpoint = f"https://api.amazon.com/reviews/{product_id}"
     headers = {
         "x-api-key": api_key
