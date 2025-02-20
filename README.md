@@ -1,5 +1,3 @@
-# My Portfolio
-
 <table>
   <tr>
     <td align="center" width="60%">
