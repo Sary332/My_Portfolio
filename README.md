@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td align="Left" width="60%">
+    <td align="Center" width="60%">
       <h2>Hello and welcome! 👋</h2>
       <p>
         This is a curated collection of my data analysis and visualization projects. Each project here represents a step in my journey of turning raw data into insights and stories.
