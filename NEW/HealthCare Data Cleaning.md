@@ -152,49 +152,50 @@ SET [Date of Admission] = dbo.FormatDate([Date of Admission]);
 
 ```sql
 SELECT Hospital,							
-	   CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, CHARINDEX(',',Hospital) - 5) + ' and'  
-											  + SUBSTRING(Hospital, CHARINDEX(',', Hospital) + 1, LEN(Hospital)) 
+	   CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, CHARINDEX(',',Hospital) - 5) + ' and'
+                                                   + SUBSTRING(Hospital, CHARINDEX(',', Hospital) + 1, LEN(Hospital)) 
 												
-			WHEN Hospital LIKE 'and %,' THEN SUBSTRING(Hospital,5,LEN(Hospital) - 5) 
-			                               + SUBSTRING(Hospital,CHARINDEX(',',Hospital) + 1, LEN(Hospital))			
+                WHEN Hospital LIKE 'and %,' THEN SUBSTRING(Hospital,5,LEN(Hospital) - 5) 
+                                               + SUBSTRING(Hospital,CHARINDEX(',',Hospital) + 1, LEN(Hospital))			
 											  
-			WHEN Hospital LIKE '% and%_,' OR Hospital LIKE '% and%_,%' THEN REPLACE(Hospital,',','')
+                WHEN Hospital LIKE '% and%_,' OR Hospital LIKE '% and%_,%' THEN REPLACE(Hospital,',','')
 
-			WHEN Hospital LIKE '%, and' THEN REPLACE(Hospital,', and','')
+                WHEN Hospital LIKE '%, and' THEN REPLACE(Hospital,', and','')
 
-			WHEN Hospital LIKE '%, and %' THEN REPLACE(Hospital,', ',' ')
+                WHEN Hospital LIKE '%, and %' THEN REPLACE(Hospital,', ',' ')
 			
-			WHEN Hospital LIKE 'and %' THEN REPLACE(Hospital,'and ','')
+                WHEN Hospital LIKE 'and %' THEN REPLACE(Hospital,'and ','')
 
-			WHEN Hospital LIKE '%_, %_ and' THEN REPLACE(LEFT(Hospital,LEN(Hospital) - 4), ',', ' and')
+                WHEN Hospital LIKE '%_, %_ and' THEN REPLACE(LEFT(Hospital,LEN(Hospital) - 4), ',', ' and')
 
-			WHEN Hospital LIKE '% and' and Hospital NOT LIKE '%, and' THEN REPLACE(Hospital,' and','')
+                WHEN Hospital LIKE '% and' and Hospital NOT LIKE '%, and' THEN REPLACE(Hospital,' and','')
 
-		ELSE Hospital END AS Clean_Hospital_Name
+		ELSE Hospital
+            END AS Clean_Hospital_Name
 FROM [dbo].[healthcare_dataset]
 ```
 
 ```sql
 UPDATE [dbo].[healthcare_dataset]
-SET Hospital = CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, CHARINDEX(',',Hospital) - 5) + ' and'  
-													  + SUBSTRING(Hospital, CHARINDEX(',', Hospital) + 1, LEN(Hospital)) 
+SET Hospital = CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, CHARINDEX(',',Hospital) - 5) + ' and'
+                                                      + SUBSTRING(Hospital, CHARINDEX(',', Hospital) + 1, LEN(Hospital)) 
 												
-					WHEN Hospital LIKE 'and %,' THEN SUBSTRING(Hospital,5,LEN(Hospital) - 5) 
-												   + SUBSTRING(Hospital,CHARINDEX(',',Hospital) + 1, LEN(Hospital))			
+                    WHEN Hospital LIKE 'and %,' THEN SUBSTRING(Hospital,5,LEN(Hospital) - 5) 
+                                                   + SUBSTRING(Hospital,CHARINDEX(',',Hospital) + 1, LEN(Hospital))			
 											  
-					WHEN Hospital LIKE '% and%_,' OR Hospital LIKE '% and%_,%' THEN REPLACE(Hospital,',','')
+                    WHEN Hospital LIKE '% and%_,' OR Hospital LIKE '% and%_,%' THEN REPLACE(Hospital,',','')
 
-					WHEN Hospital LIKE '%, and' THEN REPLACE(Hospital,', and','')
+                    WHEN Hospital LIKE '%, and' THEN REPLACE(Hospital,', and','')
 
-					WHEN Hospital LIKE '%, and %' THEN REPLACE(Hospital,', ',' ')
+                    WHEN Hospital LIKE '%, and %' THEN REPLACE(Hospital,', ',' ')
 			
-					WHEN Hospital LIKE 'and %' THEN REPLACE(Hospital,'and ','')
+                    WHEN Hospital LIKE 'and %' THEN REPLACE(Hospital,'and ','')
 
-					WHEN Hospital LIKE '%_, %_ and' THEN REPLACE(LEFT(Hospital,LEN(Hospital) - 4), ',', ' and')
+                    WHEN Hospital LIKE '%_, %_ and' THEN REPLACE(LEFT(Hospital,LEN(Hospital) - 4), ',', ' and')
 
-					WHEN Hospital LIKE '% and' and Hospital NOT LIKE '%, and' THEN REPLACE(Hospital,' and','')
+                    WHEN Hospital LIKE '% and' and Hospital NOT LIKE '%, and' THEN REPLACE(Hospital,' and','')
 
-		ELSE Hospital END
+                ELSE Hospital END
 ```
 
 
