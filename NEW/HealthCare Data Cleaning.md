@@ -24,13 +24,13 @@ NULL Values, Duplicate*/
 /* Correct inconsistencies UPPER & LOWER Case in the Name column */
 
 -- Method 1
-
+```sql
 SELECT UPPER(LEFT(NAME, 1)) + LOWER(SUBSTRING(NAME, 2, LEN(NAME)))
 FROM [dbo].[healthcare_dataset]
 
 UPDATE [dbo].[healthcare_dataset]
 SET Name = UPPER(LEFT(NAME, 1)) + LOWER(SUBSTRING(NAME, 2, LEN(NAME)))
-
+```
 
 
 -- Method 2
