@@ -1,3 +1,7 @@
+I use SQL Server import and export wizard to import data into SQL Server Management Studio. 
+
+<div align="center"> <img width="473" alt="image" src="https://github.com/user-attachments/assets/fa6971c1-8678-4f59-a52d-8a670c2f4712" /> </div>
+
 ```sql
 SELECT TOP (1000) [Name]
       ,[Age]
@@ -16,6 +20,9 @@ SELECT TOP (1000) [Name]
       ,[Test Results]
   FROM [SQL Projects].[dbo].[healthcare_dataset]
 ```
+<div align="center"> <img width="790" alt="image" src="https://github.com/user-attachments/assets/b472961c-ee9f-40a9-a66b-ab935277881f" /> </div>
+<div align="center"><img width="335" alt="image" src="https://github.com/user-attachments/assets/7a20cc4c-82c7-4f18-b18a-e22879e307c4" /> </div>
+
 
 /* Problems : Inconcistency, Format (Date of admission, Discharge date, Billing Amount), Outliers (Hospital), 
 NULL Values, Duplicate*/
