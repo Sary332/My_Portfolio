@@ -117,9 +117,9 @@ SET Name = dbo.CapitalizeWords(Name);
 
 # 2. 'Date of Admission' and 'Discharge Date' columns  
 
-Standardize the date format in the 'Date of Admission' and 'Discharge Date' columns to YYYY-MM-DD
+Standardize the date format in the 'Date of Admission' and 'Discharge Date' columns to YYYY-MM-DD. And just like the improvement on the name column, I considered several options, such as using the CAST and FORMAT functions or utilizing a UDF. Although a UDF might not be strictly necessary, I still wanted to test how far my understanding of UDFs has progressed. Additionally, I believe that, just like CTE simplifies repetitive tasks, UDFs can also be very useful in the future when the same process needs to be executed repeatedly.
 
-- Method 1
+- Method 1 (Use CAST & FORMAT)
 
 ```sql
 ---  Date of Admission
@@ -140,7 +140,7 @@ UPDATE [dbo].[healthcare_dataset]
 SET [Discharge Date] = FORMAT([Discharge Date], 'dd-MM-yyyy')
 ```
 
-- Method 2
+- Method 2 (Use UDF)
 ```sql
 CREATE FUNCTION dbo.FormatDate
 (
@@ -167,8 +167,11 @@ SET [Date of Admission] = dbo.FormatDate([Date of Admission]);
 
 
 
-/* Fix misspellings and variations in the 'Hospital' column. */
+# 3. Hospital column 
 
+Fix misspellings and variations in the 'Hospital column'. In this column, I found many inconsistencies, such as messy name formatting with misplaced or excessive punctuation.
+
+- Corrections 
 ```sql
 SELECT Hospital,							
 	   CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, CHARINDEX(',',Hospital) - 5) + ' and'
@@ -194,6 +197,7 @@ SELECT Hospital,
 FROM [dbo].[healthcare_dataset]
 ```
 
+- Updates
 ```sql
 UPDATE [dbo].[healthcare_dataset]
 SET Hospital = CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, CHARINDEX(',',Hospital) - 5) + ' and'
@@ -219,8 +223,9 @@ SET Hospital = CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, C
 
 
 
+# 4. Billing Amount Column
 
-/* Fix the Billing Amount format to consistently show 2 decimal places for better readability. */
+Fix the format to consistently show 2 decimal places for better readability. 
 
 ```sql
 SELECT CAST(ROUND([Billing Amount], 2) AS DECIMAL (20,2))
@@ -235,54 +240,38 @@ SET [Billing Amount] = CAST(ROUND([Billing Amount], 2) AS DECIMAL (20,2))
 
 
 
-/* Handle duplicate values */
+# 5. Handle duplicate values 
 
-```sql
--- Check Duplicate
-SELECT Name,
-       Gender,
-       [Blood Type],
-       [Medical Condition],
-       [Date of Admission],
-        Doctor,
-        Hospital,
-       [Insurance Provider],
-       [Billing Amount],
-       [Room Number],
-       [Admission Type],
-       [Discharge Date],
-        Medication,
-       [Test Results],
-	   COUNT(*) AS DUPLIKAT
-FROM [dbo].[healthcare_dataset]
-GROUP BY Name, Gender, [Blood Type],[Medical Condition], [Date of Admission],
-         Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
-        [Admission Type], [Discharge Date], Medication,[Test Results]
-HAVING  COUNT(*) > 1
-ORDER BY Name ASC
-```
+The reason I placed this process at the end is that I first want to ensure the data is consistent before searching for duplicates. This is to avoid analysis errors, considering the raw data is quite messy, especially in patient and hospital names.
 
-/* Verify duplicate data count (After review, several identical name entries were found with differing age values 
-- likely caused by input errors or human error in data entry) */
+After checking, it turned out that there were many duplicate records that, upon further investigation, had identical information in all columns except for the **'Age' column**. This means that the patient's name, illness, admission date, and even discharge date were all the same, except for 'Age'. Such cases are actually very rare or may almost never happen in real life (I even asked my sister, who works in a hospital ICCU). However, since I know this is synthetic data, I will just take it as a learning experience.
+
 
 ```sql
 WITH COBA1 AS (
+
+-- Check Duplicate
+
+/* The reason I used **GROUP BY** on all columns except 'Age' is that, otherwise, there could be up to four patients with
+the same name appearing with the same room number or blood type, even though they are actually different patients.
+Therefore, to accurately identify them as distinct individuals, I needed to differentiate them using more detailed information. */
+
 SELECT Name,
-	   --Age
+     --Age
        Gender,
-       [Blood Type],
-       [Medical Condition],
-       [Date of Admission],
-        Doctor,
-        Hospital,
-       [Insurance Provider],
-       [Billing Amount],
-       [Room Number],
-       [Admission Type],
-       [Discharge Date],
-        Medication,
-       [Test Results],
-	   COUNT(*) AS Num_Duplicate
+      [Blood Type],
+      [Medical Condition],
+      [Date of Admission],
+       Doctor,
+       Hospital,
+      [Insurance Provider],
+      [Billing Amount],
+      [Room Number],
+      [Admission Type],
+      [Discharge Date],
+       Medication,
+      [Test Results],
+       COUNT(*) AS Num_Duplicate 
 FROM [dbo].[healthcare_dataset]
 WHERE Name IS NOT NULL
 GROUP BY Name ,Gender, [Blood Type],[Medical Condition], [Date of Admission],
@@ -291,35 +280,27 @@ GROUP BY Name ,Gender, [Blood Type],[Medical Condition], [Date of Admission],
 HAVING  COUNT(*) > 1
 ),
 
---- I've run a duplicate check - we've got 11,000 repeating values in the data.
+/*I need to quantify the age variance caused by these duplicate entries (11,000 cases) to determine the most effective 
+deduplication methodology. This statistical assessment will inform data remediation strategy. */
 
 COBA2 AS (
-SELECT SUM(Num_Duplicate) AS Num_Duplicate
-FROM COBA1
-),
-
-
-/*I need to quantify the age variance caused by these duplicate entries (11,000 cases) to determine the most effective 
-deduplication methodology. This statistical assessment will inform our data remediation strategy. */
-
-COBA3 AS (
 SELECT *
 FROM [dbo].[healthcare_dataset] H
 WHERE EXISTS ( SELECT 1 
-			   FROM COBA1 C 
-			   WHERE C.Name = H.Name 
-			   AND C.[Room Number] = H.[Room Number] 
-			   AND C.[Date of Admission] = H.[Date of Admission]
-			   AND C.[Discharge Date] = H.[Discharge Date]
-			   AND C.Gender = H.Gender
-			   AND C.[Medical Condition] = H.[Medical Condition]
+               FROM COBA1 C 
+               WHERE C.Name = H.Name 
+                   AND C.[Room Number] = H.[Room Number] 
+                   AND C.[Date of Admission] = H.[Date of Admission]
+                   AND C.[Discharge Date] = H.[Discharge Date]
+                   AND C.Gender = H.Gender
+                   AND C.[Medical Condition] = H.[Medical Condition]
 			 )
 --ORDER BY Name 
 
 )
 
 SELECT Name, MAX(AGE) - MIN(AGE) AS Age_Different
-FROM COBA3
+FROM COBA2
 GROUP BY Name,Gender, [Blood Type], [Medical Condition],[Date of Admission],[Room Number], [Discharge Date]    
 ORDER BY Age_Different DESC
 ```
