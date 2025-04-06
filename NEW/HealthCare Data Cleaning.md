@@ -28,9 +28,13 @@ SELECT TOP (1000) [Name]
 NULL Values, Duplicate*/
 
 
-/* Correct inconsistencies UPPER & LOWER Case in the Name column */
+# 1. Name Column 
 
--- Method 1
+### a) Correct inconsistencies UPPER & LOWER Case
+Fix the inconsistency in name formatting. In this case, I considered several options, such as using the UPPER or LOWER function. However, I found the results to be less tidy and likely to cause excessive query repetition. Therefore, I decided to create a custom function using UDF—while also sharpening my newly acquired UDF skills. This approach allows the query to be more concise, clean, and reusable for other columns that require consistent formatting.
+
+
+- Method 1 (Using UPPER/LOWER)
 ```sql
 SELECT UPPER(LEFT(NAME, 1)) + LOWER(SUBSTRING(NAME, 2, LEN(NAME)))
 FROM [dbo].[healthcare_dataset]
@@ -40,7 +44,7 @@ SET Name = UPPER(LEFT(NAME, 1)) + LOWER(SUBSTRING(NAME, 2, LEN(NAME)))
 ```
 
 
--- Method 2
+- Method 2 (Using UDF)
 ```sql
 CREATE FUNCTION dbo.CapitalizeWords (@input VARCHAR(MAX))
 RETURNS VARCHAR(MAX)
@@ -72,27 +76,35 @@ SET Name = dbo.CapitalizeWords(Name);
 
 
 
-/* Ensure consistent formatting for names with titles like MR., MRS., DR., or MISS */
+
+### b) Ensure consistent formatting for names with titles like MR., MRS., DR., and MISS 
+
 ```sql
+-- Remove the title in front of the name to ensure all names are consistent with the original name, just like other patients.
+
 SELECT NAME,
-	   CASE WHEN NAME LIKE '%. %' THEN SUBSTRING(NAME,CHARINDEX('. ' , Name)+2, LEN(NAME))
-			WHEN NAME LIKE 'MISS %' THEN SUBSTRING(Name, CHARINDEX(' ', Name) + 1 , LEN(name))
-			ELSE Name 
-	  END AS CORRECT_NAME
+       CASE WHEN NAME LIKE '%. %' THEN SUBSTRING(NAME,CHARINDEX('. ' , Name)+2, LEN(NAME))
+            WHEN NAME LIKE 'MISS %' THEN SUBSTRING(Name, CHARINDEX(' ', Name) + 1 , LEN(name))
+            ELSE Name
+       END AS CORRECT_NAME
 FROM [dbo].[healthcare_dataset1]
 WHERE NAME LIKE 'MR.%'
-		OR NAME LIKE 'MRS.%'
-		OR NAME LIKE 'DR,%'
-		OR NAME LIKE 'MISS%'
+        OR NAME LIKE 'MRS.%'
+        OR NAME LIKE 'DR,%'
+        OR NAME LIKE 'MISS%'
+
+-- Update with fixes
 
 UPDATE [dbo].[healthcare_dataset]
 SET NAME =  CASE WHEN NAME LIKE '%. %' THEN SUBSTRING(NAME,CHARINDEX('. ' , Name)+2, LEN(NAME))
-				 WHEN NAME LIKE 'MISS %' THEN SUBSTRING(Name, CHARINDEX(' ', Name) + 1 , LEN(name))
-				 ELSE NAME END
-			WHERE NAME LIKE 'MR.%'
-			   OR NAME LIKE 'MRS.%'
-			   OR NAME LIKE 'DR,%'
-			   OR NAME LIKE 'MISS%'
+                 WHEN NAME LIKE 'MISS %' THEN SUBSTRING(Name, CHARINDEX(' ', Name) + 1 , LEN(name))
+                 ELSE NAME END
+            WHERE NAME LIKE 'MR.%'
+               OR NAME LIKE 'MRS.%'
+               OR NAME LIKE 'DR,%'
+               OR NAME LIKE 'MISS%'
+
+-- Update using the previously created function to maintain consistency
 
 UPDATE [dbo].[healthcare_dataset]
 SET Name = dbo.CapitalizeWords(Name);
@@ -103,11 +115,11 @@ SET Name = dbo.CapitalizeWords(Name);
 
 
 
+# 2. 'Date of Admission' and 'Discharge Date' columns  
 
+Standardize the date format in the 'Date of Admission' and 'Discharge Date' columns to YYYY-MM-DD
 
-/* Standardize the date format in the 'Date of Admission' and 'Discharge Date' columns to YYYY-MM-DD */
-
--- Method 1
+- Method 1
 
 ```sql
 ---  Date of Admission
@@ -128,7 +140,7 @@ UPDATE [dbo].[healthcare_dataset]
 SET [Discharge Date] = FORMAT([Discharge Date], 'dd-MM-yyyy')
 ```
 
--- Method 2
+- Method 2
 ```sql
 CREATE FUNCTION dbo.FormatDate
 (
