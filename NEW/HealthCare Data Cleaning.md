@@ -74,6 +74,7 @@ UPDATE [dbo].[healthcare_dataset]
 SET Name = dbo.CapitalizeWords(Name);
 ```
 
+<div align="center"> <img width="302" alt="image" src="https://github.com/user-attachments/assets/ca305a12-00bf-49f3-8257-688782018274" /> </div>
 
 
 
@@ -92,7 +93,10 @@ WHERE NAME LIKE 'MR.%'
         OR NAME LIKE 'MRS.%'
         OR NAME LIKE 'DR,%'
         OR NAME LIKE 'MISS%'
+```
+<img width="194" alt="image" src="https://github.com/user-attachments/assets/20529314-9f87-4f9f-ad5c-67b722e51ab3" />
 
+```sql
 -- Update with fixes
 
 UPDATE [dbo].[healthcare_dataset]
@@ -110,10 +114,9 @@ UPDATE [dbo].[healthcare_dataset]
 SET Name = dbo.CapitalizeWords(Name);
 ```
 
+<img width="88" alt="image" src="https://github.com/user-attachments/assets/1fac817e-71aa-4e02-a48e-671716a9f0e6" />
 
-
-
-
+<br><br>
 
 # 2. 'Date of Admission' and 'Discharge Date' columns  
 
@@ -125,31 +128,25 @@ Standardize the date format in the 'Date of Admission' and 'Discharge Date' colu
 ---  Date of Admission
 
 UPDATE [dbo].[healthcare_dataset]
-SET [Date of Admission] = CAST([Date of Admission] AS DATE)
-
-UPDATE [dbo].[healthcare_dataset]
-SET [Date of Admission] = FORMAT([Date of Admission], 'dd-MM-yyyy')
+SET [Date of Admission] = FORMAT(CAST([Date of Admission] AS DATE), 'dd-MM-yyyy')
 
 
 --- Discharge Date
 
 UPDATE [dbo].[healthcare_dataset]
-SET [Discharge Date] = CAST([Discharge Date] AS DATE)
-
-UPDATE [dbo].[healthcare_dataset]
-SET [Discharge Date] = FORMAT([Discharge Date], 'dd-MM-yyyy')
+SET [Discharge Date] = FORMAT(CAST([Discharge Date] AS DATE), 'dd-MM-yyyy')
 ```
 
 - Method 2 (Use UDF)
 ```sql
 CREATE FUNCTION dbo.FormatDate
 (
-    @inputDate DATE
+    @inputDate DATETIME
 )
-RETURNS NVARCHAR(10)
+RETURNS VARCHAR(10)
 AS
 BEGIN
-    RETURN CONVERT(NVARCHAR(10), @inputDate, 120) -- Format: YYYY-MM-DD
+    RETURN FORMAT(CAST(@inputDate AS DATE), 'yyyy-MM-dd')
 END
 
 -- Discharge Date
@@ -165,7 +162,7 @@ SET [Date of Admission] = dbo.FormatDate([Date of Admission]);
 
 
 
-
+<br><br>
 
 # 3. Hospital column 
 
@@ -221,7 +218,7 @@ SET Hospital = CASE WHEN Hospital LIKE 'and %_, %' THEN SUBSTRING(Hospital, 5, C
                 ELSE Hospital END
 ```
 
-
+<br><br>
 
 # 4. Billing Amount Column
 
@@ -235,25 +232,23 @@ UPDATE [dbo].[healthcare_dataset]
 SET [Billing Amount] = CAST(ROUND([Billing Amount], 2) AS DECIMAL (20,2))
 ```
 
+<img width="64" alt="image" src="https://github.com/user-attachments/assets/d14be557-bb50-4bc3-b842-059a62151794" />
 
 
-
-
+<br><br>
 
 # 5. Handle duplicate values 
 
-The reason I placed this process at the end is that I first want to ensure the data is consistent before searching for duplicates. This is to avoid analysis errors, considering the raw data is quite messy, especially in patient and hospital names.
-
-After checking, it turned out that there were many duplicate records that, upon further investigation, had identical information in all columns except for the **'Age' column**. This means that the patient's name, illness, admission date, and even discharge date were all the same, except for 'Age'. Such cases are actually very rare or may almost never happen in real life (I even asked my sister, who works in a hospital ICCU). However, since I know this is synthetic data, I will just take it as a learning experience.
+After checking, it turned out that there were many duplicate records that, upon further analysis, had identical information in all columns except for the **'Age' column**. This means that the patient's name, illness, admission date, and even discharge date were all the same, except for 'Age'. Such cases are actually very rare or may almost never happen in real life (I even asked my sister, who works in a hospital ICCU). However, since I know this is synthetic data, I will just take it as a learning experience.
 
 
 ```sql
-WITH COBA1 AS (
+WITH Duplicate_Check AS (
 
 -- Check Duplicate
 
 /* The reason I used **GROUP BY** on all columns except 'Age' is that, otherwise, there could be up to four patients with
-the same name appearing with the same room number or blood type, even though they are actually different patients.
+the same name appearing with the same room number or blood type and so on, even though they are actually different patients.
 Therefore, to accurately identify them as distinct individuals, I needed to differentiate them using more detailed information. */
 
 SELECT Name,
@@ -283,36 +278,36 @@ HAVING  COUNT(*) > 1
 /*I need to quantify the age variance caused by these duplicate entries (11,000 cases) to determine the most effective 
 deduplication methodology. This statistical assessment will inform data remediation strategy. */
 
-COBA2 AS (
+Age_Variance_Check AS (
 SELECT *
 FROM [dbo].[healthcare_dataset] H
 WHERE EXISTS ( SELECT 1 
-               FROM COBA1 C 
-               WHERE C.Name = H.Name 
-                   AND C.[Room Number] = H.[Room Number] 
-                   AND C.[Date of Admission] = H.[Date of Admission]
-                   AND C.[Discharge Date] = H.[Discharge Date]
-                   AND C.Gender = H.Gender
-                   AND C.[Medical Condition] = H.[Medical Condition]
+               FROM Duplicate_Check DC 
+               WHERE DC.Name = H.Name 
+                   AND DC.[Room Number] = H.[Room Number] 
+                   AND DC.[Date of Admission] = H.[Date of Admission]
+                   AND DC.[Discharge Date] = H.[Discharge Date]
+                   AND DC.Gender = H.Gender
+                   AND DC.[Medical Condition] = H.[Medical Condition]
 			 )
 --ORDER BY Name 
 
 )
 
 SELECT Name, MAX(AGE) - MIN(AGE) AS Age_Different
-FROM COBA2
+FROM Age_Variance_Check
 GROUP BY Name,Gender, [Blood Type], [Medical Condition],[Date of Admission],[Room Number], [Discharge Date]    
 ORDER BY Age_Different DESC
 ```
 
 
-/* After checking, it turns out that the largest age difference is only about 5 years, so I decided to use 
+After checking, it turns out that the largest age difference is only about 5 years, so I decided to use 
 MEDIAN instead of AVERAGE. Why is Median Better than Average (Avg) for This Case? Median is Not Affected by Outliers. 
 If the age difference is small (example: [30, 31]), the median and average are almost the same. But if there is an input error 
-(example: [30, 60]), the median (45) is safer than the average (45). */
+(example: [30, 60]), the median (45) is safer than the average (45). 
 
 
--- Step 1: Identify duplicates and calculate the median
+- Step 1: Identify duplicates and calculate the median
 
 ```sql
 --- 1. Apply median values directly in the update
@@ -336,7 +331,7 @@ FROM [dbo].[healthcare_dataset] H
 JOIN MedianData M ON H.Name = M.Name;
 ```
 
--- 2. Remove one of the two duplicate records, as I want to keep only a single entry.
+- Step 2 : Remove one of the two duplicate records, as I want to keep only a single entry.
 ```sql
 WITH RecordsToDelete AS (
     SELECT 
@@ -355,11 +350,11 @@ DELETE FROM [dbo].[healthcare_dataset]
 WHERE Name IN (SELECT Name FROM RecordsToDelete WHERE RowNum > 1)
 ```
 
+<br><br>
 
+# 6. Handling NULL Values 
 
-/* Handling NULL Values */
-
--- Check the number of null values
+- Check the number of null values
 
 ```sql
 SELECT COUNT(*) AS Total_Rows,
@@ -368,8 +363,8 @@ SELECT COUNT(*) AS Total_Rows,
 FROM [dbo].[healthcare_dataset]
 ```
 
-/* After checking, I found around 1,000 null values, and these nulls exist across all columns. So, I have a few options: delete them, 
-leave them as null, or replace them with other values. But I think I’ll go with the third option as a safe choice. */
+After checking, I found around 1,000 null values, and these nulls exist across all columns. So, I have a few options: delete them, 
+leave them as null, or replace them with other values. But I think I’ll go with the third option as a safe choice.
 
 ```sql
 UPDATE [dbo].[healthcare_dataset]
