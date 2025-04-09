@@ -120,45 +120,20 @@ SET Name = dbo.CapitalizeWords(Name);
 
 # 2. 'Date of Admission' and 'Discharge Date' columns  
 
-Standardize the date format in the 'Date of Admission' and 'Discharge Date' columns to YYYY-MM-DD. And just like the improvement on the name column, I considered several options, such as using the CAST and FORMAT functions or utilizing a UDF. Although a UDF might not be strictly necessary, I still wanted to test how far my understanding of UDFs has progressed. Additionally, I believe that, just like CTE simplifies repetitive tasks, UDFs can also be very useful in the future when the same process needs to be executed repeatedly.
-
-- Method 1 (Use CAST & FORMAT)
+Standardize the date format in the 'Date of Admission' and 'Discharge Date' columns YYYY-MM-DD
 
 ```sql
 ---  Date of Admission
 
-UPDATE [dbo].[healthcare_dataset]
-SET [Date of Admission] = FORMAT(CAST([Date of Admission] AS DATE), 'dd-MM-yyyy')
-
+ALTER TABLE [dbo].[healthcare_dataset]
+ALTER COLUMN [Date of Admission] DATE
 
 --- Discharge Date
 
-UPDATE [dbo].[healthcare_dataset]
-SET [Discharge Date] = FORMAT(CAST([Discharge Date] AS DATE), 'dd-MM-yyyy')
+ALTER TABLE [dbo].[healthcare_dataset]
+ALTER COLUMN [Discharge Date] DATE
 ```
-
-- Method 2 (Use UDF)
-```sql
-CREATE FUNCTION dbo.FormatDate
-(
-    @inputDate DATETIME
-)
-RETURNS VARCHAR(10)
-AS
-BEGIN
-    RETURN FORMAT(CAST(@inputDate AS DATE), 'yyyy-MM-dd')
-END
-
--- Discharge Date
-
-UPDATE [dbo].[healthcare_dataset]
-SET  [Discharge Date]  = dbo.FormatDate([Discharge Date]);
-
--- Date of Admission
-
-UPDATE [dbo].[healthcare_dataset]
-SET [Date of Admission] = dbo.FormatDate([Date of Admission]);
-```
+<img width="181" alt="image" src="https://github.com/user-attachments/assets/6a45cb2e-f5ce-4e1a-9464-c1393152ddc6" />
 
 
 
@@ -193,6 +168,8 @@ SELECT Hospital,
             END AS Clean_Hospital_Name
 FROM [dbo].[healthcare_dataset]
 ```
+<img width="293" alt="image" src="https://github.com/user-attachments/assets/31c344e1-f3ac-4d0c-bf37-2bc34f16af5c" />
+
 
 - Updates
 ```sql
@@ -358,28 +335,28 @@ WHERE Name IN (SELECT Name FROM RecordsToDelete WHERE RowNum > 1)
 
 ```sql
 SELECT COUNT(*) AS Total_Rows,
-	   COUNT(NAME) AS Total_NonNull,
-	   COUNT(*) - COUNT(NAME) AS Null_Count
+       COUNT(NAME) AS Total_NonNull,
+       COUNT(*) - COUNT(NAME) AS Null_Count
 FROM [dbo].[healthcare_dataset]
 ```
 
 After checking, I found around 1,000 null values, and these nulls exist across all columns. So, I have a few options: delete them, 
-leave them as null, or replace them with other values. But I think I’ll go with the third option as a safe choice.
+leave them as null, or replace them with other values. But I think I’ll go with the third option.
 
 ```sql
 UPDATE [dbo].[healthcare_dataset]
 SET Name = ISNULL(Name,'0'),
-	Age = ISNULL(Age,'0'),
-	Gender = ISNULL(Gender,'0'),
-	[Blood Type] = ISNULL([Blood Type],'0'),
-	[Medical Condition] = ISNULL([Medical Condition],'0'),
-	Doctor = ISNULL(Doctor,'0'),
-	Hospital = ISNULL(Hospital,'0'),
-	[Insurance Provider] = ISNULL([Insurance Provider],'0'),
-	[Billing Amount] = ISNULL([Billing Amount],'0'),
-	[Room Number] = ISNULL([Room Number],'0'),
-	[Admission Type] = ISNULL([Admission Type],'0'),
-	[Discharge Date] = ISNUlL([Discharge Date],'0'),
-	Medication = ISNULL(Medication,'0'),
-	[Test Results] = ISNULL([Test Results],'0')
+    Age = ISNULL(Age,'0'),
+    Gender = ISNULL(Gender,'0'),
+    [Blood Type] = ISNULL([Blood Type],'0'),
+    [Medical Condition] = ISNULL([Medical Condition],'0'),
+    Doctor = ISNULL(Doctor,'0'),
+    Hospital = ISNULL(Hospital,'0'),
+    [Insurance Provider] = ISNULL([Insurance Provider],'0'),
+    [Billing Amount] = ISNULL([Billing Amount],'0'),
+    [Room Number] = ISNULL([Room Number],'0'),
+    [Admission Type] = ISNULL([Admission Type],'0'),
+    [Discharge Date] = ISNUlL([Discharge Date],'0'),
+    Medication = ISNULL(Medication,'0'),
+    [Test Results] = ISNULL([Test Results],'0')
 ```
