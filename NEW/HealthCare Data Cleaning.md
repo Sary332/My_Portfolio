@@ -278,12 +278,24 @@ WHERE EXISTS ( SELECT 1
 --ORDER BY Name 
 
 )
+```
+**Result of Age_Variance_Check :**
 
+<img width="443" alt="image" src="https://github.com/user-attachments/assets/3500d74c-eed2-4ae7-9fbb-d810030c5d9f" />
+
+I wanna know the largest age different.
+
+```sql
 SELECT Name, MAX(AGE) - MIN(AGE) AS Age_Different
 FROM Age_Variance_Check
 GROUP BY Name,Gender, [Blood Type], [Medical Condition],[Date of Admission],[Room Number], [Discharge Date]    
 ORDER BY Age_Different DESC
 ```
+
+**Result :**
+
+<img width="149" alt="image" src="https://github.com/user-attachments/assets/1298be3a-e7be-46b6-9619-218eeb416b85" />
+
 
 
 After checking, it turns out that the largest age difference is only about 5 years, so I decided to use 
@@ -307,7 +319,7 @@ WITH MedianData AS (
         ) AS MedianAge
     FROM [dbo].[healthcare_dataset]
     WHERE Name IS NOT NULL
-	--ORDER BY Name
+    --ORDER BY Name
 )
 
 UPDATE H
@@ -315,6 +327,13 @@ SET H.Age = M.MedianAge
 FROM [dbo].[healthcare_dataset] H
 JOIN MedianData M ON H.Name = M.Name;
 ```
+Median Age :
+<img width="140" alt="image" src="https://github.com/user-attachments/assets/8a2ce05c-8d7f-4a0f-a596-65a395181c8f" />
+
+After update : 
+
+
+
 
 - Step 2 : Remove one of the two duplicate records, as I want to keep only a single entry.
 ```sql
@@ -333,7 +352,14 @@ WITH RecordsToDelete AS (
 
 DELETE FROM [dbo].[healthcare_dataset]
 WHERE Name IN (SELECT Name FROM RecordsToDelete WHERE RowNum > 1)
+
+Result :
+(14108 rows affected)
+
 ```
+Result of RecordsToDelete before deleted :
+<img width="137" alt="image" src="https://github.com/user-attachments/assets/c3a1641d-370c-465c-8023-22c7e2b49974" />
+
 
 <br><br>
 
