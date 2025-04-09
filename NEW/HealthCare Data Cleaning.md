@@ -252,6 +252,14 @@ GROUP BY Name ,Gender, [Blood Type],[Medical Condition], [Date of Admission],
 HAVING  COUNT(*) > 1
 ),
 
+--SELECT SUM(Num_Duplicate) AS Num_Duplicate
+--FROM  Duplicate_Check
+
+| **Num_Duplicate** | 
+|-------------------|
+|      11000        | 
+
+
 /*I need to quantify the age variance caused by these duplicate entries (11,000 cases) to determine the most effective 
 deduplication methodology. This statistical assessment will inform data remediation strategy. */
 
