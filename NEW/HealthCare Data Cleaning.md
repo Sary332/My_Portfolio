@@ -3,22 +3,8 @@ I use SQL Server import and export wizard to import data into SQL Server Managem
 <div align="center"> <img width="473" alt="image" src="https://github.com/user-attachments/assets/fa6971c1-8678-4f59-a52d-8a670c2f4712" /> </div>
 
 ```sql
-SELECT TOP (1000) [Name]
-      ,[Age]
-      ,[Gender]
-      ,[Blood Type]
-      ,[Medical Condition]
-      ,[Date of Admission]
-      ,[Doctor]
-      ,[Hospital]
-      ,[Insurance Provider]
-      ,[Billing Amount]
-      ,[Room Number]
-      ,[Admission Type]
-      ,[Discharge Date]
-      ,[Medication]
-      ,[Test Results]
-  FROM [SQL Projects].[dbo].[healthcare_dataset]
+SELECT *
+FROM [SQL Projects].[dbo].[healthcare_dataset]
 ```
 <div align="center"> <img width="790" alt="image" src="https://github.com/user-attachments/assets/b472961c-ee9f-40a9-a66b-ab935277881f" /> </div>
 <div align="center"><img width="335" alt="image" src="https://github.com/user-attachments/assets/7a20cc4c-82c7-4f18-b18a-e22879e307c4" /> </div>
@@ -93,10 +79,7 @@ WHERE NAME LIKE 'MR.%'
         OR NAME LIKE 'MRS.%'
         OR NAME LIKE 'DR,%'
         OR NAME LIKE 'MISS%'
-```
-<img width="194" alt="image" src="https://github.com/user-attachments/assets/20529314-9f87-4f9f-ad5c-67b722e51ab3" />
 
-```sql
 -- Update with fixes
 
 UPDATE [dbo].[healthcare_dataset]
@@ -114,7 +97,9 @@ UPDATE [dbo].[healthcare_dataset]
 SET Name = dbo.CapitalizeWords(Name);
 ```
 
-<img width="88" alt="image" src="https://github.com/user-attachments/assets/1fac817e-71aa-4e02-a48e-671716a9f0e6" />
+<div align="center"> <img width="194" alt="image" src="https://github.com/user-attachments/assets/20529314-9f87-4f9f-ad5c-67b722e51ab3" />  
+    <img width="88" alt="image" src="https://github.com/user-attachments/assets/1fac817e-71aa-4e02-a48e-671716a9f0e6" /> </div>
+
 
 <br><br>
 
@@ -133,7 +118,7 @@ ALTER COLUMN [Date of Admission] DATE
 ALTER TABLE [dbo].[healthcare_dataset]
 ALTER COLUMN [Discharge Date] DATE
 ```
-<img width="181" alt="image" src="https://github.com/user-attachments/assets/6a45cb2e-f5ce-4e1a-9464-c1393152ddc6" />
+<div align="center"> <img width="181" alt="image" src="https://github.com/user-attachments/assets/6a45cb2e-f5ce-4e1a-9464-c1393152ddc6" /> </div>
 
 
 
@@ -168,7 +153,8 @@ SELECT Hospital,
             END AS Clean_Hospital_Name
 FROM [dbo].[healthcare_dataset]
 ```
-<img width="293" alt="image" src="https://github.com/user-attachments/assets/31c344e1-f3ac-4d0c-bf37-2bc34f16af5c" />
+<div align="center">  <img width="293" alt="image" src="https://github.com/user-attachments/assets/31c344e1-f3ac-4d0c-bf37-2bc34f16af5c" /> </div>
+
 
 
 - Updates
@@ -209,156 +195,146 @@ UPDATE [dbo].[healthcare_dataset]
 SET [Billing Amount] = CAST(ROUND([Billing Amount], 2) AS DECIMAL (20,2))
 ```
 
-<img width="64" alt="image" src="https://github.com/user-attachments/assets/d14be557-bb50-4bc3-b842-059a62151794" />
+<div align="center"> <img width="64" alt="image" src="https://github.com/user-attachments/assets/d14be557-bb50-4bc3-b842-059a62151794" /> </div>
+
 
 
 <br><br>
 
 # 5. Handle duplicate values 
 
-After checking, it turned out that there were many duplicate records that, upon further analysis, had identical information in all columns except for the **'Age' column**. This means that the patient's name, illness, admission date, and even discharge date were all the same, except for 'Age'. Such cases are actually very rare or may almost never happen in real life (I even asked my sister, who works in a hospital ICCU). However, since I know this is synthetic data, I will just take it as a learning experience.
-
+DATA DEDUPLICATION PROCESS :
+1. Added unique ID since the table lacks a primary key
+2. Calculate median age for each duplicate group
+3. Used ROW_NUMBER() with ORDER BY ID to ensure consistent ordering
+4. Only deleted rows with row_num > 1
 
 ```sql
-WITH Duplicate_Check AS (
+/*
+ALTER TABLE [dbo].[healthcare_dataset]
+ADD ID INT IDENTITY(1,1)
+*/
 
--- Check Duplicate
 
-/* The reason I used **GROUP BY** on all columns except 'Age' is that, otherwise, there could be up to four patients with
-the same name appearing with the same room number or blood type and so on, even though they are actually different patients.
-Therefore, to accurately identify them as distinct individuals, I needed to differentiate them using more detailed information. */
+WITH DuplicateData AS (
+    SELECT Name, Gender, [Blood Type], [Medical Condition], [Date of Admission],
+           Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
+           [Admission Type], [Discharge Date], Medication, [Test Results],
+           COUNT(*) AS Num_Duplicate
+    FROM [dbo].[healthcare_dataset]
+    WHERE Name IS NOT NULL
+    GROUP BY Name, Gender, [Blood Type], [Medical Condition], [Date of Admission],
+             Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
+             [Admission Type], [Discharge Date], Medication, [Test Results]
+    HAVING COUNT(*) > 1
 
-SELECT Name,
-     --Age
-       Gender,
-      [Blood Type],
-      [Medical Condition],
-      [Date of Admission],
-       Doctor,
-       Hospital,
-      [Insurance Provider],
-      [Billing Amount],
-      [Room Number],
-      [Admission Type],
-      [Discharge Date],
-       Medication,
-      [Test Results],
-       COUNT(*) AS Num_Duplicate 
-FROM [dbo].[healthcare_dataset]
-WHERE Name IS NOT NULL
-GROUP BY Name ,Gender, [Blood Type],[Medical Condition], [Date of Admission],
-         Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
-        [Admission Type], [Discharge Date], Medication,[Test Results]
-HAVING  COUNT(*) > 1
+# Name           Gender    Blood Type          Num_Duplicate
+--------------  --------  ------------        --------------
+Aaron Archer    Female        B-                    2
+Aaron Carr      Female        O-                    2
+Aaron Dalton    Male          O+       ...          2
+Aaron Davis     Male          O-                    2
+Aaron Fox       Male          O-                    2
+...
+
+--Records : 5,500 rows
+
 ),
 
---SELECT SUM(Num_Duplicate) AS Num_Duplicate
---FROM  Duplicate_Check
+/*I need to quantify the age variance caused by these duplicate entries (11,000 Rows) to determine the most effective 
+deduplication methodology. This statistical assessment will inform our data remediation strategy. */
 
-| **Num_Duplicate** | 
-|-------------------|
-|      11000        | 
+FilteredData AS (
+    SELECT h.*
+    FROM [dbo].[healthcare_dataset] h
+    WHERE EXISTS ( 
+        SELECT 1 
+        FROM DuplicateData c 
+        WHERE c.Name = h.Name 
+        AND c.[Room Number] = h.[Room Number] 
+        AND c.[Date of Admission] = h.[Date of Admission]
+        AND c.[Discharge Date] = h.[Discharge Date]
+        AND c.Gender = h.Gender
+        AND c.[Medical Condition] = h.[Medical Condition]
+    )
+--Records : 11,000 rows
 
+),
 
-/*I need to quantify the age variance caused by these duplicate entries (11,000 cases) to determine the most effective 
-deduplication methodology. This statistical assessment will inform data remediation strategy. */
-
-Age_Variance_Check AS (
-SELECT *
-FROM [dbo].[healthcare_dataset] H
-WHERE EXISTS ( SELECT 1 
-               FROM Duplicate_Check DC 
-               WHERE DC.Name = H.Name 
-                   AND DC.[Room Number] = H.[Room Number] 
-                   AND DC.[Date of Admission] = H.[Date of Admission]
-                   AND DC.[Discharge Date] = H.[Discharge Date]
-                   AND DC.Gender = H.Gender
-                   AND DC.[Medical Condition] = H.[Medical Condition]
-			 )
---ORDER BY Name 
-
-)
-```
-**Result of Age_Variance_Check :**
-
-<img width="443" alt="image" src="https://github.com/user-attachments/assets/3500d74c-eed2-4ae7-9fbb-d810030c5d9f" />
-
-I wanna know the largest age different.
-
-```sql
+/*
 SELECT Name, MAX(AGE) - MIN(AGE) AS Age_Different
-FROM Age_Variance_Check
+FROM FilteredData
 GROUP BY Name,Gender, [Blood Type], [Medical Condition],[Date of Admission],[Room Number], [Discharge Date]    
 ORDER BY Age_Different DESC
-```
 
-**Result :**
+# Name             Age_Different
+---------------   -------------:
+Aaron Gates               5
+Aaron Owen                5
+Aaron Walter              5
+Abigail Shannon           5
+Adam Gray                 5
+...                      ...
+*/
 
-<img width="149" alt="image" src="https://github.com/user-attachments/assets/1298be3a-e7be-46b6-9619-218eeb416b85" />
+---
 
-
-
-After checking, it turns out that the largest age difference is only about 5 years, so I decided to use 
+/* After checking, it turns out that the largest age difference is only about 5 years, so I decided to use 
 MEDIAN instead of AVERAGE. Why is Median Better than Average (Avg) for This Case? Median is Not Affected by Outliers. 
 If the age difference is small (example: [30, 31]), the median and average are almost the same. But if there is an input error 
-(example: [30, 60]), the median (45) is safer than the average (45). 
+(example: [30, 60]), the median (45) is safer than the average (45). */
 
 
-- Step 1: Identify duplicates and calculate the median
-
-```sql
---- 1. Apply median values directly in the update
-
-WITH MedianData AS (
+MedianData AS (
     SELECT 
-        Name,  
-        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY Age) OVER (
-            PARTITION BY [Name], [Gender], [Blood Type], [Medical Condition], [Date of Admission],
-                        [Doctor], [Hospital], [Insurance Provider], [Billing Amount], [Room Number],
-                        [Admission Type], [Discharge Date], [Medication], [Test Results]
-        ) AS MedianAge
-    FROM [dbo].[healthcare_dataset]
-    WHERE Name IS NOT NULL
-    --ORDER BY Name
-)
+        ID, 
+        Name, Gender, [Blood Type], [Medical Condition], [Date of Admission],
+        Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
+        [Admission Type], [Discharge Date], Medication, [Test Results],
 
-UPDATE H
-SET H.Age = M.MedianAge
-FROM [dbo].[healthcare_dataset] H
-JOIN MedianData M ON H.Name = M.Name;
-```
-Median Age :
-<img width="140" alt="image" src="https://github.com/user-attachments/assets/8a2ce05c-8d7f-4a0f-a596-65a395181c8f" />
+        PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY Age) 
+        OVER (PARTITION BY Name, Gender, [Blood Type], [Medical Condition], [Date of Admission],
+              Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
+              [Admission Type], [Discharge Date], Medication, [Test Results]) AS MedianAge,
 
-After update : 
-
-
-
-
-- Step 2 : Remove one of the two duplicate records, as I want to keep only a single entry.
-```sql
-WITH RecordsToDelete AS (
-    SELECT 
-        Name,
         ROW_NUMBER() OVER (
-            PARTITION BY [Name], [Gender], [Blood Type], [Medical Condition], [Date of Admission],
-                        [Doctor], [Hospital], [Insurance Provider], [Billing Amount], [Room Number],
-                        [Admission Type], [Discharge Date], [Medication], [Test Results]
-            ORDER BY Name  -- -- or another column as a tie-breaker
+            PARTITION BY Name, Gender, [Blood Type], [Medical Condition], [Date of Admission],
+                         Doctor, Hospital, [Insurance Provider], [Billing Amount], [Room Number],
+                         [Admission Type], [Discharge Date], Medication, [Test Results]
+            ORDER BY ID
         ) AS RowNum
-    FROM [dbo].[healthcare_dataset]
-    WHERE Name IS NOT NULL
+    FROM FilteredData
+
+# ID       Name           Gender    Blood Type            MedianAge    RowNum
+------   ------------    ------    -----------           ---------    ------
+24523    Aaron Archer    Female        B-                   48          1
+50413    Aaron Archer    Female        B-      ...          48          2
+7399     Aaron Carr      Female        O-                  59.5         1
+22402    Aaron Carr      Female        O-                  59.5         2
+...
+
 )
+
+-- Remove duplicate entries by filtering RowNum > 1 (keeping first occurrence)
 
 DELETE FROM [dbo].[healthcare_dataset]
-WHERE Name IN (SELECT Name FROM RecordsToDelete WHERE RowNum > 1)
-
-Result :
-(14108 rows affected)
+WHERE ID IN (
+    SELECT ID 
+    FROM MedianData 
+    WHERE RowNum > 1
+);
 
 ```
-Result of RecordsToDelete before deleted :
-<img width="137" alt="image" src="https://github.com/user-attachments/assets/c3a1641d-370c-465c-8023-22c7e2b49974" />
+**Records :**
+
+<img width="244" alt="image" src="https://github.com/user-attachments/assets/c178cc76-377b-4657-bf3d-466f405ac124" /> 
+
+
+**Results :**
+   | Metric            | Before  | After  |
+|-------------------|---------|--------|
+| Total Records     | 11,000  | 5,500  |
+| Duplicate Pairs   | 5,500   | 0      |
 
 
 <br><br>
@@ -372,10 +348,14 @@ SELECT COUNT(*) AS Total_Rows,
        COUNT(NAME) AS Total_NonNull,
        COUNT(*) - COUNT(NAME) AS Null_Count
 FROM [dbo].[healthcare_dataset]
+
+# Total_Rows    Total_NonNull    Null_Count
+------------  --------------  -----------
+51,000        50,000          1,000
 ```
 
 After checking, I found around 1,000 null values, and these nulls exist across all columns. So, I have a few options: delete them, 
-leave them as null, or replace them with other values. But I think I’ll go with the third option.
+leave them as null, or replace them with other values. But I think I’ll go with the first option.
 
 ```sql
 UPDATE [dbo].[healthcare_dataset]
