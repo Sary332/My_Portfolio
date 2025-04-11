@@ -2,6 +2,7 @@ I use SQL Server import and export wizard to import data into SQL Server Managem
 
 <div align="center"> <img width="473" alt="image" src="https://github.com/user-attachments/assets/fa6971c1-8678-4f59-a52d-8a670c2f4712" /> </div>
 
+
 ```sql
 SELECT *
 FROM [SQL Projects].[dbo].[healthcare_dataset]
@@ -193,9 +194,18 @@ FROM [dbo].[healthcare_dataset]
 
 UPDATE [dbo].[healthcare_dataset]
 SET [Billing Amount] = CAST(ROUND([Billing Amount], 2) AS DECIMAL (20,2))
-```
 
-<div align="center"> <img width="64" alt="image" src="https://github.com/user-attachments/assets/d14be557-bb50-4bc3-b842-059a62151794" /> </div>
+
+# Billing Amount           
+----------------
+    18856.28
+    33643.33
+    27955.1
+    37909.78
+    14238.32
+      ...
+
+```
 
 
 
@@ -355,22 +365,22 @@ FROM [dbo].[healthcare_dataset]
 ```
 
 After checking, I found around 1,000 null values, and these nulls exist across all columns. So, I have a few options: delete them, 
-leave them as null, or replace them with other values. But I think I’ll go with the first option.
+leave them as null, or replace them with other values. But I think I’ll go with the first option bcuz these records contained no analyzable data and occupied storage unnecessarily.
 
 ```sql
-UPDATE [dbo].[healthcare_dataset]
-SET Name = ISNULL(Name,'0'),
-    Age = ISNULL(Age,'0'),
-    Gender = ISNULL(Gender,'0'),
-    [Blood Type] = ISNULL([Blood Type],'0'),
-    [Medical Condition] = ISNULL([Medical Condition],'0'),
-    Doctor = ISNULL(Doctor,'0'),
-    Hospital = ISNULL(Hospital,'0'),
-    [Insurance Provider] = ISNULL([Insurance Provider],'0'),
-    [Billing Amount] = ISNULL([Billing Amount],'0'),
-    [Room Number] = ISNULL([Room Number],'0'),
-    [Admission Type] = ISNULL([Admission Type],'0'),
-    [Discharge Date] = ISNUlL([Discharge Date],'0'),
-    Medication = ISNULL(Medication,'0'),
-    [Test Results] = ISNULL([Test Results],'0')
+SELECT *
+FROM [dbo].[healthcare_dataset]
+WHERE NAME IS NULL
 ```
+
+<div align="center"> <img width="740" alt="image" src="https://github.com/user-attachments/assets/77d5f1a8-0d80-40db-ba20-319bd737e6d3" /> </div>
+
+
+```SQL
+DELETE FROM [dbo].[healthcare_dataset]
+WHERE NAME IS NULL
+```
+
+<img width="243" alt="image" src="https://github.com/user-attachments/assets/4c3644c2-22f9-4523-8dd6-981fb76c06e3" />
+
+
