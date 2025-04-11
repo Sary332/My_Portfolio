@@ -359,9 +359,9 @@ SELECT COUNT(*) AS Total_Rows,
        COUNT(*) - COUNT(NAME) AS Null_Count
 FROM [dbo].[healthcare_dataset]
 
-# Total_Rows    Total_NonNull    Null_Count
+# Total_Rows   Total_NonNull   Null_Count
 ------------  --------------  -----------
-51,000        50,000          1,000
+   51,000        50,000          1,000
 ```
 
 After checking, I found around 1,000 null values, and these nulls exist across all columns. So, I have a few options: delete them, 
