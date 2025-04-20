@@ -262,7 +262,7 @@ YEAR  QUARTER  QUANTITY     REVENUE     YoYGrowth%  YoYRevenue%    GrowthCategor
 ) -- Still continue...
 ```
 
-**Identified Growth Patterns:**
+**Identified Growth Patterns for GrowthCategory:**
 
 1. Growth Strong
    - Quantity and Revenue show positive growth
@@ -271,7 +271,7 @@ YEAR  QUARTER  QUANTITY     REVENUE     YoYGrowth%  YoYRevenue%    GrowthCategor
 2. Growth Risky
    - Quantity increases but Revenue decreases
    - Only occurred in 2017 Q1 (Qty +2.07%, Rev -6.79%)
-   - Maybe Possible price discounts/cuts ?
+   - Maybe bcus Possible price discounts/cuts ?
 
 3. Decline
    - Both Quantity and Revenue decrease
@@ -284,16 +284,38 @@ YEAR  QUARTER  QUANTITY     REVENUE     YoYGrowth%  YoYRevenue%    GrowthCategor
 
 
 ```SQL
--- Calculate the average price change
-SELECT 
-    q16.[QUARTER],
-    q16.REVENUE/q16.QUANTITY AS ASP_2016,
-    q17.REVENUE/q17.QUANTITY AS ASP_2017,
-    ROUND((q17.REVENUE/q17.QUANTITY - q16.REVENUE/q16.QUANTITY)*100.0/NULLIF(q16.REVENUE/q16.QUANTITY, 0), 2) AS ASP_Change_Percent
-FROM 
-    (SELECT QUARTER, QUANTITY, REVENUE FROM GrowthCategory WHERE [YEAR] = 2016) q16
-JOIN 
-    (SELECT QUARTER, QUANTITY, REVENUE FROM GrowthCategory WHERE [YEAR] = 2017) q17
-ON q16.QUARTER = q17.QUARTER
 
+/* ASP Analysis 2020 :
+
+- Is the decline in revenue proportional to the quantity?
+- If ASP is stable, it means the issue lies purely in volume.
+
+*/
+
+SELECT 
+    [YEAR],
+    [QUARTER],
+    QUANTITY,
+    REVENUE,
+    ROUND(REVENUE/NULLIF(QUANTITY, 0), 2) AS ASP
+FROM COBA4
+WHERE [YEAR] = 2020
+ORDER BY [QUARTER];
+
+
+QUARTER   QUANTITY     REVENUE         ASP
+-------   --------   -------------   --------
+  1       18,483     4,971,321.35     268.96
+  2       6,688      1,859,551.96     278.04
+  3       4,795      1,309,883.78     273.18
+  4       4,497      1,153,875.05     256.59
 ```
+- Although quantity dropped significantly in Q2–Q4 2020, ASP remained relatively stable.
+- This indicates that the company may have maintained pricing (did not offer major discounts) despite the drop in demand.
+
+
+<br><br>
+
+
+## 3. How long is the average delivery time in days? Has that changed over time ?
+
