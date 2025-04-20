@@ -6,7 +6,7 @@ SET Square_Meters = ISNULL(Square_Meters, 0)
 ```
 
 
-### 1. What types of products does the company sell, and where are customers located ?
+## 1. What types of products does the company sell, and where are customers located ?
 ```SQL
 -- Types of products 
 
@@ -64,9 +64,9 @@ United Kingdom             288
 <br><br>
 
 
-### 2. Are there any seasonal patterns or trends for order volume or revenue ?
+## 2. Are there any seasonal patterns or trends for order volume or revenue ?
 
-#### a) Weekly Patterns (US 2017 Example)
+### a) Weekly Patterns (US 2017 Example)
      
 ```SQL
 /* 
@@ -105,7 +105,7 @@ WeekOfYear  MovingAvgOrders  MovingAvgRevenue
 - Consistent pattern from 2016-2020 shows stable annual trends
 
 
-#### b) Holiday Patterns (Christmas Example)
+### b) Holiday Patterns (Christmas Example)
 
 ```sql
 -- Pre-Christmas period analysis (December 20-31)
@@ -136,11 +136,11 @@ Year    PreChristmasOrders
 - NULL values, indicating Incomplete data collection.
 
 
-#### c) Purchase Trends by Country During Holiday / Big Celebration Months
+### c) Purchase Trends by Country During Holiday / Big Celebration Months
 
 ```SQL
 /* 
-   Analysis of offline purchases during major holiday months (February, September-December for Valentine's, Thanksgiving, Christmas)
+   Analysis of offline/Online purchases during major holiday months (February, September-December for Valentine's, Thanksgiving, Christmas)
 */
 
 SELECT 
@@ -153,7 +153,7 @@ FROM Sales S
 LEFT JOIN Products P ON S.ProductKey = P.ProductKey 
 LEFT JOIN [dbo].[Customers] C ON S.CustomerKey = C.CustomerKey
 LEFT JOIN [dbo].[Stores] ST ON S.StoreKey = ST.StoreKey
-WHERE S.StoreKey != 0 
+WHERE S.StoreKey != 0   -- S.StoreKey = 0
   AND MONTH(S.Order_Date) IN (2, 9, 10, 11, 12)
 GROUP BY YEAR(S.Order_Date), P.Subcategory, C.Country, MONTH(S.Order_Date)
 ORDER BY QUANTITY DESC
@@ -176,95 +176,124 @@ Year  Month      Country     Subcategory   Quantity
 
 - February purchase increase (Valentine's Day)
 - Significant October-November spikes in US and Canada (Thanksgiving)
-- Christmas/New Year period shows the most consistent annual peaks
-- For 5 consecutive years, the best-selling product has always been the 'Movie DVD' subcategory, which also includes DVD players.
+- Christmas/New Year period shows the most consistent annual peaks for each country
+- For 5 consecutive years, the best-selling product has always been the 'Movie DVD' subcategory, which also includes DVD players 
 - Different patterns observed across countries based on local culture/celebrations
 
 
 
-#### d) Seasonal/Quarterly Breakdown Analysis
+### d) Seasonal/Quarterly Breakdown Analysis
 
 ```sql
 WITH QuarterlySales AS (
     SELECT 
-        YEAR(S.Order_Date) AS [Year],
-        DATEPART(QUARTER, S.Order_Date) AS [Quarter],
-        SUM(S.Quantity) AS OrderQuantity,
-        SUM(S.Quantity * P.Unit_Price_USD) AS Revenue
+        YEAR(S.Order_Date) AS [YEAR],
+        DATEPART(QUARTER, S.Order_Date) AS [QUARTER],
+        SUM(S.Quantity) AS QUANTITY,
+        SUM(S.Quantity * P.Unit_Price_USD) AS REVENUE	
     FROM Sales S
+    LEFT JOIN [dbo].[Customers] C ON S.CustomerKey = C.CustomerKey
+    LEFT JOIN [dbo].[Stores] ST ON S.StoreKey = ST.StoreKey
     LEFT JOIN Products P ON S.ProductKey = P.ProductKey
-    WHERE YEAR(S.Order_Date) != 2021 -- Excluded due to incomplete data
+    WHERE YEAR(S.Order_Date) != 2021
     GROUP BY YEAR(S.Order_Date), DATEPART(QUARTER, S.Order_Date)
 ),
 
 QuarterlyWithPreviousYear AS (
     SELECT 
-        [Year],
-        [Quarter],
-        OrderQuantity,
-        Revenue,
-        /* Window function (LAG) must be applied to non-aggregated data before GROUP BY */
-        LAG(OrderQuantity) OVER (PARTITION BY [Quarter] ORDER BY [Year]) AS PreviousYearOrderVolume
+        [YEAR],
+        [QUARTER],
+        QUANTITY,
+        REVENUE,
+         /* Window function (LAG) must be applied to non-aggregated data before GROUP BY */
+        LAG(QUANTITY) OVER (PARTITION BY [QUARTER] ORDER BY [YEAR]) AS PrevYearOrderVolume,
+        LAG(REVENUE) OVER (PARTITION BY [QUARTER] ORDER BY [YEAR]) AS PrevYearRevenue
     FROM QuarterlySales
 ), 
 
 QuarterlyGrowthCalculation AS (
     SELECT 
-        [Year],
-        [Quarter],
-        OrderQuantity,
-        Revenue,
-        PreviousYearOrderVolume,
-        CAST(COALESCE((OrderQuantity - PreviousYearOrderVolume) * 100.0 / 
-            NULLIF(PreviousYearOrderVolume, 0), 0) AS DECIMAL(10,2)) AS YoYGrowthPercentage
+        [YEAR],
+        [QUARTER],
+        QUANTITY,
+        REVENUE,
+        PrevYearOrderVolume,
+        PrevYearRevenue,
+          -- Additional analysis
+        CAST(COALESCE((QUANTITY - PrevYearOrderVolume) * 100.0 / NULLIF(PrevYearOrderVolume, 0), 0) AS DECIMAL(10,2)) AS YoYGrowth%,
+        CAST(COALESCE((REVENUE - PrevYearRevenue) * 100.0 / NULLIF(PrevYearRevenue, 0), 0) AS DECIMAL(19,2)) AS YoYRevenue%
     FROM QuarterlyWithPreviousYear
 ),
 
-QuarterlyRevenueGrowth AS (
+GrowthCategory AS (
     SELECT
-        [Year],
-        [Quarter],
-        OrderQuantity,
-        Revenue,
-        PreviousYearOrderVolume,
-        YoYGrowthPercentage,
-        -- Additional analysis
-        CAST((Revenue - LAG(Revenue) OVER (PARTITION BY [Quarter] ORDER BY [Year])) * 100.0 / 
-              NULLIF(LAG(Revenue) OVER (PARTITION BY [Quarter] ORDER BY [Year]), 0) AS DECIMAL(19,2)) AS YoYRevenueGrowthPercentage
+        [YEAR],
+        [QUARTER],
+        QUANTITY,
+        REVENUE,
+        YoYGrowth%,
+        YoYRevenue%,
+        CASE
+            WHEN YoYGrowth% > 0 AND YoYRevenue% > 0 THEN 'Growth Strong'
+            WHEN YoYGrowth% > 0 AND YoYRevenue% < 0 THEN 'Growth Risky'   -- Quantity up, but revenue down
+            WHEN YoYGrowth% < 0 AND YoYRevenue% < 0 THEN 'Decline'
+            WHEN YoYGrowth% < 0 AND YoYRevenue% > 0 THEN 'Recovery'  -- Quantity down, but revenue up (price increase)
+            ELSE 'No Baseline Data'
+        END AS GrowthCategory
     FROM QuarterlyGrowthCalculation
-)
-
-SELECT
-    [Year],
-    [Quarter],
-    OrderQuantity,
-    Revenue,
-    YoYGrowthPercentage,
-    YoYRevenueGrowthPercentage,
-    -- Revised growth category (considering both revenue and quantity)
-    CASE
-        WHEN YoYGrowthPercentage > 0 AND YoYRevenueGrowthPercentage > 0 THEN 'Strong Growth'
-        WHEN YoYGrowthPercentage > 0 AND YoYRevenueGrowthPercentage < 0 THEN 'Risky Growth' -- Quantity up, but revenue down
-        WHEN YoYGrowthPercentage < 0 AND YoYRevenueGrowthPercentage < 0 THEN 'Decline'
-        WHEN YoYGrowthPercentage < 0 AND YoYRevenueGrowthPercentage > 0 THEN 'Recovery' -- Quantity down, but revenue up (price increase)
-        ELSE 'No Baseline Data'
-    END AS GrowthCategory
-FROM QuarterlyRevenueGrowth
--- ORDER BY [Year], [Quarter]
 
 
-Year  Quarter  Quantity     Revenue     YoYGrowth%  YoYRevenue%    GrowthCategory
+
+YEAR  QUARTER  QUANTITY     REVENUE     YoYGrowth%  YoYRevenue%    GrowthCategory
 ----  -------  --------  -------------  ----------  -----------  -----------------
-2016    1      5,687     1,879,424.44       0.00       NULL       No Baseline Data
+2016    1      5,687     1,879,424.44       0.00       0.00       No Baseline Data
 2017    1      5,805     1,751,889.58       2.07       -6.79      Risky Growth
 2018    1      8,705     2,696,369.20      49.96       53.91      Strong Growth
 2019    1      17,328    4,889,687.23      99.06       81.34      Strong Growth
 2020    1      18,483    4,971,321.35       6.67        1.67      Strong Growth
-2016    2      3,836     1,225,163.09       0.00       NULL       No Baseline Data
+2016    2      3,836     1,225,163.09       0.00       0.00       No Baseline Data
 2017    2      4,065     1,306,570.33       5.97        6.64      Strong Growth
 2018    2      7,450     2,117,868.43      83.27       62.09      Strong Growth
 2019    2      12,025    3,149,200.58      61.41       48.70      Strong Growth
 2020    2      6,688     1,859,551.96     -44.38      -40.95      Decline
 ...    ...     ...           ...            ...        ...            ...
+
+
+) -- Still continue...
+```
+
+**Identified Growth Patterns:**
+
+1. Growth Strong
+   - Quantity and Revenue show positive growth
+   - Example: 2018 Q1 (Qty +49.96%, Rev +53.91%)
+
+2. Growth Risky
+   - Quantity increases but Revenue decreases
+   - Only occurred in 2017 Q1 (Qty +2.07%, Rev -6.79%)
+   - Maybe Possible price discounts/cuts ?
+
+3. Decline
+   - Both Quantity and Revenue decrease
+   - Occurred in all quarters of 2020 except Q1
+   - Is it due to COVID-19 lockdown, supply chain issues, or internal factors ?
+
+4. No Baseline Data
+   - First year data (2016) cannot be compared (no previous year for reference)
+
+
+
+```SQL
+-- Calculate the average price change
+SELECT 
+    q16.[QUARTER],
+    q16.REVENUE/q16.QUANTITY AS ASP_2016,
+    q17.REVENUE/q17.QUANTITY AS ASP_2017,
+    ROUND((q17.REVENUE/q17.QUANTITY - q16.REVENUE/q16.QUANTITY)*100.0/NULLIF(q16.REVENUE/q16.QUANTITY, 0), 2) AS ASP_Change_Percent
+FROM 
+    (SELECT QUARTER, QUANTITY, REVENUE FROM GrowthCategory WHERE [YEAR] = 2016) q16
+JOIN 
+    (SELECT QUARTER, QUANTITY, REVENUE FROM GrowthCategory WHERE [YEAR] = 2017) q17
+ON q16.QUARTER = q17.QUARTER
 
 ```
