@@ -273,7 +273,7 @@ YEAR  QUARTER  QUANTITY     REVENUE     YoYGrowth%  YoYRevenue%    GrowthCategor
    - Only occurred in 2017 Q1 (Qty +2.07%, Rev -6.79%)
    - Maybe bcus Possible price discounts/cuts ?
 
-3. Decline
+3. Decline (**Need further analysis**)
    - Both Quantity and Revenue decrease
    - Occurred in all quarters of 2020 except Q1
    - Is it due to COVID-19 lockdown, supply chain issues, or internal factors ?
