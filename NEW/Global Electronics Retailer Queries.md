@@ -319,3 +319,135 @@ QUARTER   QUANTITY     REVENUE         ASP
 
 ## 3. How long is the average delivery time in days? Has that changed over time ?
 
+```sql
+
+- Calculate shipping time for online store orders
+-- Focuses on the longest shipping durations
+
+SELECT 
+    S.Order_Date,
+    S.Delivery_Date,
+    C.Country,
+    DATEDIFF(DAY, S.Order_Date, S.Delivery_Date) AS Shipping_Days
+FROM 
+    [dbo].[Sales] S
+    LEFT JOIN [dbo].[Customers] C ON S.CustomerKey = C.CustomerKey
+    LEFT JOIN [dbo].[Stores] ST ON S.StoreKey = ST.StoreKey
+WHERE 
+    ST.StoreKey = 0 -- Online Store only
+ORDER BY 
+    Shipping_Days DESC,  -- Show longest shipping times first
+    Order_Date DESC      -- Secondary sort by most recent orders
+
+
+
+ Order_Date       Delivery_Date          Country        Shipping_Days 
+-------------    --------------    ----------------    --------------
+ 2016-02-27       2016-03-15         United States           17            
+ 2016-02-27       2016-03-15         United States           17            
+ 2016-02-27       2016-03-15         United States           17            
+ 2016-06-09       2016-06-24         Canada                  15
+    ...              ...                 ...                ...
+
+```
+
+- Maximum shipping time observed: 17 days (United States, Feb-Mar 2016)
+- All extreme cases occur in 2016, suggesting potential logistics improvements in later years
+
+
+
+```sql
+
+
+-- Calculate average shipping time by year/month for online store
+-- Includes year-over-year comparison and performance trends
+SELECT 
+    YEAR(S.Order_Date) AS [YEAR],
+    MONTH(S.Order_Date) AS [MONTH],
+    AVG(DATEDIFF(DAY, S.Order_Date, S.Delivery_Date)) AS Avg_Shipping_Days,
+    MIN(DATEDIFF(DAY, S.Order_Date, S.Delivery_Date)) AS Min_Shipping_Days,
+    MAX(DATEDIFF(DAY, S.Order_Date, S.Delivery_Date)) AS Max_Shipping_Days
+FROM 
+    [dbo].[Sales] S
+    JOIN [dbo].[Stores] ST ON S.StoreKey = ST.StoreKey
+WHERE 
+    ST.StoreKey = 0 -- Online Store only
+GROUP BY 
+    YEAR(S.Order_Date), 
+    MONTH(S.Order_Date)
+ORDER BY 
+    [Year], [Month]
+
+
+YEAR   MONTH    Avg_Shipping_Days    Min_Shipping_Days    Max_Shipping_Days
+----   -----    -----------------    -----------------    -----------------
+2016	 1             8                    4                    15
+2016	 2             7                    3                    17
+2016	 3             8                    2                    13
+2016	 4             6                    3                    10
+2016	 5             7                    2                    14
+...     ...           ...                  ...                   ...
+
+
+```
+
+**Key Monthly Breakdown**  
+**1. Best Performance**  
+- December 2019 & November 2020: Average of 3 days (fastest)  
+- 2021: Consistently achieved 3-day delivery  
+
+**2. Early Challenges**  
+- February 2016: Maximum delivery time of 17 days  
+- 2016 overall: Wide variation (1–17 days)  
+
+**Significant Changes (2016 vs 2021)**  
+**Logistics Improvement**  
+- Average delivery time decreased from 7 days → 3 days  
+- Maximum delivery time decreased from 17 days → 8 days  
+
+**Service Consistency**  
+- Standard deviation of delivery time dropped significantly  
+- Min-max gap in 2021 was only 7 days (vs 16 days in 2016)  
+
+**Year-End Quarter Performance**  
+- Q4 2016: 6–7 days  
+- Q4 2020: 3–4 days  
+- Increased capacity to handle peak season  
+
+
+```sql
+-- Year-over-Year Delivery Time Trend Analysis
+
+WITH YearlyDelivery AS (
+    SELECT 
+        YEAR(S.Order_Date) AS [YEAR],
+        AVG(DATEDIFF(DAY, S.Order_Date, S.Delivery_Date)) AS Avg_Delivery_Days
+    FROM [dbo].[Sales] S
+    LEFT JOIN [dbo].[Customers] C ON S.CustomerKey = C.CustomerKey
+    LEFT JOIN [dbo].[Stores] ST ON S.StoreKey = ST.StoreKey
+    WHERE 
+        ST.StoreKey = 0 -- Focus on Online or Specific Store (StoreKey = 0)
+        AND YEAR(S.Order_Date) != 2021 -- Exclude year 2021
+    GROUP BY 
+        YEAR(S.Order_Date)
+)
+
+SELECT 
+    [YAER],
+    Avg_Delivery_Days,
+    LAG(Avg_Delivery_Days) OVER (ORDER BY [Year]) AS Prev_Year_Avg,
+    ROUND(Avg_Delivery_Days - LAG(Avg_Delivery_Days) OVER (ORDER BY [Year]), 2) AS YoY_Change
+FROM 
+    YearlyDelivery;
+
+
+YEAR    Avg_Delivery_Days    Prev_Year_Avg    YoY_Change
+----    -----------------    -------------    ----------
+2016	       7                  NULL           NULL
+2017	       5                   7              -2
+2018	       4                   5              -1
+2019	       4                   4               0     --Stable
+2020	       4                   4               0     --Stable
+
+```
+
