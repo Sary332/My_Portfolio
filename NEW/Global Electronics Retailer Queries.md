@@ -326,8 +326,9 @@ QUARTER   QUANTITY     REVENUE         ASP
 
 ## 3. Holiday Season Product Analysis 
 
+### a) Seasonal Analysis (Holiday Season)
 ```sql
--- Analisis Musiman (Holiday Season) - Versi Alternatif
+
 WITH HolidayOrders AS (
     SELECT 
         [Order_Number],
@@ -399,9 +400,10 @@ Year    Subcategory    HolidayQuantity    HolidayRevenue    PctOfTotalSales    R
 
 ## 4. How long is the average delivery time in days? Has that changed over time ?
 
+### a) Calculate shipping time for online store orders
+
 ```sql
 
-- Calculate shipping time for online store orders
 -- Focuses on the longest shipping durations
 
 SELECT 
@@ -435,11 +437,10 @@ ORDER BY
 - All extreme cases occur in 2016, suggesting potential logistics improvements in later years
 
 
+### b) Calculate average shipping time by year/month for online store
 
 ```sql
 
-
--- Calculate average shipping time by year/month for online store
 -- Includes year-over-year comparison and performance trends
 SELECT 
     YEAR(S.Order_Date) AS [YEAR],
@@ -495,8 +496,9 @@ YEAR   MONTH    Avg_Shipping_Days    Min_Shipping_Days    Max_Shipping_Days
 - Increased capacity to handle peak season  
 
 
+### c) Year-over-Year Delivery Time Trend Analysis
+
 ```sql
--- Year-over-Year Delivery Time Trend Analysis
 
 WITH YearlyDelivery AS (
     SELECT 
@@ -536,10 +538,9 @@ YEAR    Avg_Delivery_Days    Prev_Year_Avg    YoY_Change
 
 ## 5. Product Analysis 
 
+### a) Popular Product Analysis by Country
+
 ```SQL
-
-
--- Popular Product Analysis by Country
 
 WITH CountryProductSales AS (
     SELECT 
@@ -575,9 +576,9 @@ For 5 consecutive years (2016–2020), the top 5 products in each country consis
 - Download Games
 
 
-```SQL
+### b) Cross-Selling Analysis 
 
--- Cross-Selling Analysis 
+```SQL
 
 WITH OrderProducts AS (
     SELECT 
@@ -634,9 +635,10 @@ Missed Opportunities:
 - The Televisions–Movie DVD combination (Rank 14) is not yet optimized  
 
 
-```sql
 
--- AOV (Average Order Value) Analysis
+### c) AOV (Average Order Value) Analysis
+
+```sql
 
 WITH OrderValues AS (
     SELECT 
