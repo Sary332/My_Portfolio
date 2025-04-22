@@ -23,7 +23,7 @@ For future analysis projects, I hope to explore similar types of data to analyze
    - Calculate average shipping time by year/month for online store
    - Year-over-Year Delivery Time Trend Analysis
 
-### 5. Product Analysis
+### 5. Products Analysis
    - Popular Product Analysis by Country
    - Cross-Selling Analysis
    - AOV (Average Order Value) Analysis
