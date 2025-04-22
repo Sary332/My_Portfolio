@@ -1,5 +1,5 @@
 
-Ganti NULL di Store table dengan 0 instead NULL  karena itu 0 untuk menandai online store ( Kesalahan waktu import)
+Replace NULL in the Store table with 0 instead of NULL, as 0 is used to indicate online stores (Mistake when importing dataset using SQL Server Import and Export Wizard).
 ```sql
 UPDATE [dbo].[Stores]
 SET Square_Meters = ISNULL(Square_Meters, 0)
@@ -8,7 +8,8 @@ SET Square_Meters = ISNULL(Square_Meters, 0)
 
 ## 1. What types of products does the company sell, and where are customers located ?
 ```SQL
--- Types of products 
+
+-- Types of products
 
 SELECT DISTINCT(Category) 
 FROM [dbo].[Products]
@@ -29,6 +30,7 @@ Music, Movies and Audio Books
 SELECT DISTINCT(Subcategory) 
 FROM [dbo].[Products]
 
+-- Result : 32 Rows
 #     SubCategory          
 -------------------------
 Bluetooth Headphones  
@@ -84,7 +86,7 @@ WHERE YEAR (S.Order_Date) = 2017 AND C.Country = 'United States'
 GROUP BY DATEPART(WEEK, S.Order_Date)--, YEAR(S.Order_date) 
 ORDER BY  MovingAvgOrders DESC
 
-
+-- Result : 48 Rows
 WeekOfYear  MovingAvgOrders  MovingAvgRevenue
 ----------  ---------------  ---------------
     52          471              134232.56
@@ -140,7 +142,9 @@ Year    PreChristmasOrders
 
 ```SQL
 /* 
-   Analysis of offline/Online purchases during major holiday months (February, September-December for Valentine's, Thanksgiving, Christmas)
+Analysis of offline/Online purchases during major holiday months (February, September-December for Valentine's, Thanksgiving, Christmas).
+Also, I chose to use Subcategory instead of Category because Category is too broad and, in my opinion, doesn't
+accurately represent the specific types of products. 
 */
 
 SELECT 
@@ -527,5 +531,157 @@ YEAR    Avg_Delivery_Days    Prev_Year_Avg    YoY_Change
 
 ```
 
+<br><br>
 
+
+## 5. Product Analysis 
+
+```SQL
+
+
+-- Popular Product Analysis by Country
+
+WITH CountryProductSales AS (
+    SELECT 
+        YEAR(S.[Order_Date]) AS [YEAR],
+        C.Country,
+        P.Subcategory,
+        SUM(S.Quantity) AS TotalQuantity,
+        SUM(S.Quantity * P.Unit_Price_USD) AS TotalRevenue,
+        RANK() OVER (PARTITION BY YEAR(S.[Order_Date]), C.Country ORDER BY SUM(S.Quantity) DESC) AS QuantityRank
+    FROM Sales S
+    JOIN Products P ON S.ProductKey = P.ProductKey 
+    JOIN Customers C ON S.CustomerKey = C.CustomerKey
+    GROUP BY YEAR(S.[Order_Date]), C.Country, P.Subcategory
+)
+SELECT 
+    Year,
+    Country,
+    Subcategory,
+    TotalQuantity,
+    TotalRevenue,
+    QuantityRank
+FROM CountryProductSales
+WHERE QuantityRank <= 5  -- Retrieve top 5 based on quantity and revenue
+ORDER BY Year, Country, QuantityRank;
+
+```
+
+For 5 consecutive years (2016–2020), the top 5 products in each country consistently included the subcategories :
+- Movie DVD
+- Bluetooth Headphones
+- Desktops
+- Boxed Games
+- Download Games
+
+
+```SQL
+
+-- Cross-Selling Analysis 
+
+WITH OrderProducts AS (
+    SELECT 
+        s.Order_Number,
+        p.Subcategory
+    FROM Sales s
+    JOIN Products p ON s.ProductKey = p.ProductKey
+),
+ProductPairs AS (
+    SELECT 
+        a.Subcategory AS ProductA,
+        b.Subcategory AS ProductB,
+        COUNT(DISTINCT a.Order_Number) AS CoOccurrence
+    FROM OrderProducts a
+    JOIN OrderProducts b ON a.Order_Number = b.Order_Number
+        AND a.Subcategory < b.Subcategory
+    GROUP BY a.Subcategory, b.Subcategory
+)
+SELECT TOP 20
+    ProductA,
+    ProductB,
+    CoOccurrence,
+    RANK() OVER (ORDER BY CoOccurrence DESC) AS Rank
+FROM ProductPairs
+ORDER BY CoOccurrence DESC;
+
+
+      ProductA                 ProductB          CoOccurrence     Rank
+--------------------    ---------------------    ------------    ------
+Desktops                 Movie DVD                  1548           1
+Bluetooth Headphones     Movie DVD                  1031           2
+Download Games	         Movie DVD                  939            3
+Boxed Games              Movie DVD                  920            4
+Movie DVD                Touch Screen Phones        886            5
+Movie DVD                Smart phones & PDAs        878            6
+     ...                        ...                  ...          ...
+
+
+```
+
+**Insight :**
+
+Movie DVD as an Anchor Product:
+- Movie DVD appears in 5 of the top 6 combinations (up to Rank 6), and a total of 8 times within the top 20  
+- Most frequently purchased alongside various categories  
+- **Recommendation:** Position it as a loss leader to drive additional purchases  
+
+Strong Electronics-Entertainment Connection:
+- Desktops, headphones, and games are often bought with Movie DVDs  
+- Indicates a pattern of "home entertainment setup"  
+
+Missed Opportunities:
+- The Desktops–Touch Screen Phones combination (Rank 11) has potential to be enhanced  
+- The Televisions–Movie DVD combination (Rank 14) is not yet optimized  
+
+
+```sql
+
+-- AOV (Average Order Value) Analysis
+
+WITH OrderValues AS (
+    SELECT 
+        [Order_Number],
+        YEAR([Order_Date]) AS Year,
+        c.Country,
+        SUM(s.Quantity * p.Unit_Price_USD) AS OrderValue,
+        SUM(s.Quantity) AS TotalItems
+    FROM Sales s
+    JOIN Products p ON s.ProductKey = p.ProductKey
+    JOIN Customers c ON s.CustomerKey = c.CustomerKey
+    JOIN Stores st ON s.StoreKey = st.StoreKey
+    GROUP BY [Order_Number], YEAR([Order_Date]), c.Country
+)
+SELECT 
+    Year,
+    Country,
+    COUNT([Order_Number]) AS OrderCount,
+    SUM(OrderValue) AS TotalRevenue,
+    AVG(OrderValue) AS AOV,
+    AVG(TotalItems) AS AvgItemsPerOrder
+FROM OrderValues
+GROUP BY Year, Country
+ORDER BY Year, Country, AOV DESC;
+
+```
+
+
+**Country-Level Analysis :**
+
+1. Germany (Premium Market)
+- **AOV Peak:** 2016 ($3,044)  
+- **Trend:** Steady decline through 2021 ($2,306)  
+- **Characteristics:**  
+  - Relatively high order count  
+  - AvgItemsPerOrder consistently at 7–8 items  
+
+2. United States (High-Volume Market)
+- **Stability:** AOV remained in the $2,100–$2,300 range  
+- **Volume:** Highest number of orders (2020: 2,652 orders)  
+- **Efficiency:** AvgItemsPerOrder stable at 7 items  
+
+3. Italy (Interesting Growth in 2021)
+- **2021:**  
+  - AOV of $2,116 (up from 2020)  
+  - AvgItemsPerOrder reached 10 (highest in the dataset)  
+- **Insight:** Possible increase in bulk/wholesale purchases  
 
