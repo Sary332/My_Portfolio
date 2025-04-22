@@ -317,7 +317,83 @@ QUARTER   QUANTITY     REVENUE         ASP
 <br><br>
 
 
-## 3. How long is the average delivery time in days? Has that changed over time ?
+
+
+
+## 3. Holiday Season Product Analysis 
+
+```sql
+-- Analisis Musiman (Holiday Season) - Versi Alternatif
+WITH HolidayOrders AS (
+    SELECT 
+        [Order_Number],
+        YEAR([Order_Date]) AS Year,
+        MONTH([Order_Date]) AS Month
+    FROM Sales
+    WHERE MONTH([Order_Date]) IN (2, 9, 10, 11, 12)  -- Bulan holiday season
+    GROUP BY [Order_Number], YEAR([Order_Date]), MONTH([Order_Date])
+),
+HolidaySales AS (
+    SELECT 
+        ho.Year,
+        p.Subcategory,
+        SUM(s.Quantity) AS HolidayQuantity,
+        SUM(s.Quantity * p.Unit_Price_USD) AS HolidayRevenue,
+        -- Hitung persentase dari total penjualan tahunan
+        SUM(s.Quantity * 100.0) / 
+        (SELECT SUM(Quantity) FROM Sales WHERE YEAR([Order_Date]) = ho.Year) AS PctOfTotalSales
+    FROM Sales s
+    JOIN HolidayOrders ho ON s.[Order_Number] = ho.[Order_Number]
+    JOIN Products p ON s.ProductKey = p.ProductKey
+    GROUP BY ho.Year, p.Subcategory
+)
+SELECT 
+    Year,
+    Subcategory,
+    HolidayQuantity,
+    HolidayRevenue,
+    PctOfTotalSales,
+    RANK() OVER (PARTITION BY Year ORDER BY HolidayRevenue DESC) AS RevenueRank,
+    RANK() OVER (PARTITION BY Year ORDER BY HolidayQuantity DESC) AS QuantityRank
+FROM HolidaySales
+ORDER BY Year, RevenueRank;
+
+
+Year    Subcategory    HolidayQuantity    HolidayRevenue    PctOfTotalSales    RevenueRank    QuantityRank
+----    ------------   ---------------    --------------    ---------------    -----------    ------------
+2016    Televisions         681	             534665.60	       3.129451             1              4
+2016    Desktops            909              435997.00	       4.177197             2              2
+2016    Water Heaters       415              43454.50	       1.907081             3              8
+2016    Movie DVD           1902             214446.78	       8.740407             4              1
+...       ...               ...                 ...              ...               ...            ...  
+
+```
+
+**Key Holiday Sales Trends :**
+
+1. Top Revenue-Generating Products  
+- Desktops dominated as the #1 revenue contributor in 4 out of 6 years.  
+- Televisions held the top spot in 2016 but dropped in ranking in subsequent years.  
+- Projectors & Screens consistently ranked in the top 5 since 2018.
+
+2. Top Selling Products by Volume
+- Movie DVDs consistently ranked #1 in quantity sold every year.  
+- Desktops maintained a stable #2 position in terms of quantity.  
+- Touch Screen Phones emerged as strong competitors during 2019–2021.
+
+3. Trend Shifts in 2020–2021
+- Significant declines across all categories (pandemic impact?).  
+- Movie DVDs remained dominant in volume but experienced a sharp drop in revenue.  
+- Laptops entered the top 5 revenue contributors in 2020 (due to work-from-home demand ?).
+
+
+
+
+
+<br><br>
+
+
+## 4. How long is the average delivery time in days? Has that changed over time ?
 
 ```sql
 
@@ -450,4 +526,6 @@ YEAR    Avg_Delivery_Days    Prev_Year_Avg    YoY_Change
 2020	       4                   4               0     --Stable
 
 ```
+
+
 
