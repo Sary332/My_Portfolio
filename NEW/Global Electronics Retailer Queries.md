@@ -335,7 +335,7 @@ WITH HolidayOrders AS (
         YEAR([Order_Date]) AS Year,
         MONTH([Order_Date]) AS Month
     FROM Sales
-    WHERE MONTH([Order_Date]) IN (2, 9, 10, 11, 12)  -- Bulan holiday season
+    WHERE MONTH([Order_Date]) IN (2, 9, 10, 11, 12)  -- Holiday season months
     GROUP BY [Order_Number], YEAR([Order_Date]), MONTH([Order_Date])
 ),
 HolidaySales AS (
@@ -344,7 +344,7 @@ HolidaySales AS (
         p.Subcategory,
         SUM(s.Quantity) AS HolidayQuantity,
         SUM(s.Quantity * p.Unit_Price_USD) AS HolidayRevenue,
-        -- Hitung persentase dari total penjualan tahunan
+        -- Calculate the percentage of total annual sales
         SUM(s.Quantity * 100.0) / 
         (SELECT SUM(Quantity) FROM Sales WHERE YEAR([Order_Date]) = ho.Year) AS PctOfTotalSales
     FROM Sales s
