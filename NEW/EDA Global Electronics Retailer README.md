@@ -29,6 +29,12 @@ For future analysis projects, I hope to explore similar types of data to analyze
    - AOV (Average Order Value) Analysis
 
 
+
+<br><br>
+
+## Sugestions :
+
+
 <br><br>
 
 
@@ -43,4 +49,5 @@ For future analysis projects, I hope to explore similar types of data to analyze
 - Case When
 - Windows Function
 - Subquery
+
 
