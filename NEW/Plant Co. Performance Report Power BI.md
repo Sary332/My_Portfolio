@@ -121,7 +121,7 @@ The dashboard enables the business to:
 
 > *The large quantity gap is likely due to slicers filtering different product segments.
 
-
+<br>
 
 ### ✅ Monthly Trend & Quarterly Highlights
 
@@ -134,7 +134,7 @@ The dashboard enables the business to:
 
 >  **Insight**: Q2 2024 is a critical turning point and requires immediate investigation.
 
-
+<br>
 
 ### ✅ Country-Level Insights
 
@@ -147,7 +147,7 @@ The dashboard enables the business to:
 | Saudi Arabia   | +11.5K ↑     | N/A          | Key driver in 2023                     |
 | Portugal       | N/A          | +4.1K ↑      | Growth area in 2024                    |
 
-
+<br>
 
 ### ✅ Product Performance
 
@@ -157,7 +157,7 @@ The dashboard enables the business to:
 | Indoor       | -4.7K ↓      | -6.6K ↓      | Consistent underperformance             |
 | Landscape    | -3.1K ↓      | -1.6K ↓      | Needs evaluation for relevance          |
 
-
+<br>
 
 ### ✅ Account Profitability (Scatter Chart)
 
@@ -165,7 +165,7 @@ The dashboard enables the business to:
 - Accounts in **high quantity, low GP%**: may need **pricing review or cost control**.
 - Many accounts sit in **low quantity, low GP%** quadrant → target for cleanup or repricing.
 
-
+<br>
 
 ### ✅ Strategic Insights
 
@@ -182,9 +182,9 @@ The dashboard enables the business to:
 4. **Profitability vs. Volume Trade-off**  
    Despite quantity drop, GP% stayed high → good margin control but possible market share loss.
 
+<br>
 
-
-### ✅ Recommended Actions
+### 📍 Recommended Actions
 
 | Focus Area          | Action                                                   |
 |---------------------|----------------------------------------------------------|
@@ -197,6 +197,143 @@ The dashboard enables the business to:
 
 </details>
 
+
+
+<details>
+  <summary>Sales 2023–2024</summary>
+
+
+### ✅ Overall Performance (YTD vs PYTD)
+
+| Year | YTD Sales | PYTD Sales | Difference | Growth (%) | GP%    |
+| ---- | --------- | ---------- | ---------- | ---------- | ------ |
+| 2023 | 13.00M    | 13.51M     | -512K      | -3.8%      | 39.62% |
+| 2024 | 3.57M     | 3.71M      | -136K      | -3.7%      | 39.15% |
+
+⛳ **Insight:**
+
+* Both years show **YoY decline in sales**, though **profit margins remain stable**.
+* Indicates that **margin efficiency is intact**, but **sales volume needs improvement**.
+  
+ <br>
+
+### ✅ Country-Level Breakdown
+
+####  Top Declining Countries
+
+* **2023**: 🇨🇳 China (-760K), 🇸🇪 Sweden (-240K), 🇫🇷 France (-150K)
+* **2024**: 🇨🇦 Canada (-74K), 🇨🇴 Colombia (-61K), 🇩🇪 Germany (-41K)
+
+#### Countries with Positive Growth
+
+* **2023**: 🇸🇦 Saudi Arabia, 🇵🇭 Philippines, 🇵🇹 Portugal
+* **2024**: 🇹🇭 Thailand, 🇵🇭 Philippines, 🇬🇧 United Kingdom
+
+⛳ **Insight:**
+
+* Major contributors to decline include **China, Canada, Colombia, and Germany**.
+* **Southeast Asia and Middle East markets** are expanding → consider **marketing and distribution focus** here.
+
+<br>
+
+### ✅ Product-Type Breakdown
+
+| Product Type | 2023 (Delta) | 2024 (Delta) |
+| ------------ | ------------ | ------------ |
+| Indoor       | -490K        | -145K        |
+| Landscape    | -110K        | -118K        |
+| Outdoor      | +100K        | +128K        |
+
+⛳ **Insight:**
+
+* **Outdoor** is the **only consistently growing category** across both years.
+* Decline in **Indoor and Landscape** suggests **shifting customer preferences**.
+  
+
+🎯 **Recommendations:**
+
+* Prioritize **marketing and development for Outdoor** category.
+* Evaluate positioning and relevance of Indoor and Landscape products.
+
+<br>
+
+### ✅ Monthly & Quarterly Trends
+
+#### 2023:
+
+* Sharp decline in **Q1 (Feb)** and **Q4 (Oct–Nov)**.
+* **Q2 (Apr–Jun)** was the strongest quarter.
+
+#### 2024:
+
+* **February showed positive growth**, but **March and April dropped significantly**.
+
+⛳ **Insight:**
+
+* **Strong seasonality observed**.
+* **Q2 is a performance driver**, yet 2024 shows a worrying post-February trend.
+
+🎯 **Recommendations:**
+
+* **Replicate 2023 Q2 success strategies across other quarters**.
+* Urgently assess **Q2 2024** performance drivers to avoid continued decline.
+
+<br>
+
+### ✅ Account Profitability Segmentation (Scatter Plot)
+
+⛳ **Insight:**
+
+* Several large accounts deliver **high sales but low GP%** → risky profile.
+* Small accounts with **high GP%** offer **upsell opportunities**.
+* 2024 shows **slightly better spread**, but many accounts remain in the unprofitable zone.
+
+🎯 **Recommendations:**
+
+* **Resegment the customer base**:
+
+  * Focus acquisition efforts on **small to mid-sized accounts with healthy margins**.
+  * Apply **churn management or renegotiate margins** for large low-GP accounts.
+
+
+#### ✨ Strategic Summary
+
+| Focus Area           | Key Insight & Recommendations                                                                                    |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| **Geography**        | Audit underperforming markets (China, Canada). Redirect resources to growing regions (Thailand, Saudi, PH)       |
+| **Product**          | Outdoor = primary growth engine. Indoor & Landscape need repositioning or innovation                             |
+| **Quarter Planning** | Q2 = key momentum driver. Needs replication and stronger campaign planning for Q3 and Q4                         |
+| **Customer Account** | Prioritize profitable clients. Reevaluate high-volume low-margin accounts. Implement customer tiering strategies |
+
+---
+
+### ✨General Recommendations :✨
+
+1. **Urgent Q2 2024 Action**:
+
+   * Audit marketing campaigns, sales performance, and supply chain conditions.
+
+2. **Market Realignment**:
+
+   * Shift marketing budget to countries with positive trends.
+
+3. **Product-Level Strategy**:
+
+   * Launch special promos and bundles for Outdoor.
+   * Reevaluate Indoor product relevance and positioning.
+
+4. **Account Management**:
+
+   * Prioritize accounts with healthy GP%.
+   * Implement upselling in high-GP, low-volume segments.
+
+
+
+</details>
+
+
+
+    
 ## How I Build This
 
 ## Challenge That I Faced
