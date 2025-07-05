@@ -65,7 +65,7 @@ The dashboard enables the business to:
 ## What Kind of Insight It Brings ?
 
 <details>
-  <summary>Gross Profit 2023–2024</summary>
+  <summary>GROSS PROFIT 2023–2024</summary>
   
 ### ✅ Overall KPI Highlights
 > Overall, total Gross Profit (YTD) dropped from 5.15M in 2023 to 1.40M in 2024 for the same period. However, the YTD vs PYTD gap improved
@@ -96,111 +96,142 @@ The dashboard enables the business to:
   with high GP% but lower volumes could be targeted with up-sell and cross-sell strategies to move them into the High Value–High GP% quadrant.
 
 
-### ✅ Slide 6 — Actionable Key Takeaways
+### ✨Actionable Key Takeaways✨
 - ✔️ **Maintain margins** — control pricing & costs.  
 - ✔️ **Drive volume** — future Gross Profit growth hinges on account & key market penetration.  
 - ✔️ **Focus on Outdoor** — clear opportunities for strengthening sales in this product.  
 - ✔️ **Strengthen market strategy** — address declines in major countries, scale up in positive ones.  
 - ✔️ **Ensure monthly consistency** — avoid performance volatility with a more stable sales pipeline.
 
+  <br>
   
 </details>
 
 <details>
-  <summary>Quantity 2023–2024</summary>
+  <summary>QUANTITY 2023–2024</summary>
 
 
-### ✅ Key KPIs Comparison
+### ✅ General Performance (YTD vs PYTD)
 
-| KPI              | 2023        | 2024        | Change       |
-|------------------|-------------|-------------|--------------|
-| Quantity YTD     | 555.66K     | 148.47K     | ▼ -407.19K * |
-| PYTD             | 538.61K     | 160.84K     |              |
-| YTD vs PYTD      | +17.05K     | -12.37K     | ▼ -29.42K    |
-| Gross Profit %   | 39.62%      | 39.15%      | ≈ Stable     |
+| Year | YTD Quantity | PYTD Quantity | Difference | Growth | GP%    |
+| ---- | ------------ | ------------- | ---------- | ------ | ------ |
+| 2023 | 555.66K      | 538.61K       | +17.05K    | +3.2%  | 39.62% |
+| 2024 | 148.47K      | 160.84K       | -12.37K    | -7.7%  | 39.15% |
 
-> *The large quantity gap is likely due to slicers filtering different product segments.
+📌 **Insight:**
 
-<br>
+* 2023 showed **positive growth** in quantity with healthy profitability.
+* 2024 experienced a **notable decline** in volume while maintaining stable GP%, indicating resilience in pricing or cost control.
 
-### ✅ Monthly Trend & Quarterly Highlights
+🎯 **Recommendation:**
 
-| Period        | 2023           | 2024           | Insight                                 |
-|---------------|----------------|----------------|-----------------------------------------|
-| Q1            | Strong start   | Strong start   | Comparable performance                  |
-| Q2            | +30K growth    | -30K decline   | Major driver of YoY quantity drop       |
-| April (MoM)   | +12K           | -9.4K          | Sharp reversal                          |
-| June (MoM)    | +13K           | N/A            | Lost growth momentum                    |
-
->  **Insight**: Q2 2024 is a critical turning point and requires immediate investigation.
+* Explore root causes of 2024 volume drop, especially in Q2.
+* Maintain cost control to protect margins while rebuilding volume.
 
 <br>
 
-### ✅ Country-Level Insights
+### ✅ Country-Level Breakdown
 
-| Country        | 2023 (Δ Qty) | 2024 (Δ Qty) | Notes                                  |
-|----------------|--------------|--------------|----------------------------------------|
-| China          | -9.76K       | N/A          | Sharp decline in 2023                  |
-| France         | -9.36K       | N/A          | Same as China                          |
-| Canada         | +3K →        | -5.42K ↓     | Major reversal                         |
-| US             | +1.5K →      | -2.45K ↓     | Decline in 2024                        |
-| Saudi Arabia   | +11.5K ↑     | N/A          | Key driver in 2023                     |
-| Portugal       | N/A          | +4.1K ↑      | Growth area in 2024                    |
+#### 📉 Top Contributors to Quantity Decline
 
-<br>
+* **2023:** 🇨🇳 China (-9.76K), 🇫🇷 France (-9.36K), 🇪🇸 Spain (-6.7K)
+* **2024:** 🇨🇦 Canada (-5.42K), 🇺🇸 US (-2.45K), 🇭🇺 Hungary, 🇭🇷 Croatia, 🇨🇮 Ivory Coast
 
-### ✅ Product Performance
+#### 📈 Countries with Quantity Growth
 
-| Product Type | 2023 (Δ Qty) | 2024 (Δ Qty) | Insights                                |
-|--------------|--------------|--------------|-----------------------------------------|
-| Outdoor      | +24.8K ↑     | -4.1K ↓      | Lost key momentum                       |
-| Indoor       | -4.7K ↓      | -6.6K ↓      | Consistent underperformance             |
-| Landscape    | -3.1K ↓      | -1.6K ↓      | Needs evaluation for relevance          |
+* **2023:** 🇸🇦 Saudi Arabia (+11.5K), 🇶🇦 Qatar (+6.7K), 🇨🇴 Colombia (+4.4K)
+* **2024:** 🇵🇹 Portugal (+4.1K), 🇹🇭 Thailand (+2.7K), 🇬🇧 UK (+0.6K)
 
-<br>
+📌 **Insight:**
 
-### ✅ Account Profitability (Scatter Chart)
+* Consistent underperformance in major markets like China and Canada impacted overall performance.
+* Middle Eastern and Southeast Asian countries show **growth potential**.
 
-- Accounts in **low quantity, high GP%**: strong **upsell potential**.
-- Accounts in **high quantity, low GP%**: may need **pricing review or cost control**.
-- Many accounts sit in **low quantity, low GP%** quadrant → target for cleanup or repricing.
+🎯 **Recommendation:**
+
+* Deep dive into top-declining markets to fix structural or operational issues.
+* Double down on growing regions through local campaigns and distribution partnerships.
 
 <br>
 
-### ✅ Strategic Insights
+### ✅ Product-Type Breakdown
 
-1. **Q2 2024 Drop Is the Key Issue**  
-   Sharp declines in March–April must be investigated and addressed.
+| Product Type | 2023 Delta | 2024 Delta |
+| ------------ | ---------- | ---------- |
+| Outdoor      | +24.8K     | -4.1K      |
+| Indoor       | -4.7K      | -6.6K      |
+| Landscape    | -3.1K      | -1.6K      |
 
-2. **Shift in Country Performance**  
-   - Canada & US shifted from contributors (2023) to decliners (2024).
-   - Markets like Portugal and Saudi Arabia offer growth benchmarks.
+📌 **Insight:**
 
-3. **Indoor Products Need Attention**  
-   Downtrend in both years indicates a need for strategy refresh (bundling, rebranding, promo).
+* **2023:** Outdoor was the **key growth driver**.
+* **2024:** All categories declined, with Indoor being the biggest drag.
 
-4. **Profitability vs. Volume Trade-off**  
-   Despite quantity drop, GP% stayed high → good margin control but possible market share loss.
+🎯 **Recommendation:**
+
+* Reevaluate Indoor product strategy: product relevance, pricing, and channel effectiveness.
+* Consider targeted relaunch or bundled offers.
 
 <br>
 
-### 📍 Recommended Actions
+### ✅ Monthly & Quarterly Quantity Trends
 
-| Focus Area          | Action                                                   |
-|---------------------|----------------------------------------------------------|
-| Q2 Turnaround       | Investigate sales campaigns, supply chain, seasonality   |
-| Market Re-entry     | Rebuild presence in Canada & US                          |
-| Product Innovation  | Relaunch or reposition Indoor products                   |
-| Account Segmentation| Upsell high-margin, low-volume clients                   |
-| Efficiency Drive    | Exit or price-adjust low GP%, low quantity accounts      |
+#### 2023:
 
+* **Growth Months:** April (+12K), June (+13K)
+* **Drop Months:** July (-7K), September (-8K)
+* **Best Quarter:** Q2 (157.06K)
+
+#### 2024:
+
+* **Growth Month:** February (+8.2K)
+* **Drop Months:** March (-11.6K), April (-9.4K)
+* **Worst Quarter:** Q2 (only 18.2K YTD)
+
+📌 **Insight:**
+
+* 2023 showed consistent Q2 performance; 2024 saw sharp early Q2 declines.
+
+🎯 **Recommendation:**
+
+* Reapply Q2 2023 strategies to reverse early-year slumps in 2024.
+* Audit March-April campaigns, operations, and market conditions.
+
+<br>
+
+### ✅ Account Profitability Segmentation (Scatter Plot)
+
+📌 **Insight:**
+
+* In both years, many accounts reside in the **low quantity – low GP%** quadrant → potentially unprofitable.
+* Some accounts show **low quantity – high GP%**, representing potential for **upselling**.
+
+🎯 **Recommendation:**
+
+* Segment customer base:
+
+  * Focus on profitable accounts with sales potential.
+  * Review pricing strategy or cost-to-serve for unprofitable segments.
+
+<br> 
+
+### ⛳ Strategies
+
+| Focus Area   | Key Insight & Recommendation                                                                |
+| ------------ | ------------------------------------------------------------------------------------------- |
+| Country      | Investigate large drops (China, Canada); scale success in Portugal, Thailand, Saudi Arabia. |
+| Product Type | Reboot Indoor strategy; maintain Outdoor relevance.                                         |
+| Time Period  | Leverage Q2 seasonal strength from 2023; resolve Q2 2024 downturn immediately.              |
+| Account Mgmt | Optimize around profitability, identify upsell opportunities in high GP% segments.          |
+
+<br>
 
 </details>
 
 
 
 <details>
-  <summary>Sales 2023–2024</summary>
+  <summary>SALES 2023–2024</summary>
 
 
 ### ✅ Overall Performance (YTD vs PYTD)
@@ -328,12 +359,16 @@ The dashboard enables the business to:
    * Implement upselling in high-GP, low-volume segments.
 
 
-
+<br>
 </details>
 
 
 
-    
 ## How I Build This
+
+### Data Cleaning
+
+
+
 
 ## Challenge That I Faced
