@@ -366,7 +366,53 @@ The dashboard enables the business to:
 
 ## How I Build This
 
-### Data Cleaning
+### Data Cleaning and Preparation
+
+Minimal transformation was applied during this phase. I renamed tables for clarity (e.g., fact_sales, dim_account, dim_product) to distinguish 
+fact and dimension tables. I removed duplicates (if any) based on unique identifiers like Account_ID and Product_Name_ID. Lastly, I reviewed and 
+validated data types across all columns to ensure consistency and accuracy.
+
+### Data Modeling
+
+Tentu! Berikut versi yang lebih tertata, rapi, dan deskriptif untuk bagian **Data Modeling** pada *How I Build This* section:
+
+---
+
+### 🧩 Data Modeling
+
+The data model was designed using a star schema approach, with a clearly defined fact table and multiple dimension tables. Here's how I structured it:
+
+1. **Date Dimension Table (`dim_date`)**
+   I created a custom date table using the following DAX formula:
+
+   ```DAX
+   Dim_Date = CALENDAR(DATE(2022,01,01), DATE(2024,12,31))
+   ```
+
+   After creation, I checked for and implemented hierarchy levels (e.g., Year, Quarter, Month) to support time-based analysis.
+
+2. **InPast Column for Time Intelligence**
+   In the `dim_date` table, I added a calculated column named `InPast` using this DAX formula:
+
+   ```DAX
+   Inpast = 
+   VAR lastsalesdate = MAX(Fact_Sales[Date_Time])
+   VAR lastsalesdatePY = EDATE(lastsalesdate, -12)
+   RETURN
+   Dim_Date[Date] <= lastsalesdatePY
+   ```
+
+   This column returns a `TRUE/FALSE` value, and is especially useful when performing prior year or month comparisons—helping prevent
+   blank result errors during time intelligence operations.
+
+4. **Relationship Definition**
+   I defined **one-to-many relationships** between the `fact_sales` table and its related dimension tables (such as `dim_account`, `dim_product`, and `dim_date`)
+   based on unique identifiers. This ensures referential integrity and enables accurate filtering across visuals.
+
+
+6. **Slicer Table (`slc_values`)**
+   I created a small static table using *Enter Data*, containing three values: `Gross Profit`, `Quantity`, and `Sales`.
+   This table, named `slc_values`, is used as a slicer input to control dynamic filtering and toggle the metrics displayed across visuals.
 
 
 
