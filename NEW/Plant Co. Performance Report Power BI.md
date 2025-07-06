@@ -366,32 +366,36 @@ The dashboard enables the business to:
 
 ## How I Build This
 
-### Data Cleaning and Preparation
-
+<details>
+  <summary>DATA CLEANING</summary>
+    
+<br>
+    
 Minimal transformation was applied during this phase. I renamed tables for clarity (e.g., fact_sales, dim_account, dim_product) to distinguish 
 fact and dimension tables. I removed duplicates (if any) based on unique identifiers like Account_ID and Product_Name_ID. Lastly, I reviewed and 
 validated data types across all columns to ensure consistency and accuracy.
 
-### Data Modeling
+</details>
 
-Tentu! Berikut versi yang lebih tertata, rapi, dan deskriptif untuk bagian **Data Modeling** pada *How I Build This* section:
 
----
+<details>
+  <summary>DATA MODELING</summary> 
 
-### 🧩 Data Modeling
+ <br>
 
 The data model was designed using a star schema approach, with a clearly defined fact table and multiple dimension tables. Here's how I structured it:
 
-1. **Date Dimension Table (`dim_date`)**
+#### 1️⃣ Date Dimension Table (`dim_date`)
    I created a custom date table using the following DAX formula:
 
    ```DAX
    Dim_Date = CALENDAR(DATE(2022,01,01), DATE(2024,12,31))
    ```
-
    After creation, I checked for and implemented hierarchy levels (e.g., Year, Quarter, Month) to support time-based analysis.
 
-2. **InPast Column for Time Intelligence**
+<br>
+
+#### 2️⃣ InPast Column for Time Intelligence
    In the `dim_date` table, I added a calculated column named `InPast` using this DAX formula:
 
    ```DAX
@@ -404,16 +408,96 @@ The data model was designed using a star schema approach, with a clearly defined
 
    This column returns a `TRUE/FALSE` value, and is especially useful when performing prior year or month comparisons—helping prevent
    blank result errors during time intelligence operations.
+   
+<br>
 
-4. **Relationship Definition**
+#### 3️⃣ Relationship Definition
    I defined **one-to-many relationships** between the `fact_sales` table and its related dimension tables (such as `dim_account`, `dim_product`, and `dim_date`)
    based on unique identifiers. This ensures referential integrity and enables accurate filtering across visuals.
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2500ba60-3d82-418f-a818-bf2e30924a4a" alt="Data Model Diagram" width="500">
+</p>
 
-6. **Slicer Table (`slc_values`)**
+<br>
+
+#### 4️⃣ Slicer Table (`slc_values`)
    I created a small static table using *Enter Data*, containing three values: `Gross Profit`, `Quantity`, and `Sales`.
    This table, named `slc_values`, is used as a slicer input to control dynamic filtering and toggle the metrics displayed across visuals.
 
+<br>
+
+#### 5️⃣ **DAX Measures :
+
+* **Base Measures**
+  Fundamental calculations that act as building blocks for more advanced measures.
+  Includes:
+
+  * `Gross Profit`
+  * `Sales`
+  * `Quantity`
+  * `COGS` (Cost of Goods Sold)
+  * `GP%` (Gross Profit Percentage)
+
+
+
+* **PYTD (Prior Year-to-Date)**
+  Measures used to calculate Prior Year-to-Date values for key metrics, enabling year-over-year performance comparison.
+  Includes:
+
+  * `PYTD_Gross Profit`
+  * `PYTD_Sales`
+  * `PYTD_Quantity`
+
+
+
+* **YTD (Year-to-Date)**
+  Measures used to calculate Year-to-Date values for Gross Profit, Sales, and Quantity, supporting cumulative performance tracking.
+  Includes:
+
+  * `YTD_Gross Profit`
+  * `YTD_Sales`
+  * `YTD_Quantity`
+
+
+* **SWITCH Logic**
+  Dynamic measures that allow switching between YTD, PYTD, and their comparisons based on user selection. These measures enable interactive dashboards that respond to user input.
+  Includes:
+
+  * `Switch YTD`
+  * `Switch PYTD`
+  * `YTD vs PYTD`
+
+
+
+* **Dynamic Titles**
+  Measures that dynamically adjust the titles of charts and reports based on the selected metric or time frame, ensuring clear and contextual information in the visuals.
+  Includes:
+
+  * `Column Chart Title`
+  * `Report Title`
+  * `Scatter Title`
+  * `Waterfall Title`
+
+
+</details>
+
+<details>
+  <summary>DATA VISUALIZATION</summary>
+
+<br>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8a0d5e9c-1a27-4d92-b46e-9ed80ca0cdb1" width="450">
+</p>
+![image]()
+
+
+
+
+
+
+
+</details>
 
 
 
