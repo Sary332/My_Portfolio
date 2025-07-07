@@ -27,6 +27,7 @@ This dashboard empowers stakeholders to quickly assess financial health, investi
 <br>
 
 ## What the Problem It Tries to Solve ?
+
 In the business context, the dashboard addresses these key challenges:
 
 1. **Unexplained Variance in Performance:**
@@ -44,11 +45,15 @@ In the business context, the dashboard addresses these key challenges:
    * The business needs to know **where to focus sales or cost optimization efforts**—whether at the market level (Country), product level, or customer level.
    * Decision-makers require a **clear picture of which areas are driving growth and which are eroding margins**.
 
+<br>
 
-### The Core Business Question It Tries to Answer:
+#### The Core Business Question It Tries to Answer: 
+
+<br>
 
 > **“What are the key drivers behind the changes in Gross Profit, Sales, or Quantity, and which countries, products, or customers are helping or hurting our performance compared to last year?”**
 
+ <br>
 
 ### ✅ How This Helps:
 
@@ -97,11 +102,11 @@ The dashboard enables the business to:
 
 
 ### ✨Actionable Key Takeaways✨
-- ✔️ **Maintain margins** — control pricing & costs.  
-- ✔️ **Drive volume** — future Gross Profit growth hinges on account & key market penetration.  
-- ✔️ **Focus on Outdoor** — clear opportunities for strengthening sales in this product.  
-- ✔️ **Strengthen market strategy** — address declines in major countries, scale up in positive ones.  
-- ✔️ **Ensure monthly consistency** — avoid performance volatility with a more stable sales pipeline.
+- **Maintain margins** — control pricing & costs.  
+- **Drive volume** — future Gross Profit growth hinges on account & key market penetration.  
+- **Focus on Outdoor** — clear opportunities for strengthening sales in this product.  
+- **Strengthen market strategy** — address declines in major countries, scale up in positive ones.  
+- **Ensure monthly consistency** — avoid performance volatility with a more stable sales pipeline.
 
   <br>
   
@@ -485,20 +490,153 @@ The data model was designed using a star schema approach, with a clearly defined
 <details>
   <summary>DATA VISUALIZATION</summary>
 
+### >> KPI Card 
+
 <br>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/8a0d5e9c-1a27-4d92-b46e-9ed80ca0cdb1" width="450">
 </p>
-![image]()
 
 
+1️⃣ **Purpose**
+
+The KPI Card is used to provide a **quick summary of business performance**. This visualization displays the **total Year-to-Date (YTD) value**, comparison with Previous Year-to-Date (PYTD), and Gross Profit Margin (**GP%**) in one view. The purpose is to **enable users to instantly understand the business condition** without needing further exploration.
+
+2️⃣ **Data Used**
+
+* **Measures**:
+
+  * `Value YTD`
+  * `Value PYTD`
+  * `Delta YTD vs PYTD`
+  * `GP%`
+
+3️⃣ **Reason for Choosing this Visualization**
+    The KPI Card is chosen because:
+
+* It provides a **focus on key numbers**.
+* It allows users to **quickly see the YoY change**.
+* It is effective for **opening the dashboard as an executive summary**.
+
+<br>
+
+### >> Treemap – Bottom 10 Countries by YTD vs PYTD Sales
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ae8edc0f-fdaf-49ba-99e3-4b0e83f5d50c" width="200">
+</p>
+                   
+
+1️⃣ Purpose
+This Treemap visualization illustrates the **bottom 10 countries** contributing to the **YTD vs PYTD sales decline**. It aims to highlight 
+**countries that have seen the largest reductions** in sales compared to the previous year, allowing users to easily identify underperforming markets.
+
+2️⃣ **Data Used**
+
+* **Measures**:
+  * `Delta YTD vs PYTD`
+    
+3️⃣ **Reason for Choosing this Visualization**
+    A **Treemap** was chosen because:
+
+* It provides a **clear, comparative view** of multiple countries at once.
+* It effectively displays **proportional data**: the size of each country’s block correlates to the magnitude of the sales decline.
+* This is ideal for showcasing the **relative size of declines across countries** without overwhelming the viewer.
+
+<br>
+
+### >> Waterfall Chart – Gross Profit YTD vs PYTD by Month, Country, and Product
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/498f1da9-10d0-4527-a068-693af9eae806" width="200">
+</p>
 
 
+1️⃣ **Purpose**
 
+This **Waterfall Chart** tracks the selected metric performance, broken down by **Month**, **Country**, and **Product**. The chart shows both the **increase** and **decrease** for each period, helping identify which months or factors (e.g., countries or products) contributed the most to the total performance.
+
+2️⃣ **Data Used**
+
+* **Measures**:
+
+  * `Delta YTD vs PYTD`
+  * `Month`, `Country`, `Product_Type`, `Product_Name`: Dimensions used to Drill-Down/Up the performance.
+
+3️⃣ **Reason for Choosing this Visualization**
+
+A **Waterfall Chart** was chosen because:
+
+* It provides an excellent way to **visualize step-by-step changes** in the selected values over time.
+* The **increase and decrease** are shown clearly, helping identify specific months with significant changes.
+* This format is easy to read and shows cumulative effects, which is perfect for analyzing performance over time.
+
+
+<br>
+
+### >> Line and Stacked Column Chart – Gross Profit YTD & PYTD by Month
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a1da99a6-13e8-4717-9e7f-8111740041a5" width="400">
+</p>
+
+
+1️⃣ **Purpose**
+This **Line and Stacked Column Chart** tracks the **Selected Metric YTD & PYTD** by **Month**, broken down by **Product Type** (Indoor, Landscape, Outdoor). The stacked column shows the monthly Selected Metric values for each product type, while the line chart represents the **Value PYTD** (Prior Year to Date), allowing comparisons of this year’s and last year’s performance.
+
+2️⃣ **Data Used**
+
+* **Measures**:
+
+  * `Value_YTD`
+  * `Value_PYTD`
+  * `Month`, `Quarter`, `Product Type`: Dimensions used for performance breakdowns.
+
+3️⃣ **Reason for Choosing this Visualization**
+
+A **Line and Stacked Column Chart** was chosen because:
+
+* It clearly **visualizes trends over time**, with both the **cumulative values** (via stacked columns) and **comparisons with last year** (via the line chart).
+* The combination of a stacked column and line allows **multiple layers of data** to be presented in on view, making it easier to compare different product types and years.
+
+
+<br>
+
+
+### >> Scatter Plot – Account Profitability Segmentation by Month 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/af30aeb5-53d4-4117-9dff-74b35f147d67" width="400">
+</p>
+
+
+1️⃣ **Purpose**
+
+This **scatter plot** visualizes the relationship between **Selected Metric** and **YTD Value** across different accounts. It segments the accounts based on their **profitability**, with the goal of identifying **high-value, high-margin accounts** (top right quadrant) and **low-margin accounts** (bottom left quadrant).
+
+2️⃣ **Data Used**
+
+* **Measures**:
+
+  * `Selected Metric`
+  * `Value_YTD`
+
+3️⃣ **Interactivity**
+
+* **Zoom Slider**: Allowing users to zoom in and out on the scatter plot to examine specific clusters of data and focus on a narrower range of values. This enables a more detailed view of accounts based on their Selected Metric and profitability.
+
+4️⃣ **Reason for Choosing this Visualization**
+
+A **scatter plot** was selected because:
+
+* It effectively **shows distribution** and **correlations** between two continuous variables (Selected Metric and Sales Value).
+* The quadrants dynamically adjust based on the selected metric, enabling users to focus on different aspects of account performance
+  and profitability.
 
 
 </details>
 
 
+<br>
 
 ## Challenge That I Faced
