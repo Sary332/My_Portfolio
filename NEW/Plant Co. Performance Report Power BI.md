@@ -1,6 +1,6 @@
 #  What The Dashboard is About ?
 
-[🌐 🔗 View Live Dashboard (Power BI Web)](URL)
+[🌐🔗 View Live Dashboard (Power BI Web)](URL)
 
 
 <p align="center">
