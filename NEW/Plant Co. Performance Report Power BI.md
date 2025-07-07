@@ -1,4 +1,13 @@
-##  What The Dashboard is About ?
+#  What The Dashboard is About ?
+
+[🌐 🔗 View Live Dashboard (Power BI Web)](URL)
+
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2f846c8c-4caf-4a19-a218-e1f731b9e4e0" alt="Data Model Diagram" width="600">
+</p>
+
+
 This Power BI dashboard provides an interactive overview of **Plant & Co.’s performance metrics (Gross Profit, Sales, and Quantity)** for the years **2023 and 2024**.
 
 The dashboard is designed to:
@@ -26,7 +35,7 @@ This dashboard empowers stakeholders to quickly assess financial health, investi
 
 <br>
 
-## What the Problem It Tries to Solve ?
+# What the Problem It Tries to Solve ?
 
 In the business context, the dashboard addresses these key challenges:
 
@@ -47,7 +56,7 @@ In the business context, the dashboard addresses these key challenges:
 
 <br>
 
-#### The Core Business Question It Tries to Answer: 
+### The Core Business Question It Tries to Answer: 
 
 <br>
 
@@ -67,41 +76,41 @@ The dashboard enables the business to:
 <br>
 
 
-## What Kind of Insight It Brings ?
+# What Kind of Insight It Brings ?
 
 <details>
   <summary>GROSS PROFIT 2023–2024</summary>
   
-### ✅ Overall KPI Highlights
+## ✅ Overall KPI Highlights
 > Overall, total Gross Profit (YTD) dropped from 5.15M in 2023 to 1.40M in 2024 for the same period. However, the YTD vs PYTD gap improved
   significantly from -265K to -78K, indicating that the downward trend has been successfully mitigated. Gross Profit Margin remained relatively
   stable at around 39%, showing that margin structure is well maintained.
 
 
-### ✅ Monthly Trend
+## ✅ Monthly Trend
 > Monthly trends show sharp fluctuations. In 2023, declines were consistent in Q4, while in 2024 there was a positive spike in February (+117K)
   before declining again in March–April. This highlights the need for a more consistent month-on-month improvement momentum going forward.
 
 
-### ✅ Product Type Performance
+## ✅ Product Type Performance
 > Outdoor products continue to support growth amid weaknesses in Indoor & Landscape. In 2024, Outdoor recorded a net +44K while other products declined.  
   This signals an opportunity to expand Outdoor’s market share in the right segments.
 
 
-### ✅ Country Breakdown
+## ✅ Country Breakdown
 > Country analysis shows that some major contributors dropped sharply, such as Canada (-41K), Germany (-25K), and Japan (-19K). Conversely, markets
   like Poland, Qatar, and Thailand posted positive growth, albeit on a smaller scale.  
 > **Recommendation**: strengthen strategies in declining markets and scale up in growing ones.”
 
 
-### ✅ Account Segmentation
+## ✅ Account Segmentation
 > The profitability segmentation scatter plot illustrates where accounts sit in terms of value (YTD sales) and profitability (GP%). Most accounts
   remain clustered in the Low Value–Low GP% quadrant, highlighting a concentration of lower-contributing accounts. A few accounts are beginning to
   shift toward higher GP% areas, though their overall value is still modest. This segmentation helps visualize opportunities for prioritization—accounts
   with high GP% but lower volumes could be targeted with up-sell and cross-sell strategies to move them into the High Value–High GP% quadrant.
 
 
-### ✨Actionable Key Takeaways✨
+## ✨Actionable Key Takeaways✨
 - **Maintain margins** — control pricing & costs.  
 - **Drive volume** — future Gross Profit growth hinges on account & key market penetration.  
 - **Focus on Outdoor** — clear opportunities for strengthening sales in this product.  
@@ -116,7 +125,7 @@ The dashboard enables the business to:
   <summary>QUANTITY 2023–2024</summary>
 
 
-### ✅ General Performance (YTD vs PYTD)
+## ✅ General Performance (YTD vs PYTD)
 
 | Year | YTD Quantity | PYTD Quantity | Difference | Growth | GP%    |
 | ---- | ------------ | ------------- | ---------- | ------ | ------ |
@@ -135,7 +144,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Country-Level Breakdown
+## ✅ Country-Level Breakdown
 
 #### 📉 Top Contributors to Quantity Decline
 
@@ -159,7 +168,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Product-Type Breakdown
+## ✅ Product-Type Breakdown
 
 | Product Type | 2023 Delta | 2024 Delta |
 | ------------ | ---------- | ---------- |
@@ -179,7 +188,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Monthly & Quarterly Quantity Trends
+## ✅ Monthly & Quarterly Quantity Trends
 
 #### 2023:
 
@@ -204,7 +213,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Account Profitability Segmentation (Scatter Plot)
+## ✅ Account Profitability Segmentation (Scatter Plot)
 
 📌 **Insight:**
 
@@ -220,7 +229,7 @@ The dashboard enables the business to:
 
 <br> 
 
-### ⛳ Strategies
+## ⛳ Strategies
 
 | Focus Area   | Key Insight & Recommendation                                                                |
 | ------------ | ------------------------------------------------------------------------------------------- |
@@ -239,7 +248,7 @@ The dashboard enables the business to:
   <summary>SALES 2023–2024</summary>
 
 
-### ✅ Overall Performance (YTD vs PYTD)
+## ✅ Overall Performance (YTD vs PYTD)
 
 | Year | YTD Sales | PYTD Sales | Difference | Growth (%) | GP%    |
 | ---- | --------- | ---------- | ---------- | ---------- | ------ |
@@ -253,7 +262,7 @@ The dashboard enables the business to:
   
  <br>
 
-### ✅ Country-Level Breakdown
+## ✅ Country-Level Breakdown
 
 ####  Top Declining Countries
 
@@ -272,7 +281,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Product-Type Breakdown
+## ✅ Product-Type Breakdown
 
 | Product Type | 2023 (Delta) | 2024 (Delta) |
 | ------------ | ------------ | ------------ |
@@ -293,7 +302,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Monthly & Quarterly Trends
+## ✅ Monthly & Quarterly Trends
 
 #### 2023:
 
@@ -316,7 +325,7 @@ The dashboard enables the business to:
 
 <br>
 
-### ✅ Account Profitability Segmentation (Scatter Plot)
+## ✅ Account Profitability Segmentation (Scatter Plot)
 
 ⛳ **Insight:**
 
@@ -367,9 +376,9 @@ The dashboard enables the business to:
 <br>
 </details>
 
+<br>
 
-
-## How I Build This
+# How I Build This
 
 <details>
   <summary>DATA CLEANING</summary>
@@ -390,7 +399,13 @@ validated data types across all columns to ensure consistency and accuracy.
 
 The data model was designed using a star schema approach, with a clearly defined fact table and multiple dimension tables. Here's how I structured it:
 
-#### 1️⃣ Date Dimension Table (`dim_date`)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/97ff4933-3c08-4de0-a2c2-651e470a1a97" alt="Data Model Diagram" width="200">
+</p>
+
+<br>
+
+### 1️⃣ Date Dimension Table (`dim_date`)
    I created a custom date table using the following DAX formula:
 
    ```DAX
@@ -400,7 +415,7 @@ The data model was designed using a star schema approach, with a clearly defined
 
 <br>
 
-#### 2️⃣ InPast Column for Time Intelligence
+### 2️⃣ InPast Column for Time Intelligence
    In the `dim_date` table, I added a calculated column named `InPast` using this DAX formula:
 
    ```DAX
@@ -416,7 +431,7 @@ The data model was designed using a star schema approach, with a clearly defined
    
 <br>
 
-#### 3️⃣ Relationship Definition
+### 3️⃣ Relationship Definition
    I defined **one-to-many relationships** between the `fact_sales` table and its related dimension tables (such as `dim_account`, `dim_product`, and `dim_date`)
    based on unique identifiers. This ensures referential integrity and enables accurate filtering across visuals.
 
@@ -426,13 +441,13 @@ The data model was designed using a star schema approach, with a clearly defined
 
 <br>
 
-#### 4️⃣ Slicer Table (`slc_values`)
+### 4️⃣ Slicer Table (`slc_values`)
    I created a small static table using *Enter Data*, containing three values: `Gross Profit`, `Quantity`, and `Sales`.
    This table, named `slc_values`, is used as a slicer input to control dynamic filtering and toggle the metrics displayed across visuals.
 
 <br>
 
-#### 5️⃣ **DAX Measures :
+### 5️⃣ **DAX Measures :
 
 * **Base Measures**
   Fundamental calculations that act as building blocks for more advanced measures.
@@ -490,7 +505,7 @@ The data model was designed using a star schema approach, with a clearly defined
 <details>
   <summary>DATA VISUALIZATION</summary>
 
-### >> KPI Card 
+## >> KPI Card 
 
 <br>
 <p align="center">
@@ -520,7 +535,7 @@ The KPI Card is used to provide a **quick summary of business performance**. Thi
 
 <br>
 
-### >> Treemap – Bottom 10 Countries by YTD vs PYTD Sales
+## >> Treemap – Bottom 10 Countries by YTD vs PYTD Sales
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ae8edc0f-fdaf-49ba-99e3-4b0e83f5d50c" width="200">
@@ -545,7 +560,7 @@ This Treemap visualization illustrates the **bottom 10 countries** contributing 
 
 <br>
 
-### >> Waterfall Chart – Gross Profit YTD vs PYTD by Month, Country, and Product
+## >> Waterfall Chart – Gross Profit YTD vs PYTD by Month, Country, and Product
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/498f1da9-10d0-4527-a068-693af9eae806" width="200">
@@ -574,7 +589,7 @@ A **Waterfall Chart** was chosen because:
 
 <br>
 
-### >> Line and Stacked Column Chart – Gross Profit YTD & PYTD by Month
+## >> Line and Stacked Column Chart – Gross Profit YTD & PYTD by Month
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/a1da99a6-13e8-4717-9e7f-8111740041a5" width="400">
@@ -603,7 +618,7 @@ A **Line and Stacked Column Chart** was chosen because:
 <br>
 
 
-### >> Scatter Plot – Account Profitability Segmentation by Month 
+## >> Scatter Plot – Account Profitability Segmentation by Month 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/af30aeb5-53d4-4117-9dff-74b35f147d67" width="400">
@@ -620,6 +635,7 @@ This **scatter plot** visualizes the relationship between **Selected Metric** an
 
   * `Selected Metric`
   * `Value_YTD`
+  * `Account`
 
 3️⃣ **Interactivity**
 
@@ -639,4 +655,19 @@ A **scatter plot** was selected because:
 
 <br>
 
-## Challenge That I Faced
+# Challenge That I Faced
+
+**The challenges I faced while working on this project were:**
+
+1️⃣ **Creating the Switch Feature Between Metrics Using Selected Value and Variable**
+
+This feature became a challenge because it was my first time learning and trying to understand how to implement it.
+I had to figure out how to link variables with values selected by the user, which required research and experimentation to achieve
+the correct implementation.
+
+2️⃣ **Understanding the Concept of the Visualization Used (Waterfall Chart)**
+
+The waterfall chart was a visualization I hadn’t used before in this project, so I had to do a lot of research to understand how to
+read the graph correctly. Additionally, I needed to figure out the best way to apply it in the context of my data to ensure the results
+would provide clear and actionable insights for the users.
+
