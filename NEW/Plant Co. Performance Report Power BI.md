@@ -115,9 +115,9 @@ The dashboard enables the business to:
 
 * **Top Countries with Growth**:
 
-  * 🇹🇭 **Thailand**: +37.9K
-  * 🇬🇧 **United Kingdom**: +35K
-  * 🇪🇸 **Spain**: +18.2K
+  * 🇹🇭 **Sweden**: +37.9K
+  * 🇬🇧 **Thailand**: +35K
+  * 🇪🇸 **Philippines**: +18.2K
 
 🔍 **Insight**: Focus recovery strategies on countries with declines, and replicate successful approaches from high-growth countries.
 
@@ -184,18 +184,19 @@ The dashboard enables the business to:
 
 #### 📉 Top Contributors to Quantity Decline
 
-* **2023:** 🇨🇳 China (-9.76K), 🇫🇷 France (-9.36K), 🇪🇸 Spain (-6.7K)
-* **2024:** 🇨🇦 Canada (-5.42K), 🇺🇸 US (-2.45K), 🇭🇺 Hungary, 🇭🇷 Croatia, 🇨🇮 Ivory Coast
+* **2023:** China (-9.76K), France (-9.36K), Sweden (-6.7K)
+* **2024:** Canada (-5.42K), US (-2.45K), Hungary
 
 #### 📈 Countries with Quantity Growth
 
-* **2023:** 🇸🇦 Saudi Arabia (+11.5K), 🇶🇦 Qatar (+6.7K), 🇨🇴 Colombia (+4.4K)
-* **2024:** 🇵🇹 Portugal (+4.1K), 🇹🇭 Thailand (+2.7K), 🇬🇧 UK (+0.6K)
+* **2023:** Portugal(+11.5K), Philippines (+6.7K), Canada (+6.8K)
+* **2024:** Poland (+4.1K), Sweden (+3.2K), Thailand (+2.7K)
 
 📌 **Insight:**
 
-* Consistent underperformance in major markets like China and Canada impacted overall performance.
-* Middle Eastern and Southeast Asian countries show **growth potential**.
+* Recurring underperformance in major markets such as China (2023) and Canada (2024) significantly impacted overall quantity performance.
+* Southeast Asian and Eastern European markets (e.g., Philippines, Thailand, Poland) demonstrate growth potential and could benefit from
+  focused expansion or support strategies.
 
 🎯 **Recommendation:**
 
@@ -300,20 +301,42 @@ The dashboard enables the business to:
 
 ## ✅ Country-Level Breakdown
 
-####  Top Declining Countries
+### Top Declining Countries
 
 * **2023**: 🇨🇳 China (-760K), 🇸🇪 Sweden (-240K), 🇫🇷 France (-150K)
-* **2024**: 🇨🇦 Canada (-74K), 🇨🇴 Colombia (-61K), 🇩🇪 Germany (-41K)
+* **2024**: 🇨🇦 Canada (-74K), 🇨🇴 Colombia (-61K), 🇭🇷 Croatia (-48K)
 
-#### Countries with Positive Growth
+### Countries with Positive Growth
 
-* **2023**: 🇸🇦 Saudi Arabia, 🇵🇭 Philippines, 🇵🇹 Portugal
-* **2024**: 🇹🇭 Thailand, 🇵🇭 Philippines, 🇬🇧 United Kingdom
+* **2023**: 🇵🇹 Portugal, 🇧🇷 Brazil, 🇨🇴 Colombia
+* **2024**: 🇹🇭 Thailand, 🇵🇭 Philippines, 🇧🇷 Brazil
 
-⛳ **Insight:**
 
-* Major contributors to decline include **China, Canada, Colombia, and Germany**.
-* **Southeast Asia and Middle East markets** are expanding → consider **marketing and distribution focus** here.
+
+#### Insights:
+
+* The most significant declines were recorded in major markets such as **China (2023)** and **Canada (2024)**, heavily impacting total sales.
+* **Brazil** showed consistent growth across both years — indicating stability and long-term potential.
+* **Southeast Asian markets**, such as **Thailand and the Philippines**, are emerging as new growth opportunities.
+
+
+
+#### 🎯 **Strategic Recommendations:**
+
+1. **Investigate Declines in Key Markets**:
+
+   * Conduct a thorough audit in **China and Canada** to understand issues related to demand, pricing pressure, distribution barriers, or regulatory shifts.
+   * Consider product repositioning or new go-to-market strategies.
+
+2. **Focus on High-Potential Markets**:
+
+   * **Strengthen market presence in Brazil, Thailand, and the Philippines** through localized campaigns, stronger distribution networks, and regional partnerships.
+   * Brazil could serve as a **benchmark market** to replicate growth strategies in other emerging regions.
+
+3. **Regional Segmentation Strategy**:
+
+   * Cluster countries into mature vs. emerging markets to tailor more effective and targeted sales strategies.
+
 
 <br>
 
