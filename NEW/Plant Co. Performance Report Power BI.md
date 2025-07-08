@@ -81,45 +81,81 @@ The dashboard enables the business to:
 <details>
   <summary>GROSS PROFIT 2023–2024</summary>
   
-## ✅ Overall KPI Highlights
-> Overall, total Gross Profit (YTD) dropped from 5.15M in 2023 to 1.40M in 2024 for the same period. However, the YTD vs PYTD gap improved
-  significantly from -265K to -78K, indicating that the downward trend has been successfully mitigated. Gross Profit Margin remained relatively
-  stable at around 39%, showing that margin structure is well maintained.
+## ✅ Overall Performance
 
+| Year | Gross Profit YTD | Difference vs PYTD | GP %       |
+| ---- | ---------------- | ------------------ | ---------- |
+| 2023 | **1.47M**        | —                  | **40.12%** |
+| 2024 | **1.40M**        | **-77.62K**        | **39.15%** |
 
-## ✅ Monthly Trend
-> Monthly trends show sharp fluctuations. In 2023, declines were consistent in Q4, while in 2024 there was a positive spike in February (+117K)
-  before declining again in March–April. This highlights the need for a more consistent month-on-month improvement momentum going forward.
+* **Gross Profit decreased by 77.62K** in 2024, indicating profitability pressure compared to the previous year.
+* **Gross Profit Margin dropped from 40.12% to 39.15%**, suggesting potential cost increases or lower operational efficiency.
 
+<br>
 
-## ✅ Product Type Performance
-> Outdoor products continue to support growth amid weaknesses in Indoor & Landscape. In 2024, Outdoor recorded a net +44K while other products declined.  
-  This signals an opportunity to expand Outdoor’s market share in the right segments.
+## ✅ Performance by Product Type
 
+| Product Type | GP Change (2024 vs 2023) | Insight                            |
+| ------------ | ------------------------ | ---------------------------------- |
+| Indoor       | **-74.1K**               | Largest contributor to the decline |
+| Landscape    | **-47.8K**               | Significant drop                   |
+| Outdoor      | **+44.3K**               | The only growing category          |
 
-## ✅ Country Breakdown
-> Country analysis shows that some major contributors dropped sharply, such as Canada (-41K), Germany (-25K), and Japan (-19K). Conversely, markets
-  like Poland, Qatar, and Thailand posted positive growth, albeit on a smaller scale.  
-> **Recommendation**: strengthen strategies in declining markets and scale up in growing ones.”
+🔍 **Insight**: *Outdoor* products show growth potential. *Indoor* and *Landscape* products need further evaluation (possibly in terms of cost, demand, or distribution channel).
 
+<br>
 
-## ✅ Account Segmentation
-> The profitability segmentation scatter plot illustrates where accounts sit in terms of value (YTD sales) and profitability (GP%). Most accounts
-  remain clustered in the Low Value–Low GP% quadrant, highlighting a concentration of lower-contributing accounts. A few accounts are beginning to
-  shift toward higher GP% areas, though their overall value is still modest. This segmentation helps visualize opportunities for prioritization—accounts
-  with high GP% but lower volumes could be targeted with up-sell and cross-sell strategies to move them into the High Value–High GP% quadrant.
+## ✅ Performance by Country
 
+* **Top Countries with Decline (2024 vs 2023)**:
 
-## ✨Actionable Key Takeaways✨
-- **Maintain margins** — control pricing & costs.  
-- **Drive volume** — future Gross Profit growth hinges on account & key market penetration.  
-- **Focus on Outdoor** — clear opportunities for strengthening sales in this product.  
-- **Strengthen market strategy** — address declines in major countries, scale up in positive ones.  
-- **Ensure monthly consistency** — avoid performance volatility with a more stable sales pipeline.
+  * 🇨🇦 **Canada**: -41.6K
+  * 🇩🇪 **Germany**: -25.5K
+  * 🇯🇵 **Japan**: -19.9K
+
+* **Top Countries with Growth**:
+
+  * 🇹🇭 **Thailand**: +37.9K
+  * 🇬🇧 **United Kingdom**: +35K
+  * 🇪🇸 **Spain**: +18.2K
+
+🔍 **Insight**: Focus recovery strategies on countries with declines, and replicate successful approaches from high-growth countries.
+
+<br>
+
+## ✅ Performance by Month
+
+| Month    | GP Change (2024 vs 2023)    |
+| -------- | --------------------------- |
+| January  | Slightly down (-7.7K)       |
+| February | **Strong growth (+116.8K)** |
+| March    | **Sharp drop (-96.4K)**     |
+| April    | **Sharp drop (-90.4K)**     |
+
+🔍 **Insight**: Strong performance in February was not sustained. **Q2 experienced a steep decline**, which may require investigation into seasonality or operational issues.
+
+<br>
+
+## ✅ Account Profitability Segmentation (Scatter Plot)
+
+* **2023**: Distribution was more consistent around 40–60% GP% for medium-volume accounts.
+* **2024**: More scattered; more accounts with **GP% < 40%** and **low volume**, suggesting profitability is more dispersed and unfocused.
+
+🔍 **Insight**: Re-evaluate **customer segmentation and prioritization** to ensure resources are aligned with the most profitable accounts.
+
+<br>
+
+## Recommendations : 
+
+1. **Review Indoor and Landscape Products**: Audit cost and distribution efficiency.
+2. **Double Down on Outdoor Products**: Support growth with marketing campaigns and market expansion.
+3. **Address Q2 Performance**: Implement recovery strategies post-March, especially in inventory and promotions.
+4. **Dynamic Account Segmentation**: Use the scatter plot view by GP/Sales/Quantity to identify accounts that should be prioritized or restructured.
 
   <br>
   
 </details>
+
 
 <details>
   <summary>QUANTITY 2023–2024</summary>
