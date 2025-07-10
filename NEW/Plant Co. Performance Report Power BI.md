@@ -60,7 +60,7 @@ In the business context, the dashboard addresses these key challenges:
 
 <br>
 
-> **“What are the key drivers behind the changes in Gross Profit, Sales, or Quantity, and which countries, products, or customers are helping or hurting our performance compared to last year?”**
+> **What are the key drivers behind the changes in Gross Profit, Sales, or Quantity, and which countries, products, or customers are helping or hurting our performance compared to last year?**
 
  <br>
 
