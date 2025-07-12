@@ -714,7 +714,7 @@ These custom tables were added to enhance interactivity and support dynamic anal
 
 
 <details>
-  <summary><h2>Data Visualization</h2></summary>
+  <summary><h2>Data Visualization</h1></summary>
 
   <details>
     <summary><h3>Executive Dasboard</h3></summary>
