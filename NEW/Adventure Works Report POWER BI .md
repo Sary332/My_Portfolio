@@ -716,8 +716,22 @@ These custom tables were added to enhance interactivity and support dynamic anal
 <details>
   <summary><h2>Data Visualization</h2></summary>
 
+  <details>
+    <summary><h3>Executive Dasboard</h3></summary>
+    <p>Berisi analisis dan data untuk region Europe.</p>
+  </details>
 
+  <details>
+    <summary><h3>Product Detail Dasboard</h3></summary>
+    <p>Berisi analisis dan data untuk region North America.</p>
+  </details>
 
+  <details>
+    <summary><h3>CusTomers Details Dashboard</h3></summary>
+    <p>Berisi analisis dan data untuk region Pacific.</p>
+  </details>
+
+</details>
 
 
 
