@@ -647,5 +647,81 @@ To address both performance underachievement and return volatility, the followin
  
 # How I Build This ?
 
+<details>
+  <summary><h2>Data Cleaning</h2></summary>
+
+* Renamed tables and fields to make them more **readable** and consistent across the model.
+* Standardized **data types** (e.g., date, numeric, text) to ensure accurate calculations and visualizations.
+* Identified and handled **duplicate records** and **blank values** to maintain data integrity.
+ <br>
+</details>
+
+ 
+<details>
+  <summary><h2>Data Transformation & Modeling</h2></summary>
+
+* **Merged Sales Datasets (2020–2022):** Combined separate yearly sales datasets into a single fact table for a unified analysis.
+* **Calendar Lookup Table:** Built a date hierarchy (Year > Quarter > Month > Day) to support time-based analysis and period comparisons.
+* **Customer Lookup Table:** Added a **Full Name** column by concatenating first and last names for better readability in visuals.
+* **Territory Lookup Table:** Created a **territory hierarchy** (Continent > Country) to enable drill-down geographic analysis.
+* **Measure Table:** Organized all DAX measures into a central table for better manageability.
+* Defined **one-to-many relationships** between fact tables (Sales) and dimension tables (Calendar, Customers, Products, Territory) following a **star schema** for optimized performance and clean DAX logic.
+
+
+
+## **Slicer Tables**
+
+These custom tables were added to enhance interactivity and support dynamic analysis:
+
+* **Customer Metric Adjustment:** Toggle between viewing trends for total customers and average revenue per customer over time.
+* **Price Adjustment (%):**
+
+  ```DAX
+  Price Adjustment (%) = GENERATESERIES(-1, 1, 0.1)
+  ```
+
+  Allows simulation of pricing scenarios from -100% to +100% in 10% increments.
+* **Product Matrix Selection:** Enables users to analyze revenue, profit, return rate, and order trends for specific products over time.
+
+
+
+## **DAX Measures :**
+
+#### Base Measures
+
+* `Total Revenue`, `Total Orders`, `Total Profit`, `Total Return`, `Return Rate`
+* `Total Customers`, `Average Revenue per Customer`
+
+#### Previous Month Measures
+
+* `Prev. Month Revenue`, `Prev. Month Orders`, `Prev. Month Returns`
+
+> Used for month-over-month trend comparisons.
+
+#### Target Measures
+
+* `Orders Target`, `Revenue Target`, `Profit Target`
+
+> To benchmark actual performance against predefined goals.
+
+#### Further Analysis Measures
+
+* Additional DAX measures created as **reserves for future analysis**.
+* Not currently used in the dashboard visuals but prepared to enable deeper insights when required.
+
+<br>
+</details>
+
+
+<details>
+  <summary><h2>Data Visualization</h2></summary>
+
+
+
+
+
+
+</details>
+
 
 
