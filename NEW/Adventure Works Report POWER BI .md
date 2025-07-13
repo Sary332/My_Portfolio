@@ -1,4 +1,4 @@
-<img width="1203" height="697" alt="image" src="https://github.com/user-attachments/assets/11c3000f-5d38-4233-9c95-cb8daebcff3f" /># What’s This Dashboard About ?
+# What’s This Dashboard About ?
 
 This project is a multi-page interactive dashboard built in **Power BI** to analyze the business performance of **AdventureWorks**, covering **sales**, **products**, and **customer behavior**.
 
@@ -771,9 +771,8 @@ This dashboard serves as a **comprehensive executive summary** of AdventureWorks
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/bafc3f57-6d11-471f-84c3-cc8e89e01e47" alt="Data Model Diagram" width="500">
+  <img src="https://github.com/user-attachments/assets/f5f8864c-b2f3-484d-a02d-9019e8322b75" alt="Data Model Diagram" width="500">
 </p>
-
 
 
 
@@ -834,6 +833,12 @@ This design enables data-driven decisions around **product improvement, marketin
   <details>
     <summary><h3>CusTomers Details Dashboard</h3></summary>
     <p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b542d34a-8431-4323-9371-6842b016a08f" alt="Data Model Diagram" width="500">
+</p>
+
+
 
 
 #### 1️⃣ Purpose 
