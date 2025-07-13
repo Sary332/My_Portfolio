@@ -1,4 +1,4 @@
-# What’s This Dashboard About ?
+<img width="1203" height="697" alt="image" src="https://github.com/user-attachments/assets/11c3000f-5d38-4233-9c95-cb8daebcff3f" /># What’s This Dashboard About ?
 
 This project is a multi-page interactive dashboard built in **Power BI** to analyze the business performance of **AdventureWorks**, covering **sales**, **products**, and **customer behavior**.
 
@@ -718,17 +718,173 @@ These custom tables were added to enhance interactivity and support dynamic anal
 
   <details>
     <summary><h3>Executive Dasboard</h3></summary>
-    <p>Berisi analisis dan data untuk region Europe.</p>
+    <p>
+
+    
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bafc3f57-6d11-471f-84c3-cc8e89e01e47" alt="Data Model Diagram" width="500">
+</p>
+
+
+## 1️⃣ Purpose
+
+This dashboard serves as a **comprehensive executive summary** of AdventureWorks' overall sales performance, designed to provide key stakeholders with a quick and actionable view of business health across three years of data. It helps answer questions such as:
+
+* How is the business performing in terms of revenue, profit, and orders?
+* Which product categories and SKUs are driving sales or returns?
+* How do monthly trends evolve over time?
+* What products may need attention based on performance and return behavior?
+
+
+
+## 2️⃣ Measures Used
+
+* **Total Revenue**
+* **Total Profit**
+* **Total Orders**
+* **Return Rate (%)**
+  
+
+
+## 3️⃣ Reason for Choosing This Visualization
+
+* **Multiple Layers of Insight**: Combines high-level KPIs (top row) with temporal trends, product-level insights, and categorical breakdowns in one cohesive layout.
+* **Executive-friendly**: Top KPIs are prominently displayed with clear font hierarchy and contrasting color for instant readability.
+* **Trend Tracking**: The revenue line chart with a moving average baseline helps detect seasonal performance, growth, or disruptions.
+* **Action-Oriented**: Highlighting return rates in the product table (with red shading) draws attention to problematic SKUs.
+* **Comparative Context**: Monthly comparisons help users monitor short-term changes while staying aligned with long-term trends.
+* **Category-Level Insight**: Bar chart on the right shows where the bulk of orders are coming from, helping guide strategic focus.
+
+
+
+✅ This dashboard is particularly effective as an **entry point into deeper analysis**, enabling decision-makers to identify areas worth drilling into — such as regional dashboards, product diagnostics, or customer segmentation views.
+
+        
+  </p>
   </details>
+
+
 
   <details>
     <summary><h3>Product Detail Dasboard</h3></summary>
-    <p>Berisi analisis dan data untuk region North America.</p>
+    <p>
+
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/bafc3f57-6d11-471f-84c3-cc8e89e01e47" alt="Data Model Diagram" width="500">
+</p>
+
+
+
+
+#### 1️⃣ Purpose 
+This dashboard is designed to perform a **deep-dive diagnostic analysis** on an individual product—**Sport-100 Helmet, Red**—focusing on its performance across revenue, profit, and return rate. It enables users to:
+
+* Evaluate how the product is performing **against sales targets**.
+* Track **profitability trends**, including how profit changes under **simulated price adjustments**.
+* Analyze the **return rate volatility** over time to understand post-sale customer dissatisfaction.
+* Use **dynamic toggles (Product Matrix Selector)** to switch between performance metrics for time-based trend comparison.
+
+This supports more informed **product-level decisions**, such as pricing strategy, promotional planning, or quality control.
+
+
+
+#### 2️⃣ Measures Displayed
+
+1. **Performance vs Target**
+
+   * Monthly Orders vs Target → (206 / 270)
+   * Monthly Revenue vs Target → (\$7,208 / \$9,430)
+   * Monthly Profit vs Target → (\$4,512 / \$5,903)
+
+2. **Profitability Tracking**
+
+   * **Total Profit** (black line)
+   * **Adjusted Profit** (cyan line), based on +10% price increase simulation
+
+3. **Return Rate Trend**
+
+   * Area chart showing **Return %** trend over time, visualizing spikes and dips in product return behavior.
+
+4. **Interactive Elements**
+
+   * **Price Adjustment (%)** → slider allows simulation of different price scenarios (e.g., +10% in this view).
+   * **Product Matrix Selection** → enables user to switch between Orders, Revenue, Profit, Return, or Return % for time-based analysis.
+
+
+
+#### 3️⃣ Reason for Choosing This Visualization
+
+This multi-layered visual layout is chosen to provide a **360-degree view** of product health, all in one place. The reasons include:
+
+* **KPI Gauges** offer a quick glance at target performance gaps.
+* **Line charts with adjustable parameters** (e.g., price) allow for **what-if analysis**, giving business users tools to simulate outcomes.
+* **Return rate trend** helps uncover post-sale pain points and detect quality or expectation issues.
+* The interactive matrix selector encourages **exploratory analysis**, empowering users to diagnose beyond standard KPIs.
+
+This design enables data-driven decisions around **product improvement, marketing strategies, or pricing adjustments**, especially for products showing warning signs like high return rates or underperformance.
+
+
+        
+</p>
   </details>
+
+
 
   <details>
     <summary><h3>CusTomers Details Dashboard</h3></summary>
-    <p>Berisi analisis dan data untuk region Pacific.</p>
+    <p>
+
+
+#### 1️⃣ Purpose 
+
+This dashboard is designed to provide a **comprehensive view of customer behavior and value**. It helps stakeholders understand:
+
+* How many unique customers are contributing to revenue.
+* The **average revenue per customer**, showing how customer value changes over time.
+* Segmentation of customer orders by **income level** and **occupation**, to identify high-value demographic groups.
+* Top 100 customers by revenue and their individual contribution to the business.
+* Trends in customer base growth and revenue per customer across different time periods.
+
+This enables marketing, sales, and strategy teams to focus on **retention of high-value customers** and to design targeted campaigns.
+
+
+
+#### 2️⃣ Measures Displayed
+
+* **Unique Customers**: Total distinct customers (17.4K).
+* **Revenue Per Customer**: Average revenue generated per customer (\$1,431).
+* **Customer Trend Metrics**:
+
+  * Total Customers (line chart with trendline).
+  * Revenue Per Customer (toggle option in the line chart).
+* **Customer Segmentation**:
+
+  * Pie charts showing order distribution by income level (High, Average, Low).
+  * Pie charts showing order distribution by occupation (Management, Professional, Skilled Manual).
+* **Top 100 Customers Table**:
+
+  * Customer name, total orders, and revenue contribution.
+* **Top Customer Highlight**:
+
+  * Shows the customer with the highest revenue, including total orders and revenue generated.
+
+
+
+#### 3️⃣ Reason for Choosing This Visualization
+This visualization was chosen because it brings together **key customer-related metrics and demographics in a single interactive view**, allowing users to:
+
+* Quickly identify the most valuable customers and demographic segments.
+* Monitor trends in customer acquisition and spending habits over time with the toggle for Total Customers vs. Revenue Per Customer.
+* Explore detailed customer data (Top 100 table) while keeping a high-level summary (KPI cards).
+* Understand customer diversity and segment performance using **visual groupings (donut charts)** for income and occupation.
+
+By combining **high-level KPIs, trend analysis, and granular details**, this design supports **strategic decisions** about customer retention, loyalty programs, and market targeting.
+
+
+✅ This dashboard acts as a **bridge between sales performance and customer analytics**, enabling a deeper understanding of the “who” behind revenue figures.
+    
+</p>
   </details>
 
 </details>
