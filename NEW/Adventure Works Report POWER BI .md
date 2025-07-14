@@ -1,5 +1,13 @@
 # What’s This Dashboard About ?
 
+[🌐🔗 View Live Dashboard (Power BI Web)](https://app.powerbi.com/links/wWvtQsQJYi?ctid=6aaec87a-744e-4251-94c0-291ddd50bc5a&pbi_source=linkShare)
+
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/454674b3-1843-4a77-8647-b51962917702" alt="Data Model Diagram" width="600">
+</p>
+
+
 This project is a multi-page interactive dashboard built in **Power BI** to analyze the business performance of **AdventureWorks**, covering **sales**, **products**, and **customer behavior**.
 
 It combines executive-level overviews with detailed drilldowns to support decision-making across different levels of the business.
@@ -40,7 +48,7 @@ This dashboard was built to explore real-world use cases of Power BI:
 # What Kind of Insight It Brings ?
 
 <details>
-  <summary><h2>Overall</h2></summary></summary>
+  <summary><h2>Executive Dashboard</h2></summary></summary>
 
 ## **KEY INSIGHTS**
 
@@ -667,6 +675,12 @@ To address both performance underachievement and return volatility, the followin
 * **Measure Table:** Organized all DAX measures into a central table for better manageability.
 * Defined **one-to-many relationships** between fact tables (Sales) and dimension tables (Calendar, Customers, Products, Territory) following a **star schema** for optimized performance and clean DAX logic.
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/6537fcb6-9ea3-41b6-b6d9-1561deb52309" alt="Data Model Diagram" width="650">
+</p>
+
+
+
 
 
 ## **Slicer Tables**
@@ -682,6 +696,11 @@ These custom tables were added to enhance interactivity and support dynamic anal
 
   Allows simulation of pricing scenarios from -100% to +100% in 10% increments.
 * **Product Matrix Selection:** Enables users to analyze revenue, profit, return rate, and order trends for specific products over time.
+
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/1e3754d0-6981-4588-b256-a65035845e0e" alt="Data Model Diagram" width="550">
+</p>
 
 
 
@@ -717,12 +736,12 @@ These custom tables were added to enhance interactivity and support dynamic anal
   <summary><h2>Data Visualization</h1></summary>
 
   <details>
-    <summary><h3>Executive Dasboard</h3></summary>
+    <summary><h4>Executive Dasboard</h4></summary>
     <p>
 
     
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/bafc3f57-6d11-471f-84c3-cc8e89e01e47" alt="Data Model Diagram" width="500">
+  <img src="https://github.com/user-attachments/assets/bafc3f57-6d11-471f-84c3-cc8e89e01e47" alt="Data Model Diagram" width="650">
 </p>
 
 
@@ -766,12 +785,12 @@ This dashboard serves as a **comprehensive executive summary** of AdventureWorks
 
 
   <details>
-    <summary><h3>Product Detail Dasboard</h3></summary>
+    <summary><h4>Product Detail Dasboard</h4></summary>
     <p>
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/f5f8864c-b2f3-484d-a02d-9019e8322b75" alt="Data Model Diagram" width="500">
+  <img src="https://github.com/user-attachments/assets/f5f8864c-b2f3-484d-a02d-9019e8322b75" alt="Data Model Diagram" width="650">
 </p>
 
 
@@ -831,11 +850,11 @@ This design enables data-driven decisions around **product improvement, marketin
 
 
   <details>
-    <summary><h3>CusTomers Details Dashboard</h3></summary>
+    <summary><h4>CusTomers Details Dashboard</h4></summary>
     <p>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b542d34a-8431-4323-9371-6842b016a08f" alt="Data Model Diagram" width="500">
+  <img src="https://github.com/user-attachments/assets/b542d34a-8431-4323-9371-6842b016a08f" alt="Data Model Diagram" width="650">
 </p>
 
 
@@ -892,9 +911,80 @@ By combining **high-level KPIs, trend analysis, and granular details**, this des
 </p>
   </details>
 
-</details>
+
+<details>
+    <summary><h4>Navigation Panel & Custom Tooltip</h4></summary>
+    <p>
 
 
+<table>
+  <tr>
+    <td width="5%">
+      <img src="https://github.com/user-attachments/assets/dc46c5cf-424c-436b-b5e8-0ced71c89309" alt="Deskripsi Gambar" width="100">
+    </td>
+    <td width="60%">
+      <h3>Navigation Panel : </h3>
+      <p>
+
+### 1️⃣ Purpose
+The navigation panel acts as a centralized sidebar for navigating between dashboards and accessing filters. It includes:
+
+Navigation buttons to switch between Executive Overview, Product Details, and Customer Insights dashboards.
+
+A Filter Panel toggle (hide/unhide) that reveals filtering options for:
+
+* Year (time-based analysis)
+
+* Country/Region (geographic segmentation)
+
+This design gives users full control to explore data at different levels and focus on specific periods or locations without leaving the current page.
+
+### 2️⃣ Reason for Choosing this Visualization
+
+* Seamless navigation: Simplifies movement between report pages for a smooth user journey.
+
+* Dynamic filtering: The hide/unhide filter panel prevents visual clutter and makes filters easily accessible when needed.
+
+* Modern UI feel: Mimics the navigation drawer found in modern apps, making it intuitive for users.
+
+* Space-efficient: Keeps the main canvas clean for visualizations while providing powerful interactivity on demand.
+
+
+  </p>
+    </td>
+  </tr>
+</table>
+
+<br>
+
+<table>
+  <tr>
+    <td width="40%">
+      <img src="https://github.com/user-attachments/assets/be009c64-7263-459c-919f-6d75b5bc57ea" alt="Deskripsi Gambar" width="500">
+    </td>
+    <td width="40%">
+      <h3>Custom Tooltip: </h3>
+      <p>
+
+
+### 1️⃣ Purpose
+This tooltip gives users quick, in-depth context about each product category when they hover over a bar. It includes:
+
+* Total Orders, Revenue, Profit, Return, and Return Rate.
+* A sparkline showing Weekly Orders trends over time.
+* This design enriches the bar chart without adding extra visuals to the dashboard.
+
+### 2️⃣ Reason for Choosing this Visualization
+
+* Enhances interactivity: Adds depth to a simple bar chart by revealing additional metrics and trends on hover.
+* Compact insights: Allows detailed data exploration without taking up space in the main layout.
+* Supports quick analysis: Helps users spot anomalies or seasonality within specific categories instantly.
+
+
+  </p>
+  </td>
+  </tr>
+</table>
 
 </details>
 
