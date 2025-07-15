@@ -4,7 +4,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/2f846c8c-4caf-4a19-a218-e1f731b9e4e0" alt="Data Model Diagram" width="600">
+  <img src="https://github.com/user-attachments/assets/2f846c8c-4caf-4a19-a218-e1f731b9e4e0" alt="Data Model Diagram" width="800">
 </p>
 
 
