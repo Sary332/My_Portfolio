@@ -2,6 +2,9 @@
 
 [🌐🔗 View Live Dashboard (Power BI Web)](https://app.powerbi.com/links/wWvtQsQJYi?ctid=6aaec87a-744e-4251-94c0-291ddd50bc5a&pbi_source=linkShare)
 
+🔗 [Dataset Source](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms)
+
+<br>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/454674b3-1843-4a77-8647-b51962917702" alt="Data Model Diagram" width="800">
