@@ -1,5 +1,7 @@
 # Maven Toys – Regional Revenue Dashboard (September 2021)
 
+[🌐🔗 See Excel Dashboard Here](./MavenToys_Excel_Sales.xlsx) 
+
 <p align="center">
   <img src="https://github.com/user-attachments/assets/18146678-5fee-4d9f-9498-2fa432712c85" alt="Data Model Diagram" width="800">
 </p>
