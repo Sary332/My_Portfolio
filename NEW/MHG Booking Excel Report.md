@@ -1,6 +1,6 @@
 # MHG Booking Report
 
-[🌐🔗 See Dataset Here](./MHG_Booking_Data.xlsx) 
+[🌐🔗 View Dataset Here](./MHG_Booking_Data.xlsx) 
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/12a323d9-14c3-45d3-9069-503f5986ca9a" alt="Data Model Diagram" width="800">
