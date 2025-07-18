@@ -549,5 +549,5 @@ Year    Country         OrderCount    TotalRevenue     AOV         AvgItemsPerOr
 2016   Germany              227         691106.47     3044.5218           8
 2016   Italy                167         441673.51     2644.7515           8
 2016   Netherlands          95          250355.53     2635.3213           7
-
+...        ...             ...             ...            ...            ...  
         
