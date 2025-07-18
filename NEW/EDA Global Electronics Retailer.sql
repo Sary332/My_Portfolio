@@ -359,7 +359,7 @@ ORDER BY
     Order_Date DESC      -- Secondary sort by most recent orders
 
 
-
+/* Result : 12832 Rows */
  Order_Date       Delivery_Date          Country        Shipping_Days 
 -------------    --------------    ----------------    --------------
  2016-02-27       2016-03-15         United States           17            
@@ -369,6 +369,7 @@ ORDER BY
     ...              ...                 ...                ...
 
 
+    
 -- b) Calculate average shipping time by year/month for online store
 
 -- Includes year-over-year comparison and performance trends
@@ -390,6 +391,7 @@ ORDER BY
     [Year], [Month]
 
 
+/* Result : 60 Rows */
 YEAR   MONTH    Avg_Shipping_Days    Min_Shipping_Days    Max_Shipping_Days
 ----   -----    -----------------    -----------------    -----------------
 2016	 1             8                    4                    15
@@ -426,6 +428,7 @@ FROM
     YearlyDelivery;
 
 
+/* Result : 5 Rows */
 YEAR    Avg_Delivery_Days    Prev_Year_Avg    YoY_Change
 ----    -----------------    -------------    ----------
 2016	       7                  NULL           NULL
@@ -435,11 +438,12 @@ YEAR    Avg_Delivery_Days    Prev_Year_Avg    YoY_Change
 2020	       4                   4               0     --Stable
 
 
+    
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 --- 5. Product Analysis
+    
 -- a) Popular Product Analysis by Country
-
 
 WITH CountryProductSales AS (
     SELECT 
@@ -495,6 +499,7 @@ FROM ProductPairs
 ORDER BY CoOccurrence DESC;
 
 
+/* Result : 20 Rows */
       ProductA                 ProductB          CoOccurrence     Rank
 --------------------    ---------------------    ------------    ------
 Desktops                 Movie DVD                  1548           1
@@ -533,5 +538,16 @@ SELECT
 FROM OrderValues
 GROUP BY Year, Country
 ORDER BY Year, Country, AOV DESC;
+
+
+/* Result : 40 Rows */
+Year    Country         OrderCount    TotalRevenue     AOV         AvgItemsPerOrder
+-----  ---------------  ------------  --------------  -----------  ------------------
+2016   Australia              121         316425.60     2615.0876           7
+2016   Canada                266         608348.62     2287.0248           7
+2016   France                 79         188645.05     2387.9120           8
+2016   Germany               227         691106.47     3044.5218           8
+2016   Italy                 167         441673.51     2644.7515           8
+2016   Netherlands            95         250355.53     2635.3213           7
 
         
