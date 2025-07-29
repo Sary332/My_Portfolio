@@ -1,8 +1,14 @@
+
+[🌐🔗 View Dataset Here](https://www.kaggle.com/datasets/prasad22/healthcare-dataset)
+
+[📃 View Queries Here](HealthCare%20Data%20Cleaning%20Queries.md)
+
+
 When I decided to create this Data Cleaning project, I faced some challenges in finding the right dataset. I needed data that
 wasn't overly simple yet contained meaningful complexities to both test and reflect on my current skill level. After searching, 
-I discovered this interesting dataset on Kaggle that perfectly balanced these requirements.[View Dataset Here](https://www.kaggle.com/datasets/prasad22/healthcare-dataset)
+I discovered this interesting dataset on Kaggle that perfectly balanced these requirements.
 
-### Query types used:
+## Query types used:
 
 - Aggregation Functions (MAX/MIN,COUNT,SUM)
 - Wilcards
