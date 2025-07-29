@@ -1,6 +1,7 @@
 
 # Global Electronics Retailer Analysis
 [🌐🔗View Dataset Here](https://app.mavenanalytics.io/datasets?dataStructure=Multiple+tables&tag=Retail)
+
 [📃 View Queries Here](./EDA_Global_Electronics_Retailer.sql) 
 
 This project explores the company’s sales, product, and logistics data over a multi-year period to uncover patterns in customer behavior, seasonal trends, and operational performance. The findings are not just numbers—they reveal a story of growth, challenges, and opportunities.
