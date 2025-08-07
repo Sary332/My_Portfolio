@@ -1,6 +1,6 @@
 # What’s This Dashboard About ?
 
-[🌐🔗 View Live Dashboard (Power BI Web)]([https://app.powerbi.com/links/wWvtQsQJYi?ctid=6aaec87a-744e-4251-94c0-291ddd50bc5a&pbi_source=linkShare](https://app.powerbi.com/view?r=eyJrIjoiNTg3NmMwZDYtM2E4NS00NTYxLTgyZTMtNmU0YzdkNDE3Nzk2IiwidCI6IjZhYWVjODdhLTc0NGUtNDI1MS05NGMwLTI5MWRkZDUwYmM1YSIsImMiOjEwfQ%3D%3D)])
+[🌐🔗 View Live Dashboard](https://app.powerbi.com/view?r=eyJrIjoiNTg3NmMwZDYtM2E4NS00NTYxLTgyZTMtNmU0YzdkNDE3Nzk2IiwidCI6IjZhYWVjODdhLTc0NGUtNDI1MS05NGMwLTI5MWRkZDUwYmM1YSIsImMiOjEwfQ%3D%3D)
 
 [🔗 View Dataset Here](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver17&tabs=ssms)
 
