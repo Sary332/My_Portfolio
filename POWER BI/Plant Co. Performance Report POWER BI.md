@@ -1,6 +1,6 @@
 #  What The Dashboard is About ?
 
-[🌐🔗 View Live Dashboard (Power BI Web)]([https://app.powerbi.com/links/9TUxn-T9wS?ctid=6aaec87a-744e-4251-94c0-291ddd50bc5a&pbi_source=linkShare](https://app.powerbi.com/view?r=eyJrIjoiOTY2NDFlOTctOTYxNy00YTA1LWFjZTktOTJkNmQxMmNjYzRiIiwidCI6IjZhYWVjODdhLTc0NGUtNDI1MS05NGMwLTI5MWRkZDUwYmM1YSIsImMiOjEwfQ%3D%3D))
+[🌐🔗 View Live Dashboard](https://app.powerbi.com/view?r=eyJrIjoiOTY2NDFlOTctOTYxNy00YTA1LWFjZTktOTJkNmQxMmNjYzRiIiwidCI6IjZhYWVjODdhLTc0NGUtNDI1MS05NGMwLTI5MWRkZDUwYmM1YSIsImMiOjEwfQ%3D%3D)
 
 
 <p align="center">
